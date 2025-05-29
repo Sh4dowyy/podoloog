@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { createSupabaseBrowserClient } from '@/lib/supabase'
 import { useAuth } from '@/components/auth/AuthProvider'
 
@@ -19,13 +19,7 @@ export function TodoList() {
   const { user } = useAuth()
   const supabase = createSupabaseBrowserClient()
 
-  useEffect(() => {
-    if (user) {
-      fetchTodos()
-    }
-  }, [user])
-
-  const fetchTodos = async () => {
+  const fetchTodos = useCallback(async () => {
     if (!user) return
 
     setLoading(true)
@@ -43,7 +37,13 @@ export function TodoList() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [user, supabase])
+
+  useEffect(() => {
+    if (user) {
+      fetchTodos()
+    }
+  }, [user, fetchTodos])
 
   const addTodo = async (e: React.FormEvent) => {
     e.preventDefault()

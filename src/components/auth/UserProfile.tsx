@@ -2,6 +2,7 @@
 
 import { useAuth } from './AuthProvider'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export function UserProfile() {
   const { user, loading, signOut } = useAuth()
@@ -32,9 +33,11 @@ export function UserProfile() {
     <div className="flex items-center space-x-3">
       <div className="flex items-center space-x-2">
         {user.user_metadata?.avatar_url ? (
-          <img
+          <Image
             src={user.user_metadata.avatar_url}
             alt="Profile"
+            width={32}
+            height={32}
             className="w-8 h-8 rounded-full"
           />
         ) : (
