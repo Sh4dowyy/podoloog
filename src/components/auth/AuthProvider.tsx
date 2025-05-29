@@ -33,6 +33,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const supabase = createSupabaseBrowserClient()
 
   useEffect(() => {
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(async (event, session) => {
@@ -52,7 +57,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [supabase])
 
   const signOut = async () => {
-    await supabase.auth.signOut()
+    if (supabase) {
+      await supabase.auth.signOut()
+    }
   }
 
   const value = {

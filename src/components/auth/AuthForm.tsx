@@ -17,6 +17,17 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
   
   const supabase = createSupabaseBrowserClient()
 
+  if (!supabase) {
+    return (
+      <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+        <h2 className="text-2xl font-bold text-center mb-6">Authentication Unavailable</h2>
+        <p className="text-center text-gray-600">
+          Supabase configuration not found. Please set up your environment variables.
+        </p>
+      </div>
+    )
+  }
+
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)

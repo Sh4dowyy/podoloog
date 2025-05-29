@@ -20,7 +20,7 @@ export function TodoList() {
   const supabase = createSupabaseBrowserClient()
 
   const fetchTodos = useCallback(async () => {
-    if (!user) return
+    if (!user || !supabase) return
 
     setLoading(true)
     try {
@@ -40,14 +40,16 @@ export function TodoList() {
   }, [user, supabase])
 
   useEffect(() => {
-    if (user) {
+    if (user && supabase) {
       fetchTodos()
+    } else {
+      setLoading(false)
     }
-  }, [user, fetchTodos])
+  }, [user, fetchTodos, supabase])
 
   const addTodo = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!newTodo.trim() || !user) return
+    if (!newTodo.trim() || !user || !supabase) return
 
     try {
       const { data, error } = await supabase
@@ -68,6 +70,8 @@ export function TodoList() {
   }
 
   const toggleTodo = async (id: string, completed: boolean) => {
+    if (!supabase) return
+    
     try {
       const { error } = await supabase
         .from('todos')
@@ -85,6 +89,8 @@ export function TodoList() {
   }
 
   const deleteTodo = async (id: string) => {
+    if (!supabase) return
+    
     try {
       const { error } = await supabase
         .from('todos')
@@ -97,6 +103,14 @@ export function TodoList() {
     } catch (error) {
       console.error('Error deleting todo:', error)
     }
+  }
+
+  if (!supabase) {
+    return (
+      <div className="p-6 text-center">
+        <p className="text-gray-600">Supabase configuration not found. Please set up your environment variables.</p>
+      </div>
+    )
   }
 
   if (!user) {

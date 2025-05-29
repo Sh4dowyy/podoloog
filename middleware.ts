@@ -8,9 +8,19 @@ export async function middleware(request: NextRequest) {
     },
   })
 
+  // Check if Supabase environment variables are available
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  // If Supabase credentials are not set, skip Supabase middleware
+  if (!supabaseUrl || !supabaseAnonKey) {
+    console.warn('Supabase environment variables not set. Skipping auth middleware.')
+    return response
+  }
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    supabaseUrl,
+    supabaseAnonKey,
     {
       cookies: {
         get(name: string) {
@@ -35,7 +45,11 @@ export async function middleware(request: NextRequest) {
   )
 
   // Refresh the session if expired
-  await supabase.auth.getUser()
+  try {
+    await supabase.auth.getUser()
+  } catch (error) {
+    console.warn('Supabase auth error in middleware:', error)
+  }
 
   return response
 }

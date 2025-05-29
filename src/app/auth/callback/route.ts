@@ -9,6 +9,11 @@ export async function GET(request: NextRequest) {
   if (code) {
     const supabase = createSupabaseRouteHandlerClient()
     
+    if (!supabase) {
+      console.error('Supabase client not available for auth callback')
+      return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+    }
+    
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     
     if (!error) {
