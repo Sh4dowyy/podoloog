@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { createSupabaseBrowserClient } from '@/lib/supabase'
+import { useLanguage } from '../i18n/LanguageProvider'
 
 interface AuthFormProps {
   mode?: 'signin' | 'signup'
@@ -14,15 +15,19 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
   const [isSignUp, setIsSignUp] = useState(mode === 'signup')
+  const { t, currentLanguage } = useLanguage()
   
   const supabase = createSupabaseBrowserClient()
 
   if (!supabase) {
     return (
       <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-bold text-center mb-6">Authentication Unavailable</h2>
+        <h2 className="text-2xl font-bold text-center mb-6">{currentLanguage === 'et' ? 'Autentimine pole saadaval' : 'Аутентификация недоступна'}</h2>
         <p className="text-center text-gray-600">
-          Supabase configuration not found. Please set up your environment variables.
+          {currentLanguage === 'et' 
+            ? 'Supabase konfiguratsioon puudub. Palun seadista keskkonnamuutujad.'
+            : 'Конфигурация Supabase не найдена. Пожалуйста, настройте переменные окружения.'
+          }
         </p>
       </div>
     )
@@ -43,9 +48,15 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
         if (error) throw error
         
         if (data.user && !data.session) {
-          setMessage('Check your email for the confirmation link!')
+          setMessage(currentLanguage === 'et' 
+            ? 'Kontrollige oma e-posti kinnituslinki!'
+            : 'Проверьте свой email для подтверждения ссылки!'
+          )
         } else {
-          setMessage('Account created successfully!')
+          setMessage(currentLanguage === 'et' 
+            ? 'Konto edukalt loodud!'
+            : 'Аккаунт успешно создан!'
+          )
           onSuccess?.()
         }
       } else {
@@ -56,7 +67,10 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
         
         if (error) throw error
         
-        setMessage('Signed in successfully!')
+        setMessage(currentLanguage === 'et' 
+          ? 'Sisselogimine õnnestus!'
+          : 'Вход выполнен успешно!'
+        )
         onSuccess?.()
       }
     } catch (error: any) {
@@ -85,13 +99,13 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
   return (
     <div className="max-w-md mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-center mb-6">
-        {isSignUp ? 'Sign Up' : 'Sign In'}
+        {isSignUp ? t('signUp') : t('signIn')}
       </h2>
       
       <form onSubmit={handleAuth} className="space-y-4">
         <div>
           <label htmlFor="email" className="block text-sm font-medium mb-1">
-            Email
+            {t('email')}
           </label>
           <input
             id="email"
@@ -105,7 +119,7 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
         
         <div>
           <label htmlFor="password" className="block text-sm font-medium mb-1">
-            Password
+            {t('password')}
           </label>
           <input
             id="password"
@@ -123,7 +137,7 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
           disabled={loading}
           className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 disabled:opacity-50"
         >
-          {loading ? 'Loading...' : (isSignUp ? 'Sign Up' : 'Sign In')}
+          {loading ? t('loading') : (isSignUp ? t('signUp') : t('signIn'))}
         </button>
       </form>
       
@@ -133,7 +147,7 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
           disabled={loading}
           className="w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 disabled:opacity-50"
         >
-          Continue with Google
+          {t('continueWithGoogle')}
         </button>
       </div>
       
@@ -143,15 +157,15 @@ export function AuthForm({ mode = 'signin', onSuccess }: AuthFormProps) {
           className="text-blue-600 hover:underline"
         >
           {isSignUp 
-            ? 'Already have an account? Sign in' 
-            : "Don't have an account? Sign up"
+            ? t('alreadyHaveAccount')
+            : t('dontHaveAccount')
           }
         </button>
       </div>
       
       {message && (
         <div className={`mt-4 p-3 rounded-md ${
-          message.includes('error') || message.includes('Error')
+          message.includes('error') || message.includes('Error') || message.includes('ошибка')
             ? 'bg-red-100 text-red-700'
             : 'bg-green-100 text-green-700'
         }`}>

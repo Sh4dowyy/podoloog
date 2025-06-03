@@ -11,42 +11,37 @@ import {
 export const navlinks = [
   {
     href: "/",
-    label: "Avaleht",
+    label: "Главная",
     icon: IconHome,
   },
   {
     href: "/products",
-    label: "Tooted",
+    label: "Продукция",
     icon: IconFlask,
   },
   {
     href: "/anatomy",
-    label: "Anatoomia",
+    label: "Анатомия",
     icon: IconStethoscope,
   },
   {
     href: "/therapy",
-    label: "Füsioteraapia",
+    label: "Физиотерапия",
     icon: IconMedicalCross,
   },
   {
     href: "/services",
-    label: "Teenused",
+    label: "Услуги",
     icon: IconMedicalCross,
   },
   {
-    href: "/pricing",
-    label: "Hinnad",
-    icon: IconCoin,
-  },
-  {
     href: "/reviews",
-    label: "Arvustused",
+    label: "Отзывы",
     icon: IconStarFilled,
   },
   {
     href: "/credentials",
-    label: "Diplomid",
+    label: "Дипломы и заслуги",
     icon: IconCertificate,
   },
 ];

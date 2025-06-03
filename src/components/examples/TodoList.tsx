@@ -108,7 +108,7 @@ export function TodoList() {
   if (!supabase) {
     return (
       <div className="p-6 text-center">
-        <p className="text-gray-600">Supabase configuration not found. Please set up your environment variables.</p>
+        <p className="text-gray-600">Конфигурация Supabase не найдена. Пожалуйста, настройте переменные окружения.</p>
       </div>
     )
   }
@@ -116,14 +116,14 @@ export function TodoList() {
   if (!user) {
     return (
       <div className="p-6 text-center">
-        <p className="text-gray-600">Please sign in to view your todos.</p>
+        <p className="text-gray-600">Пожалуйста, войдите, чтобы увидеть ваши задачи.</p>
       </div>
     )
   }
 
   return (
     <div className="max-w-2xl mx-auto p-6">
-      <h2 className="text-2xl font-bold mb-6">My Todos</h2>
+      <h2 className="text-2xl font-bold mb-6">Мои задачи</h2>
       
       <form onSubmit={addTodo} className="mb-6">
         <div className="flex gap-2">
@@ -131,24 +131,24 @@ export function TodoList() {
             type="text"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
-            placeholder="Add a new todo..."
+            placeholder="Добавить новую задачу..."
             className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
           >
-            Add
+            Добавить
           </button>
         </div>
       </form>
 
       {loading ? (
-        <div className="text-center py-4">Loading todos...</div>
+        <div className="text-center py-4">Загрузка задач...</div>
       ) : (
         <div className="space-y-2">
           {todos.length === 0 ? (
-            <p className="text-gray-500 text-center py-4">No todos yet. Add one above!</p>
+            <p className="text-gray-500 text-center py-4">Пока нет задач. Добавьте одну выше!</p>
           ) : (
             todos.map((todo) => (
               <div
@@ -174,7 +174,7 @@ export function TodoList() {
                   onClick={() => deleteTodo(todo.id)}
                   className="text-red-600 hover:text-red-800"
                 >
-                  Delete
+                  Удалить
                 </button>
               </div>
             ))
