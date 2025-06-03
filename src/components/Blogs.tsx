@@ -1,5 +1,5 @@
 "use client";
-import { Blog } from "@/types/blog";
+import { BlogPost } from "@/types/blog";
 import Image from "next/image";
 import React, { useState } from "react";
 import { Heading } from "./Heading";
@@ -7,7 +7,7 @@ import { Paragraph } from "./Paragraph";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
-export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
+export const Blogs = ({ blogs }: { blogs: BlogPost[] }) => {
   const [hovered, setHovered] = useState<string | null>(null);
   return (
     <div className="max-w-5xl mx-auto my-10">
@@ -55,14 +55,15 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
               )}
             </AnimatePresence>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-20">
-              <Image
-                src={blog.image}
-                alt="thumbnail"
-                height="200"
-                width="200"
-                objectFit="cover"
-                className="rounded-md object-cover h-40 w-60"
-              />
+              {blog.image_url && (
+                <Image
+                  src={blog.image_url}
+                  alt="thumbnail"
+                  height="200"
+                  width="200"
+                  className="rounded-md object-cover h-40 w-60"
+                />
+              )}
               <div className="flex flex-col col-span-3">
                 <Heading className="text-lg md:text-lg lg:text-lg">
                   {blog.title}
@@ -71,9 +72,9 @@ export const Blogs = ({ blogs }: { blogs: Blog[] }) => {
                   {blog.description}
                 </Paragraph>
                 <div className="flex space-x-2 flex-wrap mt-4">
-                  {blog.tags?.map((tag, index) => (
+                  {blog.tags?.map((tag: string, index: number) => (
                     <span
-                      key={`tag-${blog.slug}`}
+                      key={`tag-${blog.slug}-${index}`}
                       className="text-xs px-1 py-0.5 text-secondary border border-neutral-200 bg-white rounded-md"
                     >
                       {tag}

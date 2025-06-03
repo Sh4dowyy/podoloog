@@ -5,12 +5,10 @@ import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Link from 'next/link'
 import { UserProfile } from '@/components/auth/UserProfile'
-import { useLanguage } from '@/components/i18n/LanguageProvider'
 
 export default function AdminPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
-  const { t, currentLanguage } = useLanguage()
 
   useEffect(() => {
     if (!loading && !user) {
@@ -21,7 +19,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-lg text-gray-600 animate-pulse">{t('loading')}</div>
+        <div className="text-lg text-gray-600 animate-pulse">Загрузка...</div>
       </div>
     )
   }
@@ -32,39 +30,39 @@ export default function AdminPage() {
 
   const adminFeatures = [
     {
-      title: t('blogManagement'),
-      description: t('blogDescription'),
+      title: 'Управление блогом',
+      description: 'Создавайте и редактируйте записи в блоге',
       href: '/admin/blog',
       icon: '📝',
-      status: currentLanguage === 'et' ? 'Varsti' : 'Скоро'
+      status: 'Доступно'
     },
     {
-      title: currentLanguage === 'et' ? 'Piltide üleslaadimine' : 'Загрузка изображений',
-      description: currentLanguage === 'et' ? 'Hallake portfoolio pilte ja galeriid' : 'Управляйте изображениями портфолио и галереей',
+      title: 'Загрузка изображений',
+      description: 'Управляйте изображениями портфолио и галереей',
       href: '/admin/images',
       icon: '🖼️',
-      status: currentLanguage === 'et' ? 'Varsti' : 'Скоро'
+      status: 'Скоро'
     },
     {
-      title: currentLanguage === 'et' ? 'Projektide haldamine' : 'Управление проектами',
-      description: currentLanguage === 'et' ? 'Lisage ja uuendage portfoolio projekte' : 'Добавляйте и обновляйте проекты портфолио',
+      title: 'Управление проектами',
+      description: 'Добавляйте и обновляйте проекты портфолио',
       href: '/admin/projects',
       icon: '🚀',
-      status: currentLanguage === 'et' ? 'Varsti' : 'Скоро'
+      status: 'Скоро'
     },
     {
-      title: t('profileSettings'),
-      description: t('profileDescription'),
+      title: 'Настройки профиля',
+      description: 'Обновите информацию о вашем аккаунте',
       href: '/admin/profile',
       icon: '⚙️',
-      status: currentLanguage === 'et' ? 'Saadaval' : 'Доступно'
+      status: 'Скоро'
     },
     {
-      title: currentLanguage === 'et' ? 'Demo Todo' : 'Демо Todo',
-      description: currentLanguage === 'et' ? 'Testige autentimist lihtsa todo rakendusega' : 'Проверьте аутентификацию с простым todo приложением',
+      title: 'Демо Todo',
+      description: 'Проверьте аутентификацию с простым todo приложением',
       href: '/demo',
       icon: '✅',
-      status: currentLanguage === 'et' ? 'Saadaval' : 'Доступно'
+      status: 'Доступно'
     }
   ]
 
@@ -76,10 +74,10 @@ export default function AdminPage() {
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
               <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-                {t('profession')}
+                Подолог
               </Link>
               <span className="text-gray-500">•</span>
-              <span className="text-gray-600">{t('adminDashboard')}</span>
+              <span className="text-gray-600">Панель администратора</span>
             </div>
             <UserProfile />
           </div>
@@ -89,9 +87,9 @@ export default function AdminPage() {
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">{t('welcome')}</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Добро пожаловать!</h1>
           <p className="text-gray-600 mt-2">
-            {t('dashboardDescription')}
+            Управляйте содержимым и настройками вашего портфолио
           </p>
         </div>
 
@@ -111,7 +109,7 @@ export default function AdminPage() {
                     </h3>
                     <span
                       className={`text-xs px-2 py-1 rounded-full ${
-                        feature.status === (currentLanguage === 'et' ? 'Saadaval' : 'Доступно')
+                        feature.status === 'Доступно'
                           ? 'bg-green-100 text-green-800'
                           : 'bg-yellow-100 text-yellow-800'
                       }`}
@@ -122,16 +120,16 @@ export default function AdminPage() {
                   <p className="text-gray-600 text-sm mb-4">
                     {feature.description}
                   </p>
-                  {feature.status === (currentLanguage === 'et' ? 'Saadaval' : 'Доступно') ? (
+                  {feature.status === 'Доступно' ? (
                     <Link
                       href={feature.href}
                       className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors"
                     >
-                      {currentLanguage === 'et' ? 'Mine →' : 'Перейти →'}
+                      Перейти →
                     </Link>
                   ) : (
                     <span className="text-sm text-gray-400">
-                      {currentLanguage === 'et' ? 'Varsti' : 'Скоро'}
+                      Скоро
                     </span>
                   )}
                 </div>
