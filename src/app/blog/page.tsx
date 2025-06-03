@@ -113,7 +113,7 @@ export default function BlogPage() {
               <motion.div
                 layoutId={`card-${active.title}-${id}`}
                 ref={ref}
-                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-white sm:rounded-3xl overflow-hidden"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -136,22 +136,16 @@ export default function BlogPage() {
                     <div className="flex-1">
                       <motion.h3
                         layoutId={`title-${active.title}-${id}`}
-                        className="font-bold text-neutral-700 dark:text-neutral-200 text-xl mb-2"
+                        className="font-bold text-neutral-700 dark:text-neutral-800 text-xl mb-2"
                       >
                         {getLocalizedTitle(active)}
                       </motion.h3>
-                      <motion.p
-                        layoutId={`description-${active.description}-${id}`}
-                        className="text-neutral-600 dark:text-neutral-400 text-base"
-                      >
-                        {getLocalizedDescription(active)}
-                      </motion.p>
                     </div>
 
                     <motion.button
                       layoutId={`button-${active.title}-${id}`}
                       onClick={() => setActive(null)}
-                      className="px-6 py-3 text-sm rounded-full font-bold bg-blue-500 text-white hover:bg-blue-600 transition-colors ml-4"
+                      className="px-6 py-3 text-sm rounded-full font-bold bg-gray-100 hover:bg-gray-200 hover:text-gray-900 text-gray-700 transition-colors ml-4"
                     >
                       {currentLanguage === 'et' ? 'Sulge' : 'Закрыть'}
                     </motion.button>
@@ -162,7 +156,7 @@ export default function BlogPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="text-neutral-600 text-sm md:text-base lg:text-base h-60 md:h-80 overflow-y-auto pr-2 dark:text-neutral-400 [scrollbar-width:thin] [scrollbar-color:#cbd5e1_transparent] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+                      className="text-gray-600 text-sm md:text-base lg:text-base h-60 md:h-80 overflow-y-auto pr-2 dark:text-neutral-400 [scrollbar-width:thin] [scrollbar-color:#cbd5e1_transparent] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
                     >
                       <div dangerouslySetInnerHTML={{ __html: getLocalizedContent(active) }} />
                     </motion.div>
@@ -179,7 +173,7 @@ export default function BlogPage() {
           <Heading as="h1" className="text-center mb-8">
             {currentLanguage === 'et' ? 'Blogi' : 'Блог'}
           </Heading>
-          
+
           {posts.length === 0 ? (
             <div className="text-center text-gray-600">
               {currentLanguage === 'et' ? 'Blogi postitusi ei leitud' : 'Записи блога не найдены'}
@@ -191,34 +185,38 @@ export default function BlogPage() {
                   layoutId={`card-${post.title}-${id}`}
                   key={`card-${post.title}-${id}`}
                   onClick={() => setActive(post)}
-                  className="p-6 flex flex-col md:flex-row justify-between items-center hover:bg-gray-50 dark:hover:bg-neutral-800 rounded-xl cursor-pointer bg-white shadow-sm border border-neutral-200 transition-all duration-200 hover:shadow-md"
+                  className="p-6 flex flex-col md:flex-row justify-between items-center rounded-xl cursor-pointer bg-white shadow-sm border border-neutral-200 transition-all duration-200"
+                  whileHover={{ 
+                    boxShadow: "0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" // shadow-lg
+                  }}
+                  transition={{ duration: 0.2 }}
                 >
                   <div className="flex gap-6 flex-col md:flex-row flex-1">
                     {post.image_url && (
-                      <div>
+                      <div className="overflow-hidden rounded-lg">
                         <Image
                           width={120}
                           height={120}
                           src={post.image_url}
                           alt={getLocalizedTitle(post)}
-                          className="h-32 w-32 md:h-20 md:w-20 rounded-lg object-cover object-top flex-shrink-0"
+                          className="h-32 w-32 md:h-20 md:w-20 rounded-lg object-cover object-top flex-shrink-0 hover:scale-105 transition-transform duration-200"
                         />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
                       <motion.h3
                         layoutId={`title-${post.title}-${id}`}
-                        className="font-medium text-neutral-800 dark:text-neutral-200 text-center md:text-left text-lg mb-2"
+                        className="font-semibold text-gray-900 dark:text-neutral-900 text-center md:text-left text-lg mb-3 line-clamp-2"
                       >
                         {getLocalizedTitle(post)}
                       </motion.h3>
                       <motion.p
                         layoutId={`description-${post.description}-${id}`}
-                        className="text-neutral-600 dark:text-neutral-400 text-center md:text-left text-base leading-relaxed"
+                        className="text-gray-600 text-center md:text-left text-base leading-relaxed mb-2"
                       >
                         {getLocalizedDescription(post)}
                       </motion.p>
-                      <p className="text-sm text-gray-500 mt-2 text-center md:text-left">
+                      <p className="text-gray-500 text-sm mt-2 text-center md:text-left">
                         {new Date(post.created_at).toLocaleDateString('et-EE', {
                           day: '2-digit',
                           month: '2-digit',
@@ -229,7 +227,7 @@ export default function BlogPage() {
                   </div>
                   <motion.button
                     layoutId={`button-${post.title}-${id}`}
-                    className="px-6 py-3 text-sm rounded-full font-bold bg-gray-100 hover:bg-blue-500 hover:text-white text-black mt-4 md:mt-0 transition-all duration-200 flex-shrink-0"
+                    className="px-6 py-3 text-sm rounded-full font-medium bg-gray-100 hover:bg-gray-200 hover:text-gray-900 text-gray-700 mt-4 md:mt-0 transition-all duration-200 flex-shrink-0"
                   >
                     {currentLanguage === 'et' ? 'Loe' : 'Читать'}
                   </motion.button>
