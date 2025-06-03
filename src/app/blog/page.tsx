@@ -73,7 +73,7 @@ export default function BlogPage() {
   if (loading) {
     return (
       <Container>
-        <div className="py-20">
+        <div className="py-10">
           <Heading as="h1" className="text-center">
             {t('loading')}
           </Heading>
@@ -173,8 +173,8 @@ export default function BlogPage() {
       </AnimatePresence>
 
       <Container>
-        <div className="py-20">
-          <Heading as="h1" className="text-center mb-10">
+        <div className="py-0">
+          <Heading as="h1" className="text-center mb-8">
             {currentLanguage === 'et' ? 'Blogi' : 'Блог'}
           </Heading>
           
