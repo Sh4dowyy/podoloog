@@ -4,26 +4,40 @@ import { Navlink } from "@/types/navlink";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { twMerge } from "tailwind-merge";
 import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
 import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser, IconFileText } from "@tabler/icons-react";
-import { isMobile } from "@/lib/utils";
 import { useAuth } from "./auth/AuthProvider";
 import { useLanguage } from "./i18n/LanguageProvider";
 import { LanguageSwitcher } from "./i18n/LanguageSwitcher";
 
 export const Sidebar = () => {
-  const [open, setOpen] = useState(isMobile() ? false : true);
+  const [open, setOpen] = useState(false);
+  const [isMobileDevice, setIsMobileDevice] = useState(false);
+
+  useEffect(() => {
+    const checkDevice = () => {
+      const mobile = window.innerWidth < 1024;
+      setIsMobileDevice(mobile);
+      if (!mobile) {
+        setOpen(true); // Always open on desktop
+      }
+    };
+
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   return (
     <>
       {/* Backdrop overlay for mobile */}
       <AnimatePresence>
-        {open && isMobile() && (
+        {open && isMobileDevice && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -37,12 +51,12 @@ export const Sidebar = () => {
 
       {/* Sidebar */}
       <AnimatePresence>
-        {open && (
+        {(open || !isMobileDevice) && (
           <motion.div
-            initial={{ x: -200 }}
+            initial={isMobileDevice ? { x: -200 } : false}
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
-            exit={{ x: -200 }}
+            exit={isMobileDevice ? { x: -200 } : {}}
             className="px-6 z-[100] py-10 bg-neutral-100 w-[16rem] fixed lg:relative h-screen left-0 flex flex-col justify-between"
           >
             <div className="flex-1 overflow-auto">
@@ -50,29 +64,33 @@ export const Sidebar = () => {
               <div className="pt-4 pb-2">
                 <LanguageSwitcher />
               </div>
-              <Navigation setOpen={setOpen} />
+              <Navigation setOpen={setOpen} isMobileDevice={isMobileDevice} />
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       {/* Mobile toggle button */}
-      <button
-        className="fixed lg:hidden bottom-4 right-4 h-12 w-12 bg-white border border-neutral-200 rounded-full shadow-lg flex items-center justify-center z-[110] hover:shadow-xl transition-shadow"
-        onClick={() => setOpen(!open)}
-      >
-        <IconLayoutSidebarRightCollapse 
-          className={`h-5 w-5 text-secondary transition-transform ${open ? 'rotate-180' : ''}`} 
-        />
-      </button>
+      {isMobileDevice && (
+        <button
+          className="fixed bottom-4 right-4 h-12 w-12 bg-white border border-neutral-200 rounded-full shadow-lg flex items-center justify-center z-[110] hover:shadow-xl transition-shadow"
+          onClick={() => setOpen(!open)}
+        >
+          <IconLayoutSidebarRightCollapse 
+            className={`h-5 w-5 text-secondary transition-transform ${open ? 'rotate-180' : ''}`} 
+          />
+        </button>
+      )}
     </>
   );
 };
 
 export const Navigation = ({
   setOpen,
+  isMobileDevice,
 }: {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isMobileDevice: boolean;
 }) => {
   const pathname = usePathname();
   const { user } = useAuth();
@@ -139,7 +157,7 @@ export const Navigation = ({
         <Link
           key={link.href}
           href={link.href}
-          onClick={() => isMobile() && setOpen(false)}
+          onClick={() => isMobileDevice && setOpen(false)}
           className={twMerge(
             "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
             isActive(link.href) && "bg-white shadow-lg text-primary"
@@ -165,7 +183,7 @@ export const Navigation = ({
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => isMobile() && setOpen(false)}
+              onClick={() => isMobileDevice && setOpen(false)}
               className={twMerge(
                 "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
                 isActive(link.href) && "bg-white shadow-lg text-primary"
@@ -191,7 +209,7 @@ export const Navigation = ({
           </Heading>
           <Link
             href="/login"
-            onClick={() => isMobile() && setOpen(false)}
+            onClick={() => isMobileDevice && setOpen(false)}
             className={twMerge(
               "text-secondary hover:text-primary transition duration-200 flex items-center space-x-2 py-2 px-2 rounded-md text-sm",
               isActive("/login") && "bg-white shadow-lg text-primary"
