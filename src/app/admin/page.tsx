@@ -4,7 +4,6 @@ import { useAuth } from '@/components/auth/AuthProvider'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Link from 'next/link'
-import { UserProfile } from '@/components/auth/UserProfile'
 
 export default function AdminPage() {
   const { user, loading } = useAuth()
@@ -61,26 +60,10 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-                Подолог
-              </Link>
-              <span className="text-gray-500">•</span>
-              <span className="text-gray-600">Панель администратора</span>
-            </div>
-            <UserProfile />
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Добро пожаловать!</h1>
+          <h1 className="text-3xl font-bold text-gray-900">Панель администратора</h1>
           <p className="text-gray-600 mt-2">
             Управляйте содержимым и настройками вашего портфолио
           </p>

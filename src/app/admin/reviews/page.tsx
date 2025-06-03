@@ -4,7 +4,6 @@ import { useAuth } from '@/components/auth/AuthProvider'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { UserProfile } from '@/components/auth/UserProfile'
 import { reviewService } from '@/lib/reviews'
 import { Review, CreateReviewData } from '@/types/review'
 import { IconPlus, IconEdit, IconTrash, IconEye, IconStar } from '@tabler/icons-react'
@@ -83,26 +82,6 @@ export default function ReviewManagementPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-                Подолог
-              </Link>
-              <span className="text-gray-500">•</span>
-              <Link href="/admin" className="text-gray-600 hover:text-blue-600 transition-colors">
-                Панель администратора
-              </Link>
-              <span className="text-gray-500">•</span>
-              <span className="text-gray-600">Управление отзывами</span>
-            </div>
-            <UserProfile />
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 flex justify-between items-center">

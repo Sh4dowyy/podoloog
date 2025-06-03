@@ -21,6 +21,21 @@ export const Sidebar = () => {
 
   return (
     <>
+      {/* Backdrop overlay for mobile */}
+      <AnimatePresence>
+        {open && isMobile() && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black bg-opacity-50 z-[90] lg:hidden"
+            onClick={() => setOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Sidebar */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -28,7 +43,7 @@ export const Sidebar = () => {
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
             exit={{ x: -200 }}
-            className="px-6  z-[100] py-10 bg-neutral-100 w-[16rem] fixed lg:relative  h-screen left-0 flex flex-col justify-between"
+            className="px-6 z-[100] py-10 bg-neutral-100 w-[16rem] fixed lg:relative h-screen left-0 flex flex-col justify-between"
           >
             <div className="flex-1 overflow-auto">
               <SidebarHeader />
@@ -40,11 +55,15 @@ export const Sidebar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Mobile toggle button */}
       <button
-        className="fixed lg:hidden bottom-4 right-4 h-8 w-8 border border-neutral-200 rounded-full backdrop-blur-sm flex items-center justify-center z-50"
+        className="fixed lg:hidden bottom-4 right-4 h-12 w-12 bg-white border border-neutral-200 rounded-full shadow-lg flex items-center justify-center z-[110] hover:shadow-xl transition-shadow"
         onClick={() => setOpen(!open)}
       >
-        <IconLayoutSidebarRightCollapse className="h-4 w-4 text-secondary" />
+        <IconLayoutSidebarRightCollapse 
+          className={`h-5 w-5 text-secondary transition-transform ${open ? 'rotate-180' : ''}`} 
+        />
       </button>
     </>
   );
