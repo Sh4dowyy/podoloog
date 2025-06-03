@@ -4,7 +4,6 @@ import { useAuth } from '@/components/auth/AuthProvider'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { UserProfile } from '@/components/auth/UserProfile'
 import { blogService } from '@/lib/blog'
 import { BlogPost, CreateBlogPostData } from '@/types/blog'
 import { IconPlus, IconEdit, IconTrash, IconEye } from '@tabler/icons-react'
@@ -50,7 +49,7 @@ export default function BlogManagementPage() {
       await loadPosts()
     } catch (error) {
       console.error('Error deleting post:', error)
-      alert('Ошибка при удалении записи')
+      alert('Ошибка при удалении поста')
     }
   }
 
@@ -68,26 +67,6 @@ export default function BlogManagementPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <Link href="/" className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors">
-                Подолог
-              </Link>
-              <span className="text-gray-500">•</span>
-              <Link href="/admin" className="text-gray-600 hover:text-blue-600 transition-colors">
-                Панель администратора
-              </Link>
-              <span className="text-gray-500">•</span>
-              <span className="text-gray-600">Управление блогом</span>
-            </div>
-            <UserProfile />
-          </div>
-        </div>
-      </div>
-
       {/* Main Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8 flex justify-between items-center">
@@ -100,7 +79,7 @@ export default function BlogManagementPage() {
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2"
           >
             <IconPlus className="h-4 w-4" />
-            <span>Новая статья</span>
+            <span>Новый пост</span>
           </button>
         </div>
 
