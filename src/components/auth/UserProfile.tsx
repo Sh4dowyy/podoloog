@@ -3,9 +3,11 @@
 import { useAuth } from './AuthProvider'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useLanguage } from '../i18n/LanguageProvider'
 
 export function UserProfile() {
   const { user, loading, signOut } = useAuth()
+  const { t } = useLanguage()
 
   if (loading) {
     return (
@@ -23,7 +25,7 @@ export function UserProfile() {
           href="/login"
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
         >
-          Sign In
+          {t('signIn')}
         </Link>
       </div>
     )
@@ -35,7 +37,7 @@ export function UserProfile() {
         {user.user_metadata?.avatar_url ? (
           <Image
             src={user.user_metadata.avatar_url}
-            alt="Profile"
+            alt={t('profile')}
             width={32}
             height={32}
             className="w-8 h-8 rounded-full"
@@ -56,7 +58,7 @@ export function UserProfile() {
         onClick={signOut}
         className="bg-gray-600 hover:bg-gray-700 text-white px-3 py-1 rounded-md text-sm font-medium transition-colors"
       >
-        Sign Out
+        {t('signOut')}
       </button>
     </div>
   )
