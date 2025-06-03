@@ -37,6 +37,13 @@ export default function AdminPage() {
       status: 'Доступно'
     },
     {
+      title: 'Управление отзывами',
+      description: 'Создавайте и редактируйте отзывы клиентов',
+      href: '/admin/reviews',
+      icon: '⭐',
+      status: 'Доступно'
+    },
+    {
       title: 'Загрузка изображений',
       description: 'Управляйте изображениями портфолио и галереей',
       href: '/admin/images',

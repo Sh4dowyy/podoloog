@@ -21,9 +21,20 @@ const config: Config = {
         primary: "var(--neutral-700)",
         secondary: "var(--neutral-500)",
       },
+      transformStyle: {
+        'preserve-3d': 'preserve-3d',
+      },
+      perspective: {
+        '1000': '1000px',
+        '3000': '3000px',
+      },
     },
   },
-  plugins: [require("@tailwindcss/typography"), addVariablesForColors],
+  plugins: [
+    require("@tailwindcss/typography"), 
+    require('@tailwindcss/line-clamp'),
+    addVariablesForColors
+  ],
 } satisfies Config;
 
 // This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
