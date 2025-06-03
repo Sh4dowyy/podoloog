@@ -10,7 +10,7 @@ import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
 import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser } from "@tabler/icons-react";
+import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser, IconFileText } from "@tabler/icons-react";
 import { isMobile } from "@/lib/utils";
 import { useAuth } from "./auth/AuthProvider";
 import { useLanguage } from "./i18n/LanguageProvider";
@@ -57,7 +57,7 @@ export const Navigation = ({
 }) => {
   const pathname = usePathname();
   const { user } = useAuth();
-  const { t } = useLanguage();
+  const { t, currentLanguage } = useLanguage();
 
   const isActive = (href: string) => pathname === href;
 
@@ -89,9 +89,14 @@ export const Navigation = ({
       icon: navlinks[4].icon,
     },
     {
+      href: "/blog",
+      label: currentLanguage === 'et' ? 'Blogi' : 'Блог',
+      icon: IconFileText,
+    },
+    {
       href: "/reviews",
       label: t('reviews'),
-      icon: navlinks[6].icon,
+      icon: navlinks[5].icon,
     },
     {
       href: "/credentials",
@@ -106,11 +111,6 @@ export const Navigation = ({
       href: "/admin",
       label: t('admin'),
       icon: IconDashboard,
-    },
-    {
-      href: "/admin/profile",
-      label: t('profile'),
-      icon: IconUser,
     },
   ];
 
