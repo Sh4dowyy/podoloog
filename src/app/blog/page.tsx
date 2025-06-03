@@ -97,77 +97,79 @@ export default function BlogPage() {
 
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 grid place-items-center z-[100]">
-            <motion.button
-              key={`button-${active.title}-${id}`}
-              layout
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0, transition: { duration: 0.05 } }}
-              className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
-              onClick={() => setActive(null)}
-            >
-              <CloseIcon />
-            </motion.button>
-            <motion.div
-              layoutId={`card-${active.title}-${id}`}
-              ref={ref}
-              className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              {active.image_url && (
-                <div>
-                  <Image
-                    width={800}
-                    height={400}
-                    src={active.image_url}
-                    alt={getLocalizedTitle(active)}
-                    className="w-full h-60 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
-                  />
-                </div>
-              )}
-
-              <div className="flex-1 flex flex-col">
-                <div className="flex justify-between items-start p-6">
-                  <div className="flex-1">
-                    <motion.h3
-                      layoutId={`title-${active.title}-${id}`}
-                      className="font-bold text-neutral-700 dark:text-neutral-200 text-xl mb-2"
-                    >
-                      {getLocalizedTitle(active)}
-                    </motion.h3>
-                    <motion.p
-                      layoutId={`description-${active.description}-${id}`}
-                      className="text-neutral-600 dark:text-neutral-400 text-base"
-                    >
-                      {getLocalizedDescription(active)}
-                    </motion.p>
+          <div className="fixed inset-0 z-[100]">
+            <div className="fixed inset-y-0 right-0 left-0 lg:left-64 grid place-items-center p-4">
+              <motion.button
+                key={`button-${active.title}-${id}`}
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.05 } }}
+                className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                onClick={() => setActive(null)}
+              >
+                <CloseIcon />
+              </motion.button>
+              <motion.div
+                layoutId={`card-${active.title}-${id}`}
+                ref={ref}
+                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-neutral-900 sm:rounded-3xl overflow-hidden"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+              >
+                {active.image_url && (
+                  <div>
+                    <Image
+                      width={800}
+                      height={400}
+                      src={active.image_url}
+                      alt={getLocalizedTitle(active)}
+                      className="w-full h-60 lg:h-80 sm:rounded-tr-lg sm:rounded-tl-lg object-cover object-top"
+                    />
                   </div>
+                )}
 
-                  <motion.button
-                    layoutId={`button-${active.title}-${id}`}
-                    onClick={() => setActive(null)}
-                    className="px-6 py-3 text-sm rounded-full font-bold bg-blue-500 text-white hover:bg-blue-600 transition-colors ml-4"
-                  >
-                    {currentLanguage === 'et' ? 'Sulge' : 'Закрыть'}
-                  </motion.button>
+                <div className="flex-1 flex flex-col">
+                  <div className="flex justify-between items-start p-6">
+                    <div className="flex-1">
+                      <motion.h3
+                        layoutId={`title-${active.title}-${id}`}
+                        className="font-bold text-neutral-700 dark:text-neutral-200 text-xl mb-2"
+                      >
+                        {getLocalizedTitle(active)}
+                      </motion.h3>
+                      <motion.p
+                        layoutId={`description-${active.description}-${id}`}
+                        className="text-neutral-600 dark:text-neutral-400 text-base"
+                      >
+                        {getLocalizedDescription(active)}
+                      </motion.p>
+                    </div>
+
+                    <motion.button
+                      layoutId={`button-${active.title}-${id}`}
+                      onClick={() => setActive(null)}
+                      className="px-6 py-3 text-sm rounded-full font-bold bg-blue-500 text-white hover:bg-blue-600 transition-colors ml-4"
+                    >
+                      {currentLanguage === 'et' ? 'Sulge' : 'Закрыть'}
+                    </motion.button>
+                  </div>
+                  <div className="flex-1 px-6 pb-6">
+                    <motion.div
+                      layout
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="text-neutral-600 text-sm md:text-base lg:text-base h-60 md:h-80 overflow-y-auto pr-2 dark:text-neutral-400 [scrollbar-width:thin] [scrollbar-color:#cbd5e1_transparent] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+                    >
+                      <div dangerouslySetInnerHTML={{ __html: getLocalizedContent(active) }} />
+                    </motion.div>
+                  </div>
                 </div>
-                <div className="flex-1 px-6 pb-6">
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="text-neutral-600 text-sm md:text-base lg:text-base h-60 md:h-80 overflow-y-auto pr-2 dark:text-neutral-400 [scrollbar-width:thin] [scrollbar-color:#cbd5e1_transparent] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
-                  >
-                    <div dangerouslySetInnerHTML={{ __html: getLocalizedContent(active) }} />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </div>
           </div>
         ) : null}
       </AnimatePresence>
@@ -217,7 +219,11 @@ export default function BlogPage() {
                         {getLocalizedDescription(post)}
                       </motion.p>
                       <p className="text-sm text-gray-500 mt-2 text-center md:text-left">
-                        {new Date(post.created_at).toLocaleDateString(currentLanguage === 'et' ? 'et-EE' : 'ru-RU')}
+                        {new Date(post.created_at).toLocaleDateString('et-EE', {
+                          day: '2-digit',
+                          month: '2-digit',
+                          year: 'numeric'
+                        })}
                       </p>
                     </div>
                   </div>

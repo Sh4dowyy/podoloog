@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { reviewService } from '@/lib/reviews'
 import { Review, CreateReviewData } from '@/types/review'
-import { IconPlus, IconEdit, IconTrash, IconEye, IconStar } from '@tabler/icons-react'
+import { IconPlus, IconEdit, IconTrash, IconStar } from '@tabler/icons-react'
 
 export default function ReviewManagementPage() {
   const { user, loading } = useAuth()
@@ -105,81 +105,76 @@ export default function ReviewManagementPage() {
           </div>
         ) : (
           <div className="bg-white rounded-lg shadow overflow-hidden">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Отзыв
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Рейтинг
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Статус
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Действия
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {reviews.length === 0 ? (
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
                   <tr>
-                    <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
-                      Отзывы не найдены
-                    </td>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Отзыв
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Рейтинг
+                    </th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Статус
+                    </th>
+                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-24 sm:w-auto">
+                      Действия
+                    </th>
                   </tr>
-                ) : (
-                  reviews.map((review) => (
-                    <tr key={review.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900 max-w-md">
-                          {review.content.substring(0, 100)}
-                          {review.content.length > 100 && '...'}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {renderStars(review.rating)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          review.published 
-                            ? 'bg-green-100 text-green-800' 
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {review.published ? 'Опубликован' : 'Скрыт'}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div className="flex justify-end space-x-2">
-                          <Link
-                            href={`/reviews`}
-                            className="text-blue-600 hover:text-blue-900 p-1"
-                            title="Просмотр"
-                          >
-                            <IconEye className="h-4 w-4" />
-                          </Link>
-                          <button
-                            onClick={() => setEditingReview(review)}
-                            className="text-indigo-600 hover:text-indigo-900 p-1"
-                            title="Редактировать"
-                          >
-                            <IconEdit className="h-4 w-4" />
-                          </button>
-                          <button
-                            onClick={() => handleDelete(review.id)}
-                            className="text-red-600 hover:text-red-900 p-1"
-                            title="Удалить"
-                          >
-                            <IconTrash className="h-4 w-4" />
-                          </button>
-                        </div>
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {reviews.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
+                        Отзывы не найдены
                       </td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ) : (
+                    reviews.map((review) => (
+                      <tr key={review.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4">
+                          <div className="text-sm text-gray-900 max-w-md">
+                            {review.content.substring(0, 100)}
+                            {review.content.length > 100 && '...'}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          {renderStars(review.rating)}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                            review.published 
+                              ? 'bg-green-100 text-green-800' 
+                              : 'bg-yellow-100 text-yellow-800'
+                          }`}>
+                            {review.published ? 'Опубликован' : 'Скрыт'}
+                          </span>
+                        </td>
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-right">
+                          <div className="flex justify-end space-x-1 sm:space-x-2">
+                            <button
+                              onClick={() => setEditingReview(review)}
+                              className="text-indigo-600 hover:text-indigo-900 p-1"
+                              title="Редактировать"
+                            >
+                              <IconEdit className="h-4 w-4" />
+                            </button>
+                            <button
+                              onClick={() => handleDelete(review.id)}
+                              className="text-red-600 hover:text-red-900 p-1"
+                              title="Удалить"
+                            >
+                              <IconTrash className="h-4 w-4" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
@@ -258,102 +253,104 @@ function ReviewForm({
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">
-              {review ? 'Редактировать отзыв' : 'Новый отзыв'}
-            </h2>
-            <button
-              onClick={onClose}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              ✕
-            </button>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Rating */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Рейтинг
-              </label>
-              <select
-                value={formData.rating}
-                onChange={(e) => setFormData({...formData, rating: parseInt(e.target.value)})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              >
-                <option value={1}>1 звезда</option>
-                <option value={2}>2 звезды</option>
-                <option value={3}>3 звезды</option>
-                <option value={4}>4 звезды</option>
-                <option value={5}>5 звезд</option>
-              </select>
-            </div>
-
-            {/* Content Fields */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-medium">Содержание отзыва</h3>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Отзыв (ET)
-                </label>
-                <textarea
-                  value={formData.content_et}
-                  onChange={(e) => setFormData({...formData, content_et: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                  rows={4}
-                  required
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Отзыв (RU)
-                </label>
-                <textarea
-                  value={formData.content_ru}
-                  onChange={(e) => setFormData({...formData, content_ru: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                  rows={4}
-                />
-              </div>
-            </div>
-
-            {/* Published Checkbox */}
-            <div className="flex items-center">
-              <input
-                type="checkbox"
-                id="published"
-                checked={formData.published}
-                onChange={(e) => setFormData({...formData, published: e.target.checked})}
-                className="h-4 w-4 text-blue-600 border-gray-300 rounded"
-              />
-              <label htmlFor="published" className="ml-2 text-sm text-gray-700">
-                Опубликован
-              </label>
-            </div>
-
-            {/* Submit Buttons */}
-            <div className="flex justify-end space-x-3 pt-6">
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div className="fixed inset-y-0 right-0 left-0 lg:left-64 flex items-center justify-center p-4">
+        <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold">
+                {review ? 'Редактировать отзыв' : 'Новый отзыв'}
+              </h2>
               <button
-                type="button"
                 onClick={onClose}
-                className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+                className="text-gray-500 hover:text-gray-700"
               >
-                Отменить
-              </button>
-              <button
-                type="submit"
-                disabled={saving}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
-              >
-                {saving ? 'Загрузка...' : 'Сохранить изменения'}
+                ✕
               </button>
             </div>
-          </form>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Rating */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Рейтинг
+                </label>
+                <select
+                  value={formData.rating}
+                  onChange={(e) => setFormData({...formData, rating: parseInt(e.target.value)})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                >
+                  <option value={1}>1 звезда</option>
+                  <option value={2}>2 звезды</option>
+                  <option value={3}>3 звезды</option>
+                  <option value={4}>4 звезды</option>
+                  <option value={5}>5 звезд</option>
+                </select>
+              </div>
+
+              {/* Content Fields */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-medium">Содержание отзыва</h3>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Отзыв (ET)
+                  </label>
+                  <textarea
+                    value={formData.content_et}
+                    onChange={(e) => setFormData({...formData, content_et: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    rows={4}
+                    required
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Отзыв (RU)
+                  </label>
+                  <textarea
+                    value={formData.content_ru}
+                    onChange={(e) => setFormData({...formData, content_ru: e.target.value})}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                    rows={4}
+                  />
+                </div>
+              </div>
+
+              {/* Published Checkbox */}
+              <div className="flex items-center">
+                <input
+                  type="checkbox"
+                  id="published"
+                  checked={formData.published}
+                  onChange={(e) => setFormData({...formData, published: e.target.checked})}
+                  className="h-4 w-4 text-blue-600 border-gray-300 rounded"
+                />
+                <label htmlFor="published" className="ml-2 text-sm text-gray-700">
+                  Опубликован
+                </label>
+              </div>
+
+              {/* Submit Buttons */}
+              <div className="flex justify-end space-x-3 pt-6">
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-4 py-2 text-gray-700 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors"
+                >
+                  Отменить
+                </button>
+                <button
+                  type="submit"
+                  disabled={saving}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                >
+                  {saving ? 'Загрузка...' : 'Сохранить изменения'}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
