@@ -147,10 +147,10 @@ export default function ReviewsPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-all duration-200 min-h-[240px] flex flex-col"
               >
-                {/* Rating */}
+                {/* Rating
                 <div className="mb-4">
                   {renderStars(review.rating)}
-                </div>
+                </div> */}
 
                 {/* Content */}
                 <blockquote className="text-gray-700 leading-relaxed text-center flex-grow flex items-center justify-center">

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { serviceService } from '@/lib/services'
 import { Service, CreateServiceData } from '@/types/service'
 import { IconPlus, IconEdit, IconTrash, IconStar } from '@tabler/icons-react'
+import { ImageUpload } from '@/components/ImageUpload'
 
 export default function ServiceManagementPage() {
   const { user, loading } = useAuth()
@@ -220,6 +221,13 @@ function ServiceForm({
   })
   const [saving, setSaving] = useState(false)
 
+  const handleImageChange = (imageUrl: string | null) => {
+    setFormData(prev => ({
+      ...prev,
+      image_url: imageUrl || ''
+    }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSaving(true)
@@ -375,16 +383,18 @@ function ServiceForm({
                 </div>
               </div>
 
-              {/* Image URL */}
+              {/* Image Upload */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  URL изображения
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Изображение услуги
                 </label>
-                <input
-                  type="url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                <ImageUpload
+                  currentImageUrl={formData.image_url}
+                  onImageChange={handleImageChange}
+                  folder="services"
+                  width={400}
+                  height={300}
+                  placeholder="Загрузите изображение услуги"
                 />
               </div>
 

@@ -48,6 +48,13 @@ export default function AdminPage() {
       href: '/admin/services',
       icon: '💼',
       status: 'Доступно'
+    },
+    {
+      title: 'Управление дипломами',
+      description: 'Создавайте и редактируйте дипломы и сертификаты',
+      href: '/admin/credentials',
+      icon: '🏆',
+      status: 'Доступно'
     }
   ]
 

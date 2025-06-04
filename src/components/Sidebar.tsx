@@ -106,11 +106,6 @@ export const Navigation = ({
       icon: navlinks[0].icon,
     },
     {
-      href: "/products",  
-      label: t('products'),
-      icon: navlinks[1].icon,
-    },
-    {
       href: "/anatomy",
       label: t('anatomy'),
       icon: navlinks[2].icon,
