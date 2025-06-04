@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { blogService } from '@/lib/blog'
 import { BlogPost, CreateBlogPostData } from '@/types/blog'
 import { IconPlus, IconEdit, IconTrash } from '@tabler/icons-react'
+import { ImageUpload } from '@/components/ImageUpload'
 
 export default function BlogManagementPage() {
   const { user, loading } = useAuth()
@@ -206,6 +207,13 @@ function BlogPostForm({
   })
   const [saving, setSaving] = useState(false)
 
+  const handleImageChange = (imageUrl: string | null) => {
+    setFormData(prev => ({
+      ...prev,
+      image_url: imageUrl || ''
+    }))
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSaving(true)
@@ -329,16 +337,18 @@ function BlogPostForm({
                 </div>
               </div>
 
-              {/* Image URL */}
+              {/* Image Upload */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  URL изображения
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Изображение статьи
                 </label>
-                <input
-                  type="url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({...formData, image_url: e.target.value})}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                <ImageUpload
+                  currentImageUrl={formData.image_url}
+                  onImageChange={handleImageChange}
+                  folder="blog"
+                  width={600}
+                  height={400}
+                  placeholder="Загрузите изображение для статьи"
                 />
               </div>
 
