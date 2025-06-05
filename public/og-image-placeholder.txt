@@ -1,0 +1,12 @@
+PLACEHOLDER FOR OPENGRAPH IMAGE
+
+Рекомендации для создания og-image.jpg:
+- Размер: 1200x630 пикселей
+- Формат: JPG или PNG
+- Содержание: 
+  * Логотип или фото Alla Hüvenen
+  * Текст: "Alla Hüvenen - Podoloog Tartus"
+  * Телефон: +372 5895 5153
+  * Фон в медицинском стиле (белый/голубой)
+
+Разместить файл как: public/og-image.jpg 
