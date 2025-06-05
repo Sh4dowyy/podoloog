@@ -8,9 +8,27 @@ import { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Contact | Alla Hüvenen",
-  description:
-    "Tekst",
+  title: "Kontakt | Alla Hüvenen - Podoloog Tartus | Tel: 5895 5153",
+  description: "Võtke ühendust podoloog Alla Hüveneniga Tartus. Telefon: +372 5895 5153. Anne 44, Tartu. Broneeri aeg probleemse pediküüri ja jalgade ravi jaoks. Связаться с подологом в Тарту.",
+  keywords: [
+    "podoloog kontakt Tartu",
+    "Alla Hüvenen telefon",
+    "podoloog broneerimine",
+    "Anne 44 Tartu",
+    "jalgade ravi kontakt",
+    "5895 5153",
+    "подолог контакты Тарту",
+    "записаться к подологу"
+  ],
+  openGraph: {
+    title: "Kontakt | Alla Hüvenen - Podoloog Tartus",
+    description: "Võtke ühendust podoloog Alla Hüveneniga Tartus. Telefon: +372 5895 5153. Anne 44, Tartu.",
+    type: "website",
+    url: "https://podoloog.ee/contact",
+  },
+  alternates: {
+    canonical: "https://podoloog.ee/contact",
+  },
 };
 
 export default function Projects() {
