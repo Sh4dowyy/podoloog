@@ -5,8 +5,7 @@ export const translations = {
     // Navigation
     home: 'Avaleht',
     products: 'Tooted',
-    anatomy: 'Anatoomia',
-    therapy: 'Füsioteraapia',
+    biomechanics: 'Biomehaanika',
     services: 'Teenused',
     pricing: 'Hinnad',
     reviews: 'Arvustused',
@@ -93,8 +92,7 @@ export const translations = {
     // Navigation
     home: 'Главная',
     products: 'Продукция',
-    anatomy: 'Анатомия',
-    therapy: 'Физиотерапия',
+    biomechanics: 'Биомеханика',
     services: 'Услуги',
     pricing: 'Цены',
     reviews: 'Отзывы',

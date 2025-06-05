@@ -14,15 +14,12 @@ export default function Home() {
 
   return (
     <Container>
-      <span className="text-4xl">🦶</span>
-      <Heading className="font-black">Podoloog Alla Hüvenen</Heading>
-      
       {/* Language-specific Information Section */}
       <div className="max-w-4xl mt-8">
         <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
           <Paragraph className="mb-4">
             <Highlight>
-              {currentLanguage === 'et' ? 'Podoloog, tase 5' : 'Подолог, уровень 5'}
+              {currentLanguage === 'et' ? 'Alla Hüvenen, Podoloog, tase 5' : 'Alla Hüvenen, Подолог, уровень 5'}
             </Highlight> (kood 226809)
           </Paragraph>
           <Paragraph className="mb-4">

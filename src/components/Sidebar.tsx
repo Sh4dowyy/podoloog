@@ -106,19 +106,14 @@ export const Navigation = ({
       icon: navlinks[0].icon,
     },
     {
-      href: "/anatomy",
-      label: t('anatomy'),
+      href: "/biomechanics",
+      label: t('biomechanics'),
       icon: navlinks[2].icon,
-    },
-    {
-      href: "/therapy",
-      label: t('therapy'),
-      icon: navlinks[3].icon,
     },
     {
       href: "/services",
       label: t('services'),
-      icon: navlinks[4].icon,
+      icon: navlinks[3].icon,
     },
     {
       href: "/blog",
@@ -128,12 +123,12 @@ export const Navigation = ({
     {
       href: "/reviews",
       label: t('reviews'),
-      icon: navlinks[5].icon,
+      icon: navlinks[4].icon,
     },
     {
       href: "/credentials",
       label: t('credentials'),
-      icon: navlinks[6].icon,
+      icon: navlinks[5].icon,
     },
   ];
 
