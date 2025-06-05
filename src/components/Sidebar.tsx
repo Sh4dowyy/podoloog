@@ -116,6 +116,11 @@ export const Navigation = ({
       icon: navlinks[3].icon,
     },
     {
+      href: "/products",
+      label: currentLanguage === 'et' ? 'Produktid' : 'Продукция',
+      icon: navlinks[1].icon,
+    },
+    {
       href: "/blog",
       label: currentLanguage === 'et' ? 'Blogi' : 'Блог',
       icon: IconFileText,
