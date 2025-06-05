@@ -1,8 +1,7 @@
 import {
   IconHome,
   IconFlask,
-  IconStethoscope,
-  IconMedicalCross,
+  IconActivity,
   IconCoin,
   IconStarFilled,
   IconCertificate,
@@ -20,19 +19,14 @@ export const navlinks = [
     icon: IconFlask,
   },
   {
-    href: "/anatomy",
-    label: "Анатомия",
-    icon: IconStethoscope,
-  },
-  {
-    href: "/therapy",
-    label: "Физиотерапия",
-    icon: IconMedicalCross,
+    href: "/biomechanics",
+    label: "Биомеханика",
+    icon: IconActivity,
   },
   {
     href: "/services",
     label: "Услуги",
-    icon: IconMedicalCross,
+    icon: IconActivity,
   },
   {
     href: "/reviews",
