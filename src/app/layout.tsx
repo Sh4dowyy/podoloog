@@ -13,6 +13,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://podoloog.ee'),
   title: {
     default: "Alla Hüvenen - Podoloog Tartus | Probleemne Pediküür | 15+ aastat kogemust",
     template: "%s | Alla Hüvenen - Podoloog Tartus"
