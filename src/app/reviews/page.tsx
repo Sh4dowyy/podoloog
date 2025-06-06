@@ -104,7 +104,7 @@ export default function ReviewsPage() {
     return (
       <Container>
         <div className="py-10">
-          <Heading as="h1" className="text-center">
+          <Heading as="h1" className="">
             Загрузка...
           </Heading>
         </div>
@@ -116,7 +116,7 @@ export default function ReviewsPage() {
     return (
       <Container>
         <div className="py-10">
-          <Heading as="h1" className="text-center mb-8">
+          <Heading as="h1" className="font-black mb-8">
             {currentLanguage === 'et' ? 'Arvustused' : 'Отзывы'}
           </Heading>
           <div className="text-center text-gray-600">
@@ -132,7 +132,7 @@ export default function ReviewsPage() {
       <div className="py-0">
         {/* Header */}
         <div className="mb-8">
-          <Heading as="h1" className="text-center">
+          <Heading as="h1" className="font-black">
             {currentLanguage === 'et' ? 'Arvustused' : 'Отзывы'}
           </Heading>
         </div>

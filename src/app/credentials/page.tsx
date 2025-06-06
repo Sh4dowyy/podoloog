@@ -68,7 +68,7 @@ export default function CredentialsPage() {
     return (
       <Container>
         <div className="py-10">
-          <Heading as="h1" className="text-center">
+          <Heading as="h1" className="">
             {t('loading')}
           </Heading>
         </div>
@@ -166,7 +166,7 @@ export default function CredentialsPage() {
 
       <Container>
         <div className="py-0">
-          <Heading as="h1" className="text-center mb-8">
+          <Heading as="h1" className="font-black mb-8">
             {t('credentials')}
           </Heading>
           

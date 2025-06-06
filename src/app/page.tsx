@@ -23,28 +23,12 @@ export default function Home() {
               : 'Alla Hüvenen - Опытный Подолог в Тарту'
             }
           </Heading>
-          <Paragraph className="text-lg mb-6">
-            <Highlight>
-              {currentLanguage === 'et' 
-                ? 'Üle 15 aasta kogemust podoloogias'
-                : 'Более 15 лет опыта в подологии'
-              }
-            </Highlight>
-          </Paragraph>
           <Paragraph className="mb-4">
             {currentLanguage === 'et' 
               ? 'Spetsialiseerun probleemse pediküüri, sissekasvanud küünte ravi, küünte seenhaiguse ravile ja muudele jalgade probleemidele. Kasutan kaasaegseid meetodeid ja professionaalseid vahendeid teie jalgade tervise tagamiseks.'
               : 'Специализируюсь на проблемном педикюре, лечении вросших ногтей, лечении грибка ногтей и других проблемах стоп. Использую современные методы и профессиональные инструменты для обеспечения здоровья ваших ног.'
             }
           </Paragraph>
-          <div className="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-400">
-            <Paragraph className="text-blue-800 font-medium">
-              {currentLanguage === 'et' 
-                ? '📞 Broneeri aeg: +372 5895 5153'
-                : '📞 Записаться на прием: +372 5895 5153'
-              }
-            </Paragraph>
-          </div>
         </div>
       </div>
 
@@ -57,7 +41,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
             <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              🦶 {currentLanguage === 'et' ? 'Probleemne Pediküür' : 'Проблемный Педикюр'}
+              {currentLanguage === 'et' ? 'Probleemne Pediküür' : 'Проблемный Педикюр'}
             </h3>
             <Paragraph className="text-sm">
               {currentLanguage === 'et'
@@ -69,7 +53,7 @@ export default function Home() {
 
           <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
             <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              🔧 {currentLanguage === 'et' ? 'Sissekasvanud Küünte Ravi' : 'Лечение Вросших Ногтей'}
+              {currentLanguage === 'et' ? 'Sissekasvanud Küünte Ravi' : 'Лечение Вросших Ногтей'}
             </h3>
             <Paragraph className="text-sm">
               {currentLanguage === 'et'
@@ -81,7 +65,7 @@ export default function Home() {
 
           <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
             <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              🍄 {currentLanguage === 'et' ? 'Küünte Seenhaiguse Ravi' : 'Лечение Грибка Ногтей'}
+              {currentLanguage === 'et' ? 'Küünte Seenhaiguse Ravi' : 'Лечение Грибка Ногтей'}
             </h3>
             <Paragraph className="text-sm">
               {currentLanguage === 'et'
@@ -93,7 +77,7 @@ export default function Home() {
 
           <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
             <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              🩹 {currentLanguage === 'et' ? 'Villidide ja Kanna Lõhede Ravi' : 'Лечение Мозолей и Трещин Пяток'}
+              {currentLanguage === 'et' ? 'Villidide ja Kanna Lõhede Ravi' : 'Лечение Мозолей и Трещин Пяток'}
             </h3>
             <Paragraph className="text-sm">
               {currentLanguage === 'et'
@@ -153,9 +137,6 @@ export default function Home() {
                   <a href="tel:+37258955153" className="font-medium text-blue-600 hover:text-blue-800">
                     +372 5895 5153
                   </a>
-                  <p className="text-sm text-gray-600">
-                    {currentLanguage === 'et' ? 'Helistage broneerimiseks' : 'Звоните для записи'}
-                  </p>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
