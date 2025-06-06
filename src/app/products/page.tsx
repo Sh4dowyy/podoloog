@@ -159,49 +159,6 @@ export default function ProductsPage() {
             ))}
           </div>
         </div>
-
-        {/* Additional Info */}
-        <div className="max-w-4xl mx-auto mt-12">
-          <div className="bg-blue-50 rounded-xl p-8 border-l-4 border-blue-400">
-            <h3 className="text-lg font-bold text-blue-900 mb-4">
-              {currentLanguage === 'et' ? 'Miks need bränded?' : 'Почему эти бренды?'}
-            </h3>
-            <Paragraph className="text-blue-800 mb-4">
-              {currentLanguage === 'et'
-                ? 'Olen hoolikalt valinud need bränded nende kvaliteedi, ohutuse ja tõhususe põhjal. Iga toode on testitud ja kinnitatud professionaalses kasutuses.'
-                : 'Я тщательно выбрал эти бренды на основе их качества, безопасности и эффективности. Каждый продукт протестирован и подтвержден в профессиональном использовании.'
-              }
-            </Paragraph>
-            <Paragraph className="text-blue-800">
-              {currentLanguage === 'et'
-                ? 'Kõik tooted vastavad Euroopa meditsiiniseadmete direktiividele ja on sertifitseeritud kasutamiseks podoloogia praktikas.'
-                : 'Все продукты соответствуют европейским директивам по медицинским устройствам и сертифицированы для использования в подологической практике.'
-              }
-            </Paragraph>
-          </div>
-        </div>
-
-        {/* Contact CTA */}
-        <div className="max-w-4xl mx-auto mt-12 text-center">
-          <div className="bg-gray-50 rounded-xl p-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              {currentLanguage === 'et' ? 'Küsimused toodete kohta?' : 'Вопросы о продукции?'}
-            </h3>
-            <Paragraph className="text-gray-700 mb-6">
-              {currentLanguage === 'et'
-                ? 'Kui teil on küsimusi kasutatavate toodete või nende toimise kohta, võtke julgelt ühendust.'
-                : 'Если у вас есть вопросы об используемых продуктах или их действии, смело обращайтесь.'
-              }
-            </Paragraph>
-            <a
-              href="tel:+37258955153"
-              className="inline-flex items-center space-x-2 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
-            >
-              <span>📞</span>
-              <span>+372 5895 5153</span>
-            </a>
-          </div>
-        </div>
       </div>
     </Container>
   );

@@ -120,7 +120,7 @@ export default function BiomechanicsPage() {
     return (
       <Container>
         <div className="py-10">
-          <Heading as="h1" className="text-center">
+          <Heading as="h1" className="">
             {currentLanguage === 'et' ? 'Laadimine...' : 'Загрузка...'}
           </Heading>
         </div>
@@ -212,11 +212,11 @@ export default function BiomechanicsPage() {
       </AnimatePresence>
 
       <Container>
-        <div className="text-center mb-8">
+        <div className="mb-8">
           <Heading className="font-black mt-4">
             {currentLanguage === 'et' ? 'Biomehaanika' : 'Биомеханика'}
           </Heading>
-          <Paragraph className="max-w-2xl mx-auto mt-4">
+          <Paragraph className="max-w-2xl mt-4">
             {currentLanguage === 'et' 
               ? 'Uurige jala biomehaanika põhialuseid ja õppige, kuidas parandada oma jalgade tervist läbi õigete harjutuste, hügieeni ja kehalisuse.' 
               : 'Изучите основы биомеханики стопы и узнайте, как улучшить здоровье ваших ног через правильные упражнения, гигиену и физическую активность.'

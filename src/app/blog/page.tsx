@@ -74,7 +74,7 @@ export default function BlogPage() {
     return (
       <Container>
         <div className="py-10">
-          <Heading as="h1" className="text-center">
+          <Heading as="h1" className="">
             {t('loading')}
           </Heading>
         </div>
@@ -170,7 +170,7 @@ export default function BlogPage() {
 
       <Container>
         <div className="py-0">
-          <Heading as="h1" className="text-center mb-8">
+          <Heading as="h1" className="font-black mb-8">
             {currentLanguage === 'et' ? 'Blogi' : 'Блог'}
           </Heading>
 
