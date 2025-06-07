@@ -25,7 +25,7 @@ const CATEGORY_INFO = {
   },
   physical: { 
     label: 'Физкультура', 
-    labelEt: 'Füsikalisierung',
+    labelEt: 'Füüsikaline tervis',
     icon: IconWalk, 
     color: 'bg-purple-50 text-purple-700' 
   },

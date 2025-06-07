@@ -113,7 +113,7 @@ export default function BlogPage() {
               <motion.div
                 layoutId={`card-${active.title}-${id}`}
                 ref={ref}
-                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-white sm:rounded-3xl overflow-hidden"
+                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-ivory-50 dark:bg-ivory-50 sm:rounded-3xl overflow-hidden border border-sage-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -171,7 +171,7 @@ export default function BlogPage() {
       <Container>
         <div className="py-0">
           <Heading as="h1" className="font-black mb-8">
-            {currentLanguage === 'et' ? 'Blogi' : 'Блог'}
+            {currentLanguage === 'et' ? 'Uudised' : 'Новости'}
           </Heading>
 
           {posts.length === 0 ? (
@@ -185,7 +185,7 @@ export default function BlogPage() {
                   layoutId={`card-${post.title}-${id}`}
                   key={`card-${post.title}-${id}`}
                   onClick={() => setActive(post)}
-                  className="p-6 flex flex-col md:flex-row justify-between items-center rounded-xl cursor-pointer bg-white shadow-sm border border-neutral-200 transition-all duration-200"
+                  className="p-6 flex flex-col md:flex-row justify-between items-center rounded-xl cursor-pointer bg-ivory-50 shadow-sm border border-sage-200 hover:border-poppy-300 transition-all duration-200"
                   whileHover={{ 
                     boxShadow: "0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" // shadow-lg
                   }}

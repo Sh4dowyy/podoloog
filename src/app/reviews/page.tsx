@@ -145,7 +145,7 @@ export default function ReviewsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-all duration-200 min-h-[240px] flex flex-col"
+                className="bg-ivory-50 rounded-xl shadow-lg border border-sage-200 p-6 hover:shadow-xl hover:border-poppy-300 transition-all duration-200 min-h-[240px] flex flex-col"
               >
                 {/* Rating
                 <div className="mb-4">
@@ -153,7 +153,7 @@ export default function ReviewsPage() {
                 </div> */}
 
                 {/* Content */}
-                <blockquote className="text-gray-700 leading-relaxed text-center flex-grow flex items-center justify-center">
+                <blockquote className="text-sage-700 leading-relaxed text-center flex-grow flex items-center justify-center">
                   &ldquo;{getLocalizedContent(review)}&rdquo;
                 </blockquote>
               </motion.div>

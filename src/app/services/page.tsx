@@ -125,7 +125,7 @@ export default function ServicesPage() {
               <motion.div
                 layoutId={`card-${active.title}-${id}`}
                 ref={ref}
-                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-grey-800 sm:rounded-3xl overflow-hidden"
+                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-ivory-50 dark:bg-ivory-50 sm:rounded-3xl overflow-hidden border border-sage-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -210,7 +210,7 @@ export default function ServicesPage() {
                   layoutId={`card-${service.title}-${id}`}
                   key={`card-${service.title}-${id}`}
                   onClick={() => setActive(service)}
-                  className="bg-white rounded-xl shadow-sm border border-neutral-200 overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 flex flex-col"
+                  className="bg-ivory-50 rounded-xl shadow-sm border border-sage-200 overflow-hidden cursor-pointer hover:shadow-lg hover:border-poppy-300 transition-all duration-200 flex flex-col"
                 >
                   {service.image_url && (
                     <div className="aspect-video overflow-hidden">
@@ -227,7 +227,7 @@ export default function ServicesPage() {
                   <div className="p-6 flex-1 flex flex-col">
                     <motion.h3
                       layoutId={`title-${service.title}-${id}`}
-                      className="font-semibold text-gray-900 dark:text-neutral-900 text-lg mb-3 line-clamp-2"
+                      className="font-semibold text-sage-900 dark:text-sage-900 text-lg mb-3 line-clamp-2"
                     >
                       {getLocalizedTitle(service)}
                     </motion.h3>
@@ -237,13 +237,13 @@ export default function ServicesPage() {
                     <div className="flex items-center justify-between mt-4">
                       <motion.div
                         layoutId={`price-${service.id}-${id}`}
-                        className="text-xl font-bold text-gray-900"
+                        className="text-xl font-bold text-poppy-600"
                       >
                         {formatPrice(service.price, service.currency)}
                       </motion.div>
                       
                       {service.duration && (
-                        <div className="text-gray-500 text-sm">
+                        <div className="text-sage-600 text-sm">
                           {formatDuration(service.duration)}
                         </div>
                       )}
@@ -251,7 +251,7 @@ export default function ServicesPage() {
                     
                     <motion.button
                       layoutId={`button-${service.title}-${id}`}
-                      className="mt-4 w-full py-2 text-sm rounded-lg font-medium bg-gray-100 hover:bg-gray-200 hover:text-gray-900 text-gray-700 transition-all duration-200"
+                      className="mt-4 w-full py-2 text-sm rounded-lg font-medium bg-sage-100 hover:bg-poppy-100 hover:text-poppy-800 text-sage-700 transition-all duration-200"
                     >
                       {currentLanguage === 'et' ? 'Vaata teenust' : 'Подробнее'}
                     </motion.button>

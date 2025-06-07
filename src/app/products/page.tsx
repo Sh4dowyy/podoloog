@@ -140,18 +140,18 @@ export default function ProductsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="bg-ivory-50 rounded-xl shadow-lg border border-sage-200 p-6 hover:shadow-xl hover:border-poppy-300 transition-all duration-300 transform hover:-translate-y-1"
               >
                 {/* Brand Logo/Icon */}
                 <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  <h3 className="text-xl font-bold text-sage-900 mb-2">
                     {getLocalizedName(product)}
                   </h3>
                 </div>
 
                 {/* Description */}
                 <div className="mb-4">
-                  <Paragraph className="text-sm text-gray-700 leading-relaxed">
+                  <Paragraph className="text-sm text-sage-700 leading-relaxed">
                     {getLocalizedDescription(product)}
                   </Paragraph>
                 </div>

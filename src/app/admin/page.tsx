@@ -69,6 +69,13 @@ export default function AdminPage() {
       href: '/admin/biomechanics',
       icon: '🦶',
       status: 'Доступно'
+    },
+    {
+      title: 'Управление галереей',
+      description: 'Добавляйте и редактируйте изображения в галерее',
+      href: '/admin/gallery',
+      icon: '🖼️',
+      status: 'Доступно'
     }
   ]
 
