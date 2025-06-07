@@ -107,7 +107,7 @@ export default function CredentialsPage() {
               <motion.div
                 layoutId={`card-${active.title_et}-${id}`}
                 ref={ref}
-                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-grey-800 sm:rounded-3xl overflow-hidden"
+                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-ivory-50 dark:bg-ivory-50 sm:rounded-3xl overflow-hidden border border-sage-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -183,7 +183,7 @@ export default function CredentialsPage() {
                   layoutId={`card-${credential.title_et}-${id}`}
                   key={credential.id}
                   onClick={() => setActive(credential)}
-                  className="p-6 bg-white rounded-xl cursor-pointer shadow-sm border border-neutral-200 hover:shadow-md transition-all duration-200"
+                  className="p-6 bg-ivory-50 rounded-xl cursor-pointer shadow-sm border border-sage-200 hover:shadow-md hover:border-poppy-300 transition-all duration-200"
                 >
                   {credential.image_url && (
                     <div className="mb-4">
@@ -199,13 +199,13 @@ export default function CredentialsPage() {
                   
                   <motion.h3
                     layoutId={`title-${credential.title_et}-${id}`}
-                    className="font-bold text-neutral-700 text-lg mb-2"
+                    className="font-bold text-sage-900 text-lg mb-2"
                   >
                     {getLocalizedTitle(credential)}
                   </motion.h3>
                   
                   {getLocalizedDescription(credential) && (
-                    <p className="text-gray-600 text-sm line-clamp-2">
+                    <p className="text-sage-600 text-sm line-clamp-2">
                       {getLocalizedDescription(credential).substring(0, 100)}...
                     </p>
                   )}

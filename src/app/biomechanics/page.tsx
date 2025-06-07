@@ -30,7 +30,7 @@ const CATEGORY_INFO = {
     color: 'bg-green-50 border-green-200 text-green-700',
   },
   physical: {
-    titleEt: 'Füsikalisierung',
+    titleEt: 'Füüsikaline tervis',
     titleRu: 'Физкультура',
     descriptionEt: 'Kehaline aktiivsus ja liikumine',
     descriptionRu: 'Физическая активность и движение',
@@ -149,7 +149,7 @@ export default function BiomechanicsPage() {
               <motion.div
                 layoutId={`card-${active.id}-${id}`}
                 ref={ref}
-                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-white dark:bg-grey-800 sm:rounded-3xl overflow-hidden"
+                className="w-full max-w-[800px] h-full md:h-fit md:max-h-[90%] flex flex-col bg-ivory-50 dark:bg-ivory-50 sm:rounded-3xl overflow-hidden border border-sage-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
@@ -214,7 +214,7 @@ export default function BiomechanicsPage() {
       <Container>
         <div className="mb-8">
           <Heading className="font-black mt-4">
-            {currentLanguage === 'et' ? 'Biomehaanika' : 'Биомеханика'}
+            {currentLanguage === 'et' ? 'Soovitused' : 'Рекомендации'}
           </Heading>
           <Paragraph className="max-w-2xl mt-4">
             {currentLanguage === 'et' 
@@ -236,7 +236,7 @@ export default function BiomechanicsPage() {
                 className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 hover:shadow-lg ${
                   selectedCategory === category 
                     ? categoryInfo.color 
-                    : 'bg-white border-gray-200 hover:border-gray-300'
+                    : 'bg-ivory-50 border-sage-200 hover:border-poppy-300'
                 }`}
                 onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
               >
@@ -282,7 +282,7 @@ export default function BiomechanicsPage() {
                       key={item.id}
                       layoutId={`card-${item.id}-${id}`}
                       onClick={() => setActive(item)}
-                      className="border border-gray-200 rounded-lg p-6 cursor-pointer hover:shadow-md transition-shadow"
+                      className="border border-sage-200 rounded-lg p-6 cursor-pointer hover:shadow-md hover:border-poppy-300 transition-all bg-ivory-50"
                     >
                       {item.image_url && (
                         <div className="mb-4">

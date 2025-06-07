@@ -2,10 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom scrollbar styles */
+/* Применение новой цветовой схемы */
+@layer base {
+  body {
+    @apply bg-ivory-100 text-sage-900;
+  }
+  
+  /* Переопределение стандартных цветов */
+  .text-primary {
+    @apply text-sage-600;
+  }
+  
+  .text-secondary {
+    @apply text-ivory-800;
+  }
+  
+  .bg-primary {
+    @apply bg-sage-500;
+  }
+  
+  .bg-secondary {
+    @apply bg-ivory-500;
+  }
+}
+
+/* Custom scrollbar styles with new color scheme */
 .scrollbar-thin {
   scrollbar-width: thin;
-  scrollbar-color: #cbd5e1 transparent;
+  scrollbar-color: rgb(107, 154, 107) transparent; /* sage-500 */
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -17,12 +41,12 @@
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
+  background-color: rgb(107, 154, 107); /* sage-500 */
   border-radius: 3px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8;
+  background-color: rgb(90, 133, 90); /* sage-600 */
 }
 
 /* Custom 3D transform utilities */

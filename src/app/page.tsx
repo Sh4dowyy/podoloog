@@ -16,8 +16,8 @@ export default function Home() {
     <Container>
       {/* Hero Section */}
       <div className="max-w-4xl mt-8">
-        <div className="bg-white rounded-xl p-8 shadow-sm border border-neutral-200">
-          <Heading as="h1" className="font-black text-2xl md:text-3xl lg:text-4xl mb-6">
+        <div className="bg-ivory-50 rounded-xl p-8 shadow-sm border border-sage-200">
+          <Heading as="h1" className="font-black text-2xl md:text-3xl lg:text-4xl mb-6 text-sage-900">
             {currentLanguage === 'et' 
               ? 'Alla Hüvenen - Kogenud Podoloog Tartus' 
               : 'Alla Hüvenen - Опытный Подолог в Тарту'
@@ -32,67 +32,10 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Services Section */}
-      <div className="max-w-4xl mt-12">
-        <Heading as="h2" className="font-black text-lg md:text-xl lg:text-2xl mb-6">
-          {currentLanguage === 'et' ? 'Teenused' : 'Услуги'}
-        </Heading>
-        
-        <div className="grid md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-            <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              {currentLanguage === 'et' ? 'Probleemne Pediküür' : 'Проблемный Педикюр'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et'
-                ? 'Professionaalne probleemse pediküüri teenus keerukate jalgade probleemide korral. Turvaliselt ja valutult.'
-                : 'Профессиональная услуга проблемного педикюра при сложных проблемах стоп. Безопасно и безболезненно.'
-              }
-            </Paragraph>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-            <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              {currentLanguage === 'et' ? 'Sissekasvanud Küünte Ravi' : 'Лечение Вросших Ногтей'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et'
-                ? 'Sissekasvanud küünte professionaalne ravi. Klamber süsteemide paigaldus ja ortoosiline ravi.'
-                : 'Профессиональное лечение вросших ногтей. Установка скобочных систем и ортозное лечение.'
-              }
-            </Paragraph>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-            <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              {currentLanguage === 'et' ? 'Küünte Seenhaiguse Ravi' : 'Лечение Грибка Ногтей'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et'
-                ? 'Küünte seenhaiguse diagnoosimine ja ravi. Kaasaegsete meetodite kasutamine tõhusaks raviks.'
-                : 'Диагностика и лечение грибка ногтей. Использование современных методов для эффективного лечения.'
-              }
-            </Paragraph>
-          </div>
-
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-            <h3 className="text-lg font-bold text-neutral-700 mb-3 flex items-center">
-              {currentLanguage === 'et' ? 'Villidide ja Kanna Lõhede Ravi' : 'Лечение Мозолей и Трещин Пяток'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et'
-                ? 'Villidide, konnasilmade, soolatükkade eemaldamine. Kanna lõhede professionaalne hooldus ja ravi.'
-                : 'Удаление мозолей, натоптышей. Профессиональный уход и лечение трещин пяток.'
-              }
-            </Paragraph>
-          </div>
-        </div>
-      </div>
-
       {/* Professional Info */}
       <div className="max-w-4xl mt-12">
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-          <Heading as="h2" className="font-black text-lg md:text-xl mb-4">
+        <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200">
+          <Heading as="h2" className="font-black text-lg md:text-xl mb-4 text-sage-900">
             {currentLanguage === 'et' ? 'Professionaalne Kvalifikatsioon' : 'Профессиональная Квалификация'}
           </Heading>
           <Paragraph className="mb-4">
@@ -117,59 +60,62 @@ export default function Home() {
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Details */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-            <h3 className="text-lg font-bold text-neutral-700 mb-4">
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200">
+            <h3 className="text-lg font-bold text-sage-800 mb-4">
                {currentLanguage === 'et' ? 'Kontaktandmed' : 'Контактная информация'}
             </h3>
             <div className="space-y-4">
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">📍</span>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-poppy-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                 <div>
-                  <p className="font-medium text-gray-900">Anne 44, Tartu, Estonia</p>
-                  <p className="text-sm text-gray-600">
-                    {currentLanguage === 'et' ? 'Kesklinnas, hea ligipääsuga' : 'В центре города, хорошая доступность'}
-                  </p>
+                  <span className="text-sage-800 font-medium">
+                    {currentLanguage === 'et' ? 'Aadress:' : 'Адрес:'}
+                  </span>
+                  <span className="ml-2 text-sage-700">Anne 44, Tartu, Estonia</span>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">📞</span>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-poppy-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                 <div>
-                  <a href="tel:+37258955153" className="font-medium text-blue-600 hover:text-blue-800">
+                  <span className="text-sage-800 font-medium">
+                    {currentLanguage === 'et' ? 'Telefon:' : 'Телефон:'}
+                  </span>
+                  <a href="tel:+37258955153" className="ml-2 text-sage-700 font-medium hover:text-poppy-600">
                     +372 5895 5153
                   </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">💬</span>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-poppy-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                 <div>
+                  <span className="text-sage-800 font-medium">
+                    {currentLanguage === 'et' ? 'Facebook:' : 'Фейсбук:'}
+                  </span>
                   <a href="https://www.facebook.com/profile.php?id=100063781140588" 
-                     className="font-medium text-blue-600 hover:text-blue-800"
+                     className="ml-2 text-sage-700 hover:text-poppy-600"
                      target="_blank" 
                      rel="noopener noreferrer">
-                    Facebook
-                  </a>
-                  <p className="text-sm text-gray-600">
                     {currentLanguage === 'et' ? 'Jälgige uudiseid' : 'Следите за новостями'}
-                  </p>
+                  </a>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">⏰</span>
+              <div className="flex items-start">
+                <div className="w-2 h-2 bg-poppy-500 rounded-full mt-2 mr-3 flex-shrink-0"></div>
                 <div>
-                  <p className="font-medium text-gray-900">
-                    {currentLanguage === 'et' ? 'Vastuvõtt kokkuleppel' : 'Прием по договоренности'}
-                  </p>
-                  <p className="text-sm text-gray-600">
-                    {currentLanguage === 'et' ? 'Paindlik ajakava' : 'Гибкий график'}
-                  </p>
+                  <span className="text-sage-800 font-medium">
+                    {currentLanguage === 'et' ? 'Vastuvõtuaeg:' : 'Прием:'}
+                  </span>
+                  <span className="ml-2 text-sage-700">
+                    {currentLanguage === 'et' ? 'Kokkuleppel' : 'По договоренности'}
+                  </span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Google Maps */}
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-neutral-200">
-            <h3 className="text-lg font-bold text-neutral-700 mb-4">
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200">
+            <h3 className="text-lg font-bold text-sage-800 mb-4">
               🗺️ {currentLanguage === 'et' ? 'Asukoht Tartus' : 'Расположение в Тарту'}
             </h3>
             <div className="aspect-video rounded-lg overflow-hidden">
@@ -185,12 +131,6 @@ export default function Home() {
                 title={currentLanguage === 'et' ? 'Alla Hüvenen podoloog asukoht Tartus' : 'Расположение подолога Alla Hüvenen в Тарту'}
               ></iframe>
             </div>
-            <p className="text-sm text-gray-600 mt-2">
-              {currentLanguage === 'et' 
-                ? 'Anne tänavas, Tartu kesklinnas. Hea ühistranspordi ühendus.'
-                : 'На улице Анне, в центре Тарту. Хорошее транспортное сообщение.'
-              }
-            </p>
           </div>
         </div>
       </div>

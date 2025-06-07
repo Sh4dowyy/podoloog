@@ -15,7 +15,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL('https://podoloog.ee'),
   title: {
-    default: "Alla Hüvenen - Podoloog Tartus | Probleemne Pediküür | 15+ aastat kogemust",
+    default: "Alla Hüvenen - Podoloog Tartus",
     template: "%s | Alla Hüvenen - Podoloog Tartus"
   },
   description: "Alla Hüvenen - kogenud podoloog Tartus üle 15 aasta kogemusega. Probleemne pediküür, sissekasvanud küüned, villidid, küünte seenhaigus. Проблемный педикюр в Тарту. Звоните: 5895 5153",
