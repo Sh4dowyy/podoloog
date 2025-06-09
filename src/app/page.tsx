@@ -7,6 +7,7 @@ import { Paragraph } from "@/components/Paragraph";
 import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
+import { FloralDecorations, WatercolorBorder } from "@/components/FloralDecorations";
 import Image from "next/image";
 
 export default function Home() {
@@ -16,13 +17,52 @@ export default function Home() {
     <Container>
       {/* Hero Section */}
       <div className="max-w-4xl mt-8">
-        <div className="bg-ivory-50 rounded-xl p-8 shadow-sm border border-sage-200">
-          <Heading as="h1" className="font-black text-2xl md:text-3xl lg:text-4xl mb-6 text-sage-900">
-            {currentLanguage === 'et' 
-              ? 'Alla Hüvenen - Kogenud Podoloog Tartus' 
-              : 'Alla Hüvenen - Опытный Подолог в Тарту'
-            }
-          </Heading>
+        <div className="bg-ivory-50 rounded-xl p-8 shadow-sm border border-sage-200 relative overflow-hidden">
+          {/* Welcome Header with Floral Accent */}
+          <div className="relative mb-6">
+            <Heading as="h1" className="font-black text-2xl md:text-3xl lg:text-4xl text-center text-sage-900 relative z-10">
+              {currentLanguage === 'et' 
+                ? 'Alla Hüvenen' 
+                : 'Alla Hüvenen'
+              }
+            </Heading>
+            <div className="text-center mt-3">
+              <span className="text-lg font-medium text-poppy-500">
+                {currentLanguage === 'et' ? 'Kogenud Podoloog Tartus' : 'Опытный Подолог в Тарту'}
+              </span>
+            </div>
+            
+            {/* Decorative line with flower */}
+            <div className="flex items-center justify-center mt-4 space-x-4">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-sage-300"></div>
+              <svg className="w-8 h-8" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                {/* Central decorative poppy */}
+                <path
+                  d="M15 15 Q20 10, 25 15 Q30 20, 25 25 Q20 30, 15 25 Q10 20, 15 15"
+                  fill="url(#centerPoppy)"
+                />
+                <circle cx="20" cy="20" r="3" fill="#2d1810" opacity="0.6"/>
+                <defs>
+                  <radialGradient id="centerPoppy" cx="0.3" cy="0.3">
+                    <stop offset="0%" stopColor="#ff8c69"/>
+                    <stop offset="70%" stopColor="#ff6347"/>
+                    <stop offset="100%" stopColor="#ff4500"/>
+                  </radialGradient>
+                </defs>
+              </svg>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-sage-300"></div>
+            </div>
+          </div>
+          {/* Slogan */}
+          <div className="mb-6 p-4 bg-poppy-50 rounded-lg border-l-4 border-poppy-400">
+            <Paragraph className="text-lg font-medium italic text-poppy-900">
+              {currentLanguage === 'et' 
+                ? '"Teie usaldus - Minu kätes. Samm sammult leian lahenduse."'
+                : '"Ваше доверие - в моих руках. Шаг за шагом нахожу решение."'
+              }
+            </Paragraph>
+          </div>
+
           <Paragraph className="mb-4">
             {currentLanguage === 'et' 
               ? 'Spetsialiseerun probleemse pediküüri, sissekasvanud küünte ravi, küünte seenhaiguse ravile ja muudele jalgade probleemidele. Kasutan kaasaegseid meetodeid ja professionaalseid vahendeid teie jalgade tervise tagamiseks.'
@@ -41,7 +81,7 @@ export default function Home() {
           <Paragraph className="mb-4">
             <Highlight>
               {currentLanguage === 'et' ? 'Alla Hüvenen, Podoloog, tase 5' : 'Alla Hüvenen, Подолог, уровень 5'}
-            </Highlight> (kood 226809)
+            </Highlight> (E017089)
           </Paragraph>
           <Paragraph className="mb-4">
             {currentLanguage === 'et' 
@@ -49,6 +89,127 @@ export default function Home() {
               : 'Я сертифицированный подолог с квалификацией 5 уровня. Моя специализация включает уход за проблемными ногами, коррекцию вросших ногтей, установку скобочных систем, протезирование, уход за трещинами пяток и профессиональный педикюр.'
             }
           </Paragraph>
+        </div>
+      </div>
+
+      {/* Decorative Divider */}
+      <div className="max-w-4xl mt-12 mb-8">
+        <div className="flex items-center justify-center space-x-6">
+          <div className="h-px w-20 bg-gradient-to-r from-sage-200 to-poppy-200"></div>
+          <svg className="w-12 h-12" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            {/* Decorative flower cluster */}
+            <g opacity="0.7">
+              <path d="M25 25 Q30 20, 35 25 Q40 30, 35 35 Q30 40, 25 35 Q20 30, 25 25" fill="url(#dividerPoppy1)"/>
+              <path d="M15 30 Q18 27, 21 30 Q24 33, 21 36 Q18 39, 15 36 Q12 33, 15 30" fill="url(#dividerPoppy2)"/>
+              <path d="M39 30 Q42 27, 45 30 Q48 33, 45 36 Q42 39, 39 36 Q36 33, 39 30" fill="url(#dividerPoppy3)"/>
+              <circle cx="30" cy="30" r="2" fill="#2d1810" opacity="0.5"/>
+              <circle cx="18" cy="33" r="1.5" fill="#2d1810" opacity="0.4"/>
+              <circle cx="42" cy="33" r="1.5" fill="#2d1810" opacity="0.4"/>
+            </g>
+            <defs>
+              <radialGradient id="dividerPoppy1">
+                <stop offset="0%" stopColor="#ff8c69"/>
+                <stop offset="100%" stopColor="#ff6347"/>
+              </radialGradient>
+              <radialGradient id="dividerPoppy2">
+                <stop offset="0%" stopColor="#ffa07a"/>
+                <stop offset="100%" stopColor="#ff7f50"/>
+              </radialGradient>
+              <radialGradient id="dividerPoppy3">
+                <stop offset="0%" stopColor="#ffa07a"/>
+                <stop offset="100%" stopColor="#ff7f50"/>
+              </radialGradient>
+            </defs>
+          </svg>
+          <div className="h-px w-20 bg-gradient-to-l from-sage-200 to-poppy-200"></div>
+        </div>
+      </div>
+
+      {/* Values Section */}
+      <div className="max-w-6xl mt-12 relative">
+        <WatercolorBorder />
+        <Heading as="h2" className="font-black text-lg md:text-xl lg:text-2xl mb-8 text-left relative z-10">
+          {currentLanguage === 'et' ? 'Meie Väärtused' : 'Наши Ценности'}
+        </Heading>
+        
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+          {/* Pühendumus */}
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
+            <h3 className="text-lg font-bold text-sage-800 mb-3">
+              {currentLanguage === 'et' ? 'Pühendumus' : 'Преданность'}
+            </h3>
+            <Paragraph className="text-sm">
+              {currentLanguage === 'et' 
+                ? 'Iga klient on meile oluline - võtame aega, et mõista teie olukorda ja leida kõige sobivam lahendus just teie jaoks.'
+                : 'Каждый клиент важен для нас - уделяем время пониманию вашей ситуации и поиску наиболее подходящего именно вам решения.'
+              }
+            </Paragraph>
+          </div>
+
+          {/* Kvaliteet */}
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
+            <h3 className="text-lg font-bold text-sage-800 mb-3">
+              {currentLanguage === 'et' ? 'Kvaliteet' : 'Качество'}
+            </h3>
+            <Paragraph className="text-sm">
+              {currentLanguage === 'et' 
+                ? 'Kasutame ainult kvaliteetseid materjale ja tõestatud meetodeid. Meie eesmärk on anda teile parim võimalik tulemus.'
+                : 'Используем только качественные материалы и проверенные методы. Наша цель - дать вам наилучший возможный результат.'
+              }
+            </Paragraph>
+          </div>
+
+          {/* Innovatsioon */}
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
+            <h3 className="text-lg font-bold text-sage-800 mb-3">
+              {currentLanguage === 'et' ? 'Innovatsioon' : 'Инновации'}
+            </h3>
+            <Paragraph className="text-sm">
+              {currentLanguage === 'et' 
+                ? 'Hoiame end kursis viimaste saavutustega podoloogias ning rakendame kaasaegseid lähenemisi teie tervise heaks.'
+                : 'Следим за последними достижениями в подологии и применяем современные подходы для вашего здоровья.'
+              }
+            </Paragraph>
+          </div>
+
+          {/* Hoolivus */}
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
+            <h3 className="text-lg font-bold text-sage-800 mb-3">
+              {currentLanguage === 'et' ? 'Hoolivus' : 'Забота'}
+            </h3>
+            <Paragraph className="text-sm">
+              {currentLanguage === 'et' 
+                ? 'Loome sõbraliku ja usaldusväärse õhkkonna, kus saate end mugavalt tunda ning rääkida avatult oma murest.'
+                : 'Создаем дружелюбную и доверительную атмосферу, где вы можете чувствовать себя комфортно и открыто говорить о ваших проблемах.'
+              }
+            </Paragraph>
+          </div>
+
+          {/* Personaalsus */}
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
+            <h3 className="text-lg font-bold text-sage-800 mb-3">
+              {currentLanguage === 'et' ? 'Personaalsus' : 'Персональность'}
+            </h3>
+            <Paragraph className="text-sm">
+              {currentLanguage === 'et' 
+                ? 'Mõistame, et iga inimene on erinev. Seetõttu koostame individuaalse plaani, mis arvestab teie eripärasid.'
+                : 'Понимаем, что каждый человек уникален. Поэтому составляем индивидуальный план, учитывающий ваши особенности.'
+              }
+            </Paragraph>
+          </div>
+
+          {/* Professionaalsus */}
+          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
+            <h3 className="text-lg font-bold text-sage-800 mb-3">
+              {currentLanguage === 'et' ? 'Professionaalsus' : 'Профессионализм'}
+            </h3>
+            <Paragraph className="text-sm">
+              {currentLanguage === 'et' 
+                ? 'Omame sügavaid teadmisi ja aastatepikkust kogemust. Täiendame end pidevalt, et pakkuda teile parimat oskusteavet.'
+                : 'Обладаем глубокими знаниями и многолетним опытом. Постоянно совершенствуемся, чтобы предложить вам лучшую экспертизу.'
+              }
+            </Paragraph>
+          </div>
         </div>
       </div>
 
