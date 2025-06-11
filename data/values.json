@@ -1,0 +1,112 @@
+[
+  {
+    "id": "commitment",
+    "title": {
+      "et": "Pühendumus",
+      "ru": "Преданность"
+    },
+    "description": {
+      "et": "фыв",
+      "ru": "Каждый клиент важен для нас - уделяем время пониманию вашей ситуации и поиску наиболее подходящего именно вам решения."
+    }
+  },
+  {
+    "id": "quality",
+    "title": {
+      "et": "Kvaliteet",
+      "ru": "Качество"
+    },
+    "description": {
+      "et": "Kasutame ainult kvaliteetseid materjale ja tõestatud meetodeid. Meie eesmärk on anda teile parim võimalik tulemus.",
+      "ru": "Используем только качественные материалы и проверенные методы. Наша цель - дать вам наилучший возможный результат."
+    }
+  },
+  {
+    "id": "innovation",
+    "title": {
+      "et": "Innovatsioon",
+      "ru": "Инновации"
+    },
+    "description": {
+      "et": "Hoiame end kursis viimaste saavutustega podoloogias ning rakendame kaasaegseid lähenemisi teie tervise heaks.",
+      "ru": "Следим за последними достижениями в подологии и применяем современные подходы для вашего здоровья."
+    }
+  },
+  {
+    "id": "care",
+    "title": {
+      "et": "Hoolivus",
+      "ru": "Забота"
+    },
+    "description": {
+      "et": "Loome sõbraliku ja usaldusväärse õhkkonna, kus saate end mugavalt tunda ning rääkida avatult oma murest.",
+      "ru": "Создаем дружелюбную и доверительную атмосферу, где вы можете чувствовать себя комфортно и открыто говорить о ваших проблемах."
+    }
+  },
+  {
+    "id": "personalization",
+    "title": {
+      "et": "Personaalsus",
+      "ru": "Персональность"
+    },
+    "description": {
+      "et": "Mõistame, et iga inimene on erinev. Seetõttu koostame individuaalse plaani, mis arvestab teie eripärasid.",
+      "ru": "Понимаем, что каждый человек уникален. Поэтому составляем индивидуальный план, учитывающий ваши особенности."
+    }
+  },
+  {
+    "id": "professionalism",
+    "title": {
+      "et": "Professionaalsus",
+      "ru": "Профессионализм"
+    },
+    "description": {
+      "et": "Omame sügavaid teadmisi ja aastatepikkust kogemust. Täiendame end pidevalt, et pakkuda teile parimat oskusteavet.",
+      "ru": "Обладаем глубокими знаниями и многолетним опытом. Постоянно совершенствуемся, чтобы предложить вам лучшую экспертизу."
+    }
+  },
+  {
+    "id": "value_1749637670780",
+    "title": {
+      "et": "",
+      "ru": ""
+    },
+    "description": {
+      "et": "",
+      "ru": ""
+    }
+  },
+  {
+    "id": "value_1749637673444",
+    "title": {
+      "et": "",
+      "ru": ""
+    },
+    "description": {
+      "et": "",
+      "ru": ""
+    }
+  },
+  {
+    "id": "value_1749637676444",
+    "title": {
+      "et": "",
+      "ru": ""
+    },
+    "description": {
+      "et": "",
+      "ru": ""
+    }
+  },
+  {
+    "id": "value_1749637677046",
+    "title": {
+      "et": "",
+      "ru": ""
+    },
+    "description": {
+      "et": "",
+      "ru": ""
+    }
+  }
+]

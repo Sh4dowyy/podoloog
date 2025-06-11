@@ -6,6 +6,7 @@ import { Paragraph } from "@/components/Paragraph";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { productService } from "@/lib/products";
 import { Product } from "@/types/product";
@@ -140,21 +141,31 @@ export default function ProductsPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-ivory-50 rounded-xl shadow-lg border border-sage-200 p-6 hover:shadow-xl hover:border-poppy-300 transition-all duration-300 transform hover:-translate-y-1"
               >
-                {/* Brand Logo/Icon */}
-                <div className="text-center mb-4">
-                  <h3 className="text-xl font-bold text-sage-900 mb-2">
-                    {getLocalizedName(product)}
-                  </h3>
-                </div>
+                <Link href={`/products/${product.id}`}>
+                  <div className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
+                    {/* Brand Logo/Icon */}
+                    <div className="text-center mb-4">
+                      <h3 className="text-xl font-bold text-sage-900 mb-2 group-hover:text-poppy-600 transition-colors">
+                        {getLocalizedName(product)}
+                      </h3>
+                    </div>
 
-                {/* Description */}
-                <div className="mb-4">
-                  <Paragraph className="text-sm text-sage-700 leading-relaxed">
-                    {getLocalizedDescription(product)}
-                  </Paragraph>
-                </div>
+                    {/* Description */}
+                    <div className="mb-4">
+                      <Paragraph className="text-sm text-sage-700 leading-relaxed">
+                        {getLocalizedDescription(product)}
+                      </Paragraph>
+                    </div>
+
+                    {/* Click indicator */}
+                    <div className="text-center">
+                      <span className="text-xs text-poppy-500 opacity-0 group-hover:opacity-100 transition-opacity">
+                        {currentLanguage === 'et' ? 'Kliki toodete vaatamiseks' : 'Нажмите для просмотра продукции'}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </div>

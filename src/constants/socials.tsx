@@ -13,7 +13,7 @@ export const socials = [
     icon: IconBrandFacebook,
   },
   {
-    href: "https://instagram.com/alla.podoloog",
+    href: "https://www.instagram.com/anne_salong/",
     label: "Instagram",
     icon: IconBrandInstagram,
   },

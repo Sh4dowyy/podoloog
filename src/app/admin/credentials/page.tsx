@@ -66,109 +66,96 @@ export default function CredentialsManagementPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 flex justify-between items-center">
+    <div className="max-w-6xl mx-auto p-6">
+      <div className="glass-effect rounded-xl p-6 mb-6">
+        <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Управление дипломами</h1>
-            <p className="text-gray-600 mt-2">Создавайте и редактируйте дипломы и сертификаты</p>
+            <h1 className="text-2xl font-bold text-sage-900 mb-2">Управление дипломами</h1>
+            <p className="text-sage-600">Создавайте и редактируйте дипломы и сертификаты</p>
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors flex items-center space-x-2"
           >
             <IconPlus className="h-4 w-4" />
             <span>Новый диплом</span>
           </button>
         </div>
 
-        {/* Credentials Table */}
+        {/* Credentials Grid */}
         {loadingCredentials ? (
           <div className="text-center py-8">
-            <div className="text-lg text-gray-600 animate-pulse">Загрузка...</div>
+            <div className="text-lg text-sage-600 animate-pulse">Загрузка...</div>
+          </div>
+        ) : credentials.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-sage-600">Дипломы не найдены</div>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Название
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Статус
-                    </th>
-                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-24 sm:w-auto">
-                      Действия
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {credentials.length === 0 ? (
-                    <tr>
-                      <td colSpan={3} className="px-6 py-4 text-center text-gray-500">
-                        Дипломы не найдены
-                      </td>
-                    </tr>
-                  ) : (
-                    credentials.map((credential) => (
-                      <tr key={credential.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            {credential.image_url && (
-                              <div className="h-10 w-10 flex-shrink-0 mr-3">
-                                <img 
-                                  src={credential.image_url} 
-                                  alt="Diploma" 
-                                  className="h-10 w-10 object-cover rounded"
-                                />
-                              </div>
-                            )}
-                            <div>
-                              <div className="text-sm font-medium text-gray-900">{credential.title_et}</div>
-                              {credential.description_et && (
-                                <div className="text-sm text-gray-500 truncate max-w-xs">
-                                  {credential.description_et.substring(0, 50)}...
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            credential.is_published 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {credential.is_published ? 'Опубликован' : 'Черновик'}
-                          </span>
-                        </td>
-                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-right">
-                          <div className="flex justify-end space-x-1 sm:space-x-2">
-                            <button
-                              onClick={() => setEditingCredential(credential)}
-                              className="text-indigo-600 hover:text-indigo-900 p-1"
-                              title="Редактировать"
-                            >
-                              <IconEdit className="h-4 w-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(credential.id)}
-                              className="text-red-600 hover:text-red-900 p-1"
-                              title="Удалить"
-                            >
-                              <IconTrash className="h-4 w-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {credentials.map((credential) => (
+              <div
+                key={credential.id}
+                className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border"
+              >
+                {/* Credential Header */}
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-bold text-sage-900 mb-2 line-clamp-2">
+                    {credential.title_et}
+                  </h3>
+                  <div className="w-12 h-12 bg-poppy-100 rounded-full flex items-center justify-center mx-auto">
+                    <span className="text-2xl">🏆</span>
+                  </div>
+                </div>
+
+                {/* Image */}
+                {credential.image_url && (
+                  <div className="mb-4 text-center">
+                    <img 
+                      src={credential.image_url} 
+                      alt="Diploma" 
+                      className="w-20 h-20 object-cover rounded mx-auto"
+                    />
+                  </div>
+                )}
+
+                {/* Description */}
+                {credential.description_et && (
+                  <div className="mb-4">
+                    <p className="text-sm text-sage-700 line-clamp-3 text-center">
+                      {credential.description_et}
+                    </p>
+                  </div>
+                )}
+
+                {/* Status */}
+                <div className="mb-4 text-center">
+                  <span className={`inline-block px-3 py-1 text-xs rounded-full ${
+                    credential.is_published 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'bg-yellow-100 text-yellow-700'
+                  }`}>
+                    {credential.is_published ? 'Опубликован' : 'Черновик'}
+                  </span>
+                </div>
+
+                {/* Actions */}
+                <div className="space-y-3">
+                  <button
+                    onClick={() => setEditingCredential(credential)}
+                    className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
+                  >
+                    ✏️ Редактировать
+                  </button>
+                  <button
+                    onClick={() => handleDelete(credential.id)}
+                    className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                  >
+                    🗑️ Удалить
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

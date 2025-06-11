@@ -210,7 +210,7 @@ export default function ServicesPage() {
                   layoutId={`card-${service.title}-${id}`}
                   key={`card-${service.title}-${id}`}
                   onClick={() => setActive(service)}
-                  className="bg-ivory-50 rounded-xl shadow-sm border border-sage-200 overflow-hidden cursor-pointer hover:shadow-lg hover:border-poppy-300 transition-all duration-200 flex flex-col"
+                  className="glass-effect rounded-xl overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 flex flex-col"
                 >
                   {service.image_url && (
                     <div className="aspect-video overflow-hidden">

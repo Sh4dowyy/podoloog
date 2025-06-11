@@ -4,8 +4,57 @@
 
 /* Применение новой цветовой схемы */
 @layer base {
+  html {
+    background: linear-gradient(45deg, 
+      rgba(255, 140, 0, 0.3) 0%,      /* яркий оранжевый */
+      rgba(255, 165, 50, 0.25) 30%,   /* оранжево-персиковый */
+      rgba(144, 238, 144, 0.25) 70%,  /* светло-зеленый */ 
+      rgba(107, 154, 107, 0.3) 100%   /* sage зеленый */
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
   body {
-    @apply bg-ivory-100 text-sage-900;
+    @apply text-sage-900;
+    background: transparent;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    position: relative;
+  }
+  
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at top left, 
+      rgba(255, 140, 0, 0.15) 0%,     /* яркий оранжевый */
+      transparent 60%),
+    radial-gradient(ellipse at bottom right, 
+      rgba(107, 154, 107, 0.15) 0%,  /* зеленый */
+      transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(-45deg, 
+      rgba(255, 140, 0, 0.08) 0%,     /* оранжевый */
+      rgba(144, 238, 144, 0.08) 100%  /* светло-зеленый */
+    );
+    backdrop-filter: blur(15px);  /* уменьшили с 40px */
+    -webkit-backdrop-filter: blur(15px);
+    z-index: -2;
+    pointer-events: none;
   }
   
   /* Переопределение стандартных цветов */
@@ -75,5 +124,68 @@
   }
   .perspective-3000 {
     perspective: 3000px;
+  }
+  
+  /* Оптимизация анимаций */
+  .smooth-animate {
+    will-change: transform, opacity, box-shadow;
+    transform: translateZ(0);  /* hardware acceleration */
+    backface-visibility: hidden;
+  }
+  
+  /* Glassmorphism utility */
+  .glass-effect {
+    background: rgba(248, 246, 242, 0.85) !important;  /* простой бежевый без градиента */
+    backdrop-filter: blur(8px) !important;  /* уменьшили blur */
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(222, 207, 192, 0.4) !important;  
+    box-shadow: 0 8px 20px rgba(125, 121, 104, 0.15) !important;  /* простая тень */
+    will-change: transform, opacity;  /* оптимизация для анимаций */
+  }
+  
+  /* Дополнительный класс для проверки */
+  .test-beige {
+    background: rgba(222, 184, 135, 0.8) !important;  /* явно бежевый для теста */
+    border: 3px solid red !important;
+  }
+  
+  /* Переопределение всех bg-ivory-50 */
+  .bg-ivory-50 {
+    background: rgba(248, 246, 242, 0.9) !important;  /* простой бежевый */
+    backdrop-filter: blur(5px) !important;  /* минимальный blur */
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+  
+  /* Line clamp utilities для ограничения текста */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
+  
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+  
+  .line-clamp-4 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
   }
 }

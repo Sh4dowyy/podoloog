@@ -94,16 +94,16 @@ export default function BiomechanicsAdminPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 flex justify-between items-center">
+    <div className="max-w-6xl mx-auto p-6">
+      <div className="glass-effect rounded-xl p-6 mb-6">
+        <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Управление биомеханикой</h1>
-            <p className="text-gray-600 mt-2">Создавайте и редактируйте материалы по упражнениям, гигиене и физкультуре</p>
+            <h1 className="text-2xl font-bold text-sage-900 mb-2">Управление биомеханикой</h1>
+            <p className="text-sage-600">Создавайте и редактируйте материалы по упражнениям, гигиене и физкультуре</p>
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors flex items-center space-x-2"
           >
             <IconPlus className="h-4 w-4" />
             <span>Новый материал</span>
@@ -114,10 +114,10 @@ export default function BiomechanicsAdminPage() {
         <div className="mb-6 flex space-x-2 flex-wrap">
           <button
             onClick={() => setCategoryFilter('all')}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
               categoryFilter === 'all' 
-                ? 'bg-gray-900 text-white' 
-                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                ? 'bg-sage-900 text-white' 
+                : 'bg-sage-100 text-sage-700 hover:bg-sage-200'
             }`}
           >
             Все категории ({items.length})
@@ -129,10 +129,10 @@ export default function BiomechanicsAdminPage() {
               <button
                 key={category}
                 onClick={() => setCategoryFilter(category as BiomechanicsCategory)}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center space-x-2 ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center space-x-2 ${
                   categoryFilter === category 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-poppy-600 text-white' 
+                    : 'bg-sage-100 text-sage-700 hover:bg-sage-200'
                 }`}
               >
                 <Icon className="h-4 w-4" />
@@ -142,116 +142,108 @@ export default function BiomechanicsAdminPage() {
           })}
         </div>
 
-        {/* Items Table */}
+        {/* Items Grid */}
         {filteredItems.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm p-8 text-center">
-            <IconActivity className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <div className="glass-effect rounded-xl p-8 text-center">
+            <IconActivity className="h-16 w-16 mx-auto text-sage-400 mb-4" />
+            <h3 className="text-lg font-medium text-sage-900 mb-2">
               {categoryFilter === 'all' ? 'Материалы не найдены' : `Нет материалов в категории "${CATEGORY_INFO[categoryFilter as BiomechanicsCategory]?.label}"`}
             </h3>
-            <p className="text-gray-500 mb-4">
+            <p className="text-sage-600 mb-4">
               Создайте первый материал для начала работы
             </p>
             <button
               onClick={() => setShowCreateForm(true)}
-              className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
             >
               Создать материал
             </button>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Материал
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Категория
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Статус
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Дата создания
-                    </th>
-                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-24 sm:w-auto">
-                      Действия
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {filteredItems.map((item) => {
-                    const categoryInfo = CATEGORY_INFO[item.category]
-                    const CategoryIcon = categoryInfo.icon
-                    
-                    return (
-                      <tr key={item.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center">
-                            {item.image_url && (
-                              <div className="flex-shrink-0 h-12 w-12 mr-4">
-                                <Image
-                                  width={48}
-                                  height={48}
-                                  src={item.image_url}
-                                  alt={item.title_et}
-                                  className="h-12 w-12 rounded-lg object-cover"
-                                />
-                              </div>
-                            )}
-                            <div>
-                              <div className="text-sm font-medium text-gray-900">{item.title_et}</div>
-                              {item.title_ru && (
-                                <div className="text-sm text-gray-500">{item.title_ru}</div>
-                              )}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${categoryInfo.color}`}>
-                            <CategoryIcon className="h-3 w-3 mr-1" />
-                            {categoryInfo.label}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            item.is_published 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {item.is_published ? 'Опубликован' : 'Черновик'}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {new Date(item.created_at).toLocaleDateString('ru-RU')}
-                        </td>
-                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-right">
-                          <div className="flex justify-end space-x-1 sm:space-x-2">
-                            <button
-                              onClick={() => setEditingItem(item)}
-                              className="text-indigo-600 hover:text-indigo-900 p-1"
-                              title="Редактировать"
-                            >
-                              <IconEdit className="h-4 w-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(item.id)}
-                              className="text-red-600 hover:text-red-900 p-1"
-                              title="Удалить"
-                            >
-                              <IconTrash className="h-4 w-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    )
-                  })}
-                </tbody>
-              </table>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredItems.map((item) => {
+              const categoryInfo = CATEGORY_INFO[item.category]
+              const CategoryIcon = categoryInfo.icon
+              
+              return (
+                <div
+                  key={item.id}
+                  className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border"
+                >
+                  {/* Item Header */}
+                  <div className="text-center mb-4">
+                    <h3 className="text-lg font-bold text-sage-900 mb-2 line-clamp-2">
+                      {item.title_et}
+                    </h3>
+                    <div className="w-12 h-12 bg-poppy-100 rounded-full flex items-center justify-center mx-auto">
+                      <span className="text-2xl">🦶</span>
+                    </div>
+                  </div>
+
+                  {/* Image */}
+                  {item.image_url && (
+                    <div className="mb-4 text-center">
+                      <Image
+                        width={80}
+                        height={80}
+                        src={item.image_url}
+                        alt={item.title_et}
+                        className="w-20 h-20 object-cover rounded mx-auto"
+                      />
+                    </div>
+                  )}
+
+                  {/* Russian title */}
+                  {item.title_ru && (
+                    <div className="mb-3 text-center">
+                      <p className="text-sm text-sage-600 italic">
+                        {item.title_ru}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Category and Status */}
+                  <div className="mb-4 text-center space-y-2">
+                    <div className="flex items-center justify-center">
+                      <CategoryIcon className="h-4 w-4 mr-2 text-sage-600" />
+                      <span className={`px-3 py-1 text-xs rounded-full ${categoryInfo.color}`}>
+                        {categoryInfo.label}
+                      </span>
+                    </div>
+                    <span className={`inline-block px-3 py-1 text-xs rounded-full ${
+                      item.is_published 
+                        ? 'bg-green-100 text-green-700' 
+                        : 'bg-yellow-100 text-yellow-700'
+                    }`}>
+                      {item.is_published ? 'Опубликован' : 'Черновик'}
+                    </span>
+                  </div>
+
+                  {/* Date */}
+                  <div className="mb-4 text-center">
+                    <div className="text-xs text-sage-600">
+                      {new Date(item.created_at).toLocaleDateString('ru-RU')}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => setEditingItem(item)}
+                      className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
+                    >
+                      ✏️ Редактировать
+                    </button>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                    >
+                      🗑️ Удалить
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         )}
       </div>

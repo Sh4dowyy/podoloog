@@ -10,7 +10,7 @@ export class ReviewService {
     const { data, error } = await this.supabase
       .from('reviews')
       .select('*')
-      .order('rating', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (error) {
       console.error('Error fetching reviews:', error);
@@ -27,7 +27,7 @@ export class ReviewService {
       .from('reviews')
       .select('*')
       .eq('published', true)
-      .order('rating', { ascending: false });
+      .order('created_at', { ascending: false });
 
     if (error) {
       console.error('Error fetching published reviews:', error);

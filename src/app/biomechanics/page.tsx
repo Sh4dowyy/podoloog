@@ -236,7 +236,7 @@ export default function BiomechanicsPage() {
                 className={`border-2 rounded-xl p-6 cursor-pointer transition-all duration-200 hover:shadow-lg ${
                   selectedCategory === category 
                     ? categoryInfo.color 
-                    : 'bg-ivory-50 border-sage-200 hover:border-poppy-300'
+                    : 'glass-effect hover:shadow-lg'
                 }`}
                 onClick={() => setSelectedCategory(selectedCategory === category ? null : category)}
               >
