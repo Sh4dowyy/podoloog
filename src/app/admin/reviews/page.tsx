@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { reviewService } from '@/lib/reviews'
 import { Review, CreateReviewData } from '@/types/review'
-import { IconPlus, IconEdit, IconTrash, IconStar } from '@tabler/icons-react'
+import { IconPlus, IconEdit, IconTrash, IconStar, IconCheck, IconX } from '@tabler/icons-react'
 
 export default function ReviewManagementPage() {
   const { user, loading } = useAuth()
@@ -53,6 +53,23 @@ export default function ReviewManagementPage() {
     }
   }
 
+  const handleTogglePublished = async (review: Review) => {
+    try {
+      await reviewService.updateReview({
+        id: review.id,
+        content: review.content,
+        content_et: review.content_et,
+        content_ru: review.content_ru,
+        rating: review.rating,
+        published: !review.published,
+      })
+      await loadReviews()
+    } catch (error) {
+      console.error('Error updating review:', error)
+      alert('Ошибка при обновлении отзыва')
+    }
+  }
+
   const renderStars = (rating: number) => {
     return (
       <div className="flex items-center space-x-1">
@@ -68,6 +85,11 @@ export default function ReviewManagementPage() {
     );
   };
 
+  // Count hidden public reviews - public reviews are auto-published now
+  const hiddenPublicReviews = reviews.filter(review => 
+    !review.published && review.author_name
+  ).length;
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -81,100 +103,113 @@ export default function ReviewManagementPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 flex justify-between items-center">
+    <div className="max-w-6xl mx-auto p-6">
+      <div className="glass-effect rounded-xl p-6 mb-6">
+        <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Управление отзывами</h1>
-            <p className="text-gray-600 mt-2">Создавайте и редактируйте отзывы клиентов</p>
+            <div className="flex items-center space-x-3">
+              <h1 className="text-2xl font-bold text-sage-900">Управление отзывами</h1>
+              {hiddenPublicReviews > 0 && (
+                <span className="bg-sage-100 text-sage-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                  {hiddenPublicReviews} скрыто
+                </span>
+              )}
+            </div>
+            <p className="text-sage-600 mt-2">Создавайте и редактируйте отзывы клиентов. Публичные отзывы публикуются автоматически.</p>
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2"
+            className="px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors flex items-center space-x-2"
           >
             <IconPlus className="h-4 w-4" />
             <span>Новый отзыв</span>
           </button>
         </div>
 
-        {/* Reviews Table */}
+        {/* Reviews Grid */}
         {loadingReviews ? (
           <div className="text-center py-8">
-            <div className="text-lg text-gray-600 animate-pulse">Загрузка...</div>
+            <div className="text-lg text-sage-600 animate-pulse">Загрузка...</div>
+          </div>
+        ) : reviews.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-sage-600">Отзывы не найдены</div>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Отзыв
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Рейтинг
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Статус
-                    </th>
-                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-24 sm:w-auto">
-                      Действия
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {reviews.length === 0 ? (
-                    <tr>
-                      <td colSpan={4} className="px-6 py-4 text-center text-gray-500">
-                        Отзывы не найдены
-                      </td>
-                    </tr>
-                  ) : (
-                    reviews.map((review) => (
-                      <tr key={review.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-900 max-w-md">
-                            {review.content.substring(0, 100)}
-                            {review.content.length > 100 && '...'}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          {renderStars(review.rating)}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                            review.published 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-yellow-100 text-yellow-800'
-                          }`}>
-                            {review.published ? 'Опубликован' : 'Скрыт'}
-                          </span>
-                        </td>
-                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-right">
-                          <div className="flex justify-end space-x-1 sm:space-x-2">
-                            <button
-                              onClick={() => setEditingReview(review)}
-                              className="text-indigo-600 hover:text-indigo-900 p-1"
-                              title="Редактировать"
-                            >
-                              <IconEdit className="h-4 w-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(review.id)}
-                              className="text-red-600 hover:text-red-900 p-1"
-                              title="Удалить"
-                            >
-                              <IconTrash className="h-4 w-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {reviews.map((review) => (
+              <div
+                key={review.id}
+                className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border"
+              >
+                {/* Review Header */}
+                <div className="text-center mb-4">
+                  <h3 className="text-lg font-bold text-sage-900 mb-2">
+                    {review.author_name || 'Администратор'}
+                  </h3>
+                  <div className="w-12 h-12 bg-poppy-100 rounded-full flex items-center justify-center mx-auto">
+                    <span className="text-2xl">⭐</span>
+                  </div>
+                </div>
+
+                {/* Rating */}
+                <div className="mb-4 text-center">
+                  {renderStars(review.rating)}
+                </div>
+
+                {/* Content */}
+                <div className="mb-4">
+                  <p className="text-sm text-sage-700 line-clamp-3 text-center">
+                    {review.content}
+                  </p>
+                </div>
+
+                {/* Status and Date */}
+                <div className="mb-4 text-center">
+                  <span className={`inline-block px-3 py-1 text-xs rounded-full mb-2 ${
+                    review.published 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'bg-yellow-100 text-yellow-700'
+                  }`}>
+                    {review.published ? 'Опубликован' : 'Скрыт'}
+                  </span>
+                  <div className="text-xs text-sage-600">
+                    {review.created_at ? new Date(review.created_at).toLocaleDateString('ru-RU') : 'Н/Д'}
+                  </div>
+                  {review.author_name && (
+                    <div className="text-xs text-sage-500 mt-1">Публичный отзыв</div>
                   )}
-                </tbody>
-              </table>
-            </div>
+                </div>
+
+                {/* Actions */}
+                <div className="space-y-3">
+                  <button
+                    onClick={() => setEditingReview(review)}
+                    className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
+                  >
+                    ✏️ Редактировать
+                  </button>
+                  <div className="flex space-x-2">
+                    <button
+                      onClick={() => handleTogglePublished(review)}
+                      className={`flex-1 px-4 py-2 rounded-lg transition-colors ${
+                        review.published 
+                          ? 'bg-orange-500 text-white hover:bg-orange-600' 
+                          : 'bg-green-500 text-white hover:bg-green-600'
+                      }`}
+                    >
+                      {review.published ? '🙈 Скрыть' : '👁️ Показать'}
+                    </button>
+                    <button
+                      onClick={() => handleDelete(review.id)}
+                      className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                    >
+                      🗑️ Удалить
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
       </div>

@@ -28,7 +28,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Information */}
           <div className="space-y-8">
-            <div className="bg-ivory-50 rounded-xl p-6 border border-sage-200">
+            <div className="glass-effect rounded-xl p-6">
               <h2 className="text-2xl font-bold text-sage-900 mb-6">
                 {currentLanguage === 'et' ? 'Kontakt info' : 'Контактная информация'}
               </h2>
@@ -72,7 +72,7 @@ export default function ContactPage() {
 
           {/* Company Information */}
           <div className="space-y-8">
-            <div className="bg-ivory-50 rounded-xl p-6 border border-sage-200">
+            <div className="glass-effect rounded-xl p-6">
               <h2 className="text-2xl font-bold text-sage-900 mb-6">
                 {currentLanguage === 'et' ? 'Ettevõtte andmed' : 'Данные компании'}
               </h2>

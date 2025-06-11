@@ -76,60 +76,75 @@ export default function AdminPage() {
       href: '/admin/gallery',
       icon: '🖼️',
       status: 'Доступно'
+    },
+    {
+      title: 'Управление ценностями',
+      description: 'Создавайте и редактируйте ценности компании',
+      href: '/admin/values',
+      icon: '💎',
+      status: 'Доступно'
     }
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Панель администратора</h1>
-          <p className="text-gray-600 mt-2">
-            Управляйте содержимым и настройками вашего портфолио
-          </p>
-        </div>
+    <div className="max-w-6xl mx-auto p-6">
+      <div className="glass-effect rounded-xl p-6 mb-6">
+        <h1 className="text-2xl font-bold text-sage-900 mb-4">
+          Панель администратора
+        </h1>
+        <p className="text-sage-600 mb-6">
+          Управляйте содержимым и настройками вашего портфолио
+        </p>
 
-        {/* Feature Grid */}
+        {/* Admin Features Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {adminFeatures.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow"
+              className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border"
             >
-              <div className="flex items-start space-x-4">
-                <div className="text-3xl">{feature.icon}</div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="text-lg font-semibold text-gray-900">
-                      {feature.title}
-                    </h3>
-                    <span
-                      className={`text-xs px-2 py-1 rounded-full ${
-                        feature.status === 'Доступно'
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-yellow-100 text-yellow-800'
-                      }`}
-                    >
-                      {feature.status}
-                    </span>
-                  </div>
-                  <p className="text-gray-600 text-sm mb-4">
-                    {feature.description}
-                  </p>
-                  {feature.status === 'Доступно' ? (
-                    <Link
-                      href={feature.href}
-                      className="inline-flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors"
-                    >
-                      Перейти →
-                    </Link>
-                  ) : (
-                    <span className="text-sm text-gray-400">
-                      Скоро
-                    </span>
-                  )}
+              {/* Feature Header */}
+              <div className="text-center mb-4">
+                <h3 className="text-xl font-bold text-sage-900 mb-2">
+                  {feature.title}
+                </h3>
+                <div className="w-12 h-12 bg-poppy-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">{feature.icon}</span>
                 </div>
+              </div>
+
+              {/* Description */}
+              <div className="mb-6">
+                <p className="text-sm text-sage-700 leading-relaxed text-center">
+                  {feature.description}
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="space-y-3">
+                {feature.status === 'Доступно' ? (
+                  <Link
+                    href={feature.href}
+                    className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors text-center block"
+                  >
+                    🛠️ Управлять
+                  </Link>
+                ) : (
+                  <div className="w-full px-4 py-2 bg-sage-300 text-sage-600 rounded-lg text-center cursor-not-allowed">
+                    ⏳ Скоро
+                  </div>
+                )}
+              </div>
+
+              {/* Status Badge */}
+              <div className="mt-4 text-center">
+                <span className={`inline-block px-3 py-1 text-xs rounded-full ${
+                  feature.status === 'Доступно' 
+                    ? 'bg-green-100 text-green-700' 
+                    : 'bg-yellow-100 text-yellow-700'
+                }`}>
+                  {feature.status}
+                </span>
               </div>
             </div>
           ))}

@@ -183,7 +183,7 @@ export default function CredentialsPage() {
                   layoutId={`card-${credential.title_et}-${id}`}
                   key={credential.id}
                   onClick={() => setActive(credential)}
-                  className="p-6 bg-ivory-50 rounded-xl cursor-pointer shadow-sm border border-sage-200 hover:shadow-md hover:border-poppy-300 transition-all duration-200"
+                  className="p-6 glass-effect rounded-xl cursor-pointer hover:shadow-md transition-all duration-200"
                 >
                   {credential.image_url && (
                     <div className="mb-4">

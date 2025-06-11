@@ -8,6 +8,7 @@ import { Products } from "@/components/Products";
 import { TechStack } from "@/components/TechStack";
 import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { FloralDecorations, WatercolorBorder } from "@/components/FloralDecorations";
+import { ValuesSection } from "@/components/ValuesSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -17,7 +18,7 @@ export default function Home() {
     <Container>
       {/* Hero Section */}
       <div className="max-w-4xl mt-8">
-        <div className="bg-ivory-50 rounded-xl p-8 shadow-sm border border-sage-200 relative overflow-hidden">
+        <div className="glass-effect rounded-xl p-8 shadow-lg relative overflow-hidden backdrop-blur-sm">
           {/* Welcome Header with Floral Accent */}
           <div className="relative mb-6">
             <Heading as="h1" className="font-black text-2xl md:text-3xl lg:text-4xl text-center text-sage-900 relative z-10">
@@ -74,7 +75,7 @@ export default function Home() {
 
       {/* Professional Info */}
       <div className="max-w-4xl mt-12">
-        <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200">
+        <div className="glass-effect rounded-xl p-6 shadow-lg backdrop-blur-sm">
           <Heading as="h2" className="font-black text-lg md:text-xl mb-4 text-sage-900">
             {currentLanguage === 'et' ? 'Professionaalne Kvalifikatsioon' : 'Профессиональная Квалификация'}
           </Heading>
@@ -126,92 +127,7 @@ export default function Home() {
       </div>
 
       {/* Values Section */}
-      <div className="max-w-6xl mt-12 relative">
-        <WatercolorBorder />
-        <Heading as="h2" className="font-black text-lg md:text-xl lg:text-2xl mb-8 text-left relative z-10">
-          {currentLanguage === 'et' ? 'Meie Väärtused' : 'Наши Ценности'}
-        </Heading>
-        
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-          {/* Pühendumus */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
-            <h3 className="text-lg font-bold text-sage-800 mb-3">
-              {currentLanguage === 'et' ? 'Pühendumus' : 'Преданность'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et' 
-                ? 'Iga klient on meile oluline - võtame aega, et mõista teie olukorda ja leida kõige sobivam lahendus just teie jaoks.'
-                : 'Каждый клиент важен для нас - уделяем время пониманию вашей ситуации и поиску наиболее подходящего именно вам решения.'
-              }
-            </Paragraph>
-          </div>
-
-          {/* Kvaliteet */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
-            <h3 className="text-lg font-bold text-sage-800 mb-3">
-              {currentLanguage === 'et' ? 'Kvaliteet' : 'Качество'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et' 
-                ? 'Kasutame ainult kvaliteetseid materjale ja tõestatud meetodeid. Meie eesmärk on anda teile parim võimalik tulemus.'
-                : 'Используем только качественные материалы и проверенные методы. Наша цель - дать вам наилучший возможный результат.'
-              }
-            </Paragraph>
-          </div>
-
-          {/* Innovatsioon */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
-            <h3 className="text-lg font-bold text-sage-800 mb-3">
-              {currentLanguage === 'et' ? 'Innovatsioon' : 'Инновации'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et' 
-                ? 'Hoiame end kursis viimaste saavutustega podoloogias ning rakendame kaasaegseid lähenemisi teie tervise heaks.'
-                : 'Следим за последними достижениями в подологии и применяем современные подходы для вашего здоровья.'
-              }
-            </Paragraph>
-          </div>
-
-          {/* Hoolivus */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
-            <h3 className="text-lg font-bold text-sage-800 mb-3">
-              {currentLanguage === 'et' ? 'Hoolivus' : 'Забота'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et' 
-                ? 'Loome sõbraliku ja usaldusväärse õhkkonna, kus saate end mugavalt tunda ning rääkida avatult oma murest.'
-                : 'Создаем дружелюбную и доверительную атмосферу, где вы можете чувствовать себя комфортно и открыто говорить о ваших проблемах.'
-              }
-            </Paragraph>
-          </div>
-
-          {/* Personaalsus */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
-            <h3 className="text-lg font-bold text-sage-800 mb-3">
-              {currentLanguage === 'et' ? 'Personaalsus' : 'Персональность'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et' 
-                ? 'Mõistame, et iga inimene on erinev. Seetõttu koostame individuaalse plaani, mis arvestab teie eripärasid.'
-                : 'Понимаем, что каждый человек уникален. Поэтому составляем индивидуальный план, учитывающий ваши особенности.'
-              }
-            </Paragraph>
-          </div>
-
-          {/* Professionaalsus */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200 hover:border-poppy-300 transition-colors">
-            <h3 className="text-lg font-bold text-sage-800 mb-3">
-              {currentLanguage === 'et' ? 'Professionaalsus' : 'Профессионализм'}
-            </h3>
-            <Paragraph className="text-sm">
-              {currentLanguage === 'et' 
-                ? 'Omame sügavaid teadmisi ja aastatepikkust kogemust. Täiendame end pidevalt, et pakkuda teile parimat oskusteavet.'
-                : 'Обладаем глубокими знаниями и многолетним опытом. Постоянно совершенствуемся, чтобы предложить вам лучшую экспертизу.'
-              }
-            </Paragraph>
-          </div>
-        </div>
-      </div>
+      <ValuesSection />
 
       {/* Contact Information */}
       <div className="max-w-4xl mt-12">
@@ -221,7 +137,7 @@ export default function Home() {
         
         <div className="grid md:grid-cols-2 gap-8">
           {/* Contact Details */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200">
+          <div className="glass-effect rounded-xl p-6 shadow-lg backdrop-blur-sm">
             <h3 className="text-lg font-bold text-sage-800 mb-4">
                {currentLanguage === 'et' ? 'Kontaktandmed' : 'Контактная информация'}
             </h3>
@@ -275,7 +191,7 @@ export default function Home() {
           </div>
 
           {/* Google Maps */}
-          <div className="bg-ivory-50 rounded-xl p-6 shadow-sm border border-sage-200">
+          <div className="glass-effect rounded-xl p-6 shadow-lg backdrop-blur-sm">
             <h3 className="text-lg font-bold text-sage-800 mb-4">
               🗺️ {currentLanguage === 'et' ? 'Asukoht Tartus' : 'Расположение в Тарту'}
             </h3>

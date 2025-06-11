@@ -185,7 +185,7 @@ export default function BlogPage() {
                   layoutId={`card-${post.title}-${id}`}
                   key={`card-${post.title}-${id}`}
                   onClick={() => setActive(post)}
-                  className="p-6 flex flex-col md:flex-row justify-between items-center rounded-xl cursor-pointer bg-ivory-50 shadow-sm border border-sage-200 hover:border-poppy-300 transition-all duration-200"
+                  className="p-6 flex flex-col md:flex-row justify-between items-center rounded-xl cursor-pointer glass-effect hover:shadow-lg transition-all duration-200"
                   whileHover={{ 
                     boxShadow: "0 10px 25px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" // shadow-lg
                   }}

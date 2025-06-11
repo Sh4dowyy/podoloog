@@ -57,7 +57,7 @@ export const Sidebar = () => {
             animate={{ x: 0 }}
             transition={{ duration: 0.2, ease: "linear" }}
             exit={isMobileDevice ? { x: -200 } : {}}
-            className="px-6 z-[100] py-10 bg-ivory-200 w-[16rem] fixed lg:relative h-screen left-0 flex flex-col justify-between border-r border-ivory-300"
+            className="px-6 z-[100] py-10 glass-effect w-[16rem] fixed lg:relative h-screen left-0 flex flex-col justify-between border-r border-ivory-300"
           >
             <div className="flex-1 overflow-auto">
               <SidebarHeader />
@@ -73,7 +73,7 @@ export const Sidebar = () => {
       {/* Mobile toggle button */}
       {isMobileDevice && (
         <button
-          className="fixed bottom-4 right-4 h-12 w-12 bg-ivory-100 border border-sage-200 rounded-full shadow-lg flex items-center justify-center z-[110] hover:shadow-xl hover:bg-sage-50 transition-all"
+          className="fixed bottom-4 right-4 h-12 w-12 glass-effect border border-sage-200 rounded-full shadow-lg flex items-center justify-center z-[110] hover:shadow-xl transition-all"
           onClick={() => setOpen(!open)}
         >
           <IconLayoutSidebarRightCollapse 
@@ -259,15 +259,20 @@ const SidebarHeader = () => {
   const { t } = useLanguage();
   
   return (
-    <div className="flex space-x-2">
-      <Image
-        src=""
-        alt="Аватар"
-        height="40"
-        width="40"
-        className="object-cover object-top rounded-full flex-shrink-0"
-      />
-      <div className="flex text-sm flex-col">
+    <div className="flex flex-col items-center space-y-4">
+      {/* Logo at the top */}
+      <div className="w-20 h-20 flex items-center justify-center">
+        <Image
+          src="/logo.png"
+          alt="Podoloog Logo"
+          height="80"
+          width="80"
+          className="object-contain w-full h-full drop-shadow-lg"
+        />
+      </div>
+      
+      {/* Name and profession below */}
+      <div className="flex text-sm flex-col text-center">
         <p className="font-bold text-primary">{t('name')}</p>
         <p className="font-light text-secondary">{t('profession')}</p>
       </div>

@@ -6,20 +6,24 @@ import { useEffect, useState } from 'react'
 import { productService } from '@/lib/products'
 import { Product } from '@/types/product'
 import { IconPlus, IconEdit, IconTrash, IconEye, IconEyeOff } from '@tabler/icons-react'
+import { useLanguage } from '@/components/i18n/LanguageProvider'
+import Link from 'next/link'
 
-export default function ProductManagementPage() {
-  const { user, loading } = useAuth();
+export default function AdminProductsPage() {
+  const { user, loading: authLoading } = useAuth();
   const router = useRouter();
+  const { currentLanguage } = useLanguage();
+  
   const [products, setProducts] = useState<Product[]>([]);
-  const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
 
   useEffect(() => {
-    if (!loading && !user) {
+    if (!authLoading && !user) {
       router.push('/login');
     }
-  }, [user, loading, router]);
+  }, [user, authLoading, router]);
 
   useEffect(() => {
     if (user) {
@@ -29,12 +33,14 @@ export default function ProductManagementPage() {
 
   const loadProducts = async () => {
     try {
+      setLoading(true);
       const data = await productService.getProducts();
       setProducts(data);
     } catch (error) {
       console.error('Error loading products:', error);
+      alert('Ошибка при загрузке брендов');
     } finally {
-      setLoadingProducts(false);
+      setLoading(false);
     }
   };
 
@@ -62,7 +68,73 @@ export default function ProductManagementPage() {
     }
   };
 
-  if (loading) {
+  // Fallback brands for when no products in database
+  const fallbackBrands: Product[] = [
+    {
+      id: "1",
+      name: "GEHWOL",
+      name_et: "GEHWOL",
+      name_ru: "GEHWOL", 
+      description: "Saksa kvaliteetne jalgade hoolduse bränd.",
+      description_et: "Saksa kvaliteetne jalgade hoolduse bränd. Spetsialiseerunud meditsiinitoodetele jalgade tervise tagamiseks. Kasutame nende professionaalseid vahendeid ja preparaate.",
+      description_ru: "Немецкий качественный бренд по уходу за ногами. Специализируется на медицинских продуктах для здоровья стоп. Используем их профессиональные инструменты и препараты.",
+      published: true
+    },
+    {
+      id: "2",
+      name: "Allpresan",
+      name_et: "Allpresan",
+      name_ru: "Allpresan",
+      description: "Innovaatiline Saksa bränd jalgade hoolduseks.",
+      description_et: "Innovaatiline Saksa bränd, mis spetsialiseerub jalgade nahapesu ja hooldusvahenditele. Nende tooted on eriti tõhusad kuiva naha ja pragude korral.",
+      description_ru: "Инновационный немецкий бренд, специализирующийся на средствах по уходу за кожей ног. Их продукты особенно эффективны при сухой коже и трещинах.",
+      published: true
+    },
+    {
+      id: "3",
+      name: "SANAMED",
+      name_et: "SANAMED",
+      name_ru: "SANAMED",
+      description: "Professionaalne meditsiinitehnika ja instrumentide tootja.",
+      description_et: "Professionaalne meditsiinitehnika ja instrumentide tootja. Pakume kvaliteetseid ja turvaliseid lahendusi podoloogia valdkonnas.",
+      description_ru: "Профессиональный производитель медицинской техники и инструментов. Предлагаем качественные и безопасные решения в области подологии.",
+      published: true
+    },
+    {
+      id: "4",
+      name: "HFL laboratories",
+      name_et: "HFL laboratories",
+      name_ru: "HFL laboratories",
+      description: "Teaduslik lähenemisega laboratoorium.",
+      description_et: "Teaduslik lähenemisega laboratoorium, mis arendab innovaatilisi lahendusi jalgade tervisele. Nende tooted põhinevad uusimatel teadusuuringutel.",
+      description_ru: "Лаборатория с научным подходом, разрабатывающая инновационные решения для здоровья стоп. Их продукты основаны на новейших научных исследованиях.",
+      published: true
+    },
+    {
+      id: "5",
+      name: "BioFeet",
+      name_et: "BioFeet",
+      name_ru: "BioFeet",
+      description: "Ökoloogiliselt puhas bränd jalgade hoolduseks.",
+      description_et: "Ökoloogiliselt puhas bränd, mis keskendub looduslikele koostisosadele jalgade hoolduses. Sobib tundliku nahaga klientidele.",
+      description_ru: "Экологически чистый бренд, который фокусируется на натуральных ингредиентах для ухода за ногами. Подходит для клиентов с чувствительной кожей.",
+      published: true
+    }
+  ];
+
+  const getLocalizedName = (product: Product) => {
+    if (currentLanguage === 'et' && product.name_et) return product.name_et;
+    if (currentLanguage === 'ru' && product.name_ru) return product.name_ru;
+    return product.name;
+  };
+
+  const getLocalizedDescription = (product: Product) => {
+    if (currentLanguage === 'et' && product.description_et) return product.description_et;
+    if (currentLanguage === 'ru' && product.description_ru) return product.description_ru;
+    return product.description;
+  };
+
+  if (authLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-lg text-gray-600 animate-pulse">Загрузка...</div>
@@ -74,153 +146,102 @@ export default function ProductManagementPage() {
     return null;
   }
 
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="glass-effect rounded-xl p-8 text-center">
+          <div className="text-sage-600">Загрузка брендов...</div>
+        </div>
+      </div>
+    );
+  }
+
+  // Use fallback brands if no products in database
+  const displayProducts = products.length > 0 ? products : fallbackBrands;
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 flex justify-between items-center">
-          <div>
-            <h1 className="text-3xl font-bold text-gray-900">Управление продукцией</h1>
-            <p className="text-gray-600 mt-2">Создавайте и редактируйте продукты и бренды</p>
-            {user && (
-              <p className="text-sm text-gray-500 mt-1">
-                Вы вошли как: {user.email}
-              </p>
-            )}
-          </div>
-          <button
-            onClick={() => setShowCreateForm(true)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors flex items-center space-x-2"
-          >
-            <IconPlus className="h-4 w-4" />
-            <span>Новый продукт</span>
-          </button>
+    <div className="max-w-6xl mx-auto p-6">
+      {/* Breadcrumbs */}
+      <div className="mb-6">
+        <nav className="text-sm">
+          <Link href="/admin" className="text-poppy-500 hover:text-poppy-600">
+            Админ
+          </Link>
+          <span className="mx-2 text-sage-400">›</span>
+          <span className="text-sage-700">Управление продукцией</span>
+        </nav>
+      </div>
+
+      <div className="glass-effect rounded-xl p-6 mb-6">
+        <h1 className="text-2xl font-bold text-sage-900 mb-4">
+          Управление продукцией
+        </h1>
+        <p className="text-sage-600 mb-6">
+          Выберите бренд для управления конкретными продуктами (кремы, инструменты, растворы и т.д.)
+        </p>
+
+        {/* Brands Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {displayProducts.map((product) => (
+            <div
+              key={product.id}
+              className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border"
+            >
+              {/* Brand Header */}
+              <div className="text-center mb-4">
+                <h3 className="text-xl font-bold text-sage-900 mb-2">
+                  {getLocalizedName(product)}
+                </h3>
+                <div className="w-12 h-12 bg-poppy-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <span className="text-2xl">🏷️</span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div className="mb-6">
+                <p className="text-sm text-sage-700 leading-relaxed">
+                  {getLocalizedDescription(product)}
+                </p>
+              </div>
+
+              {/* Actions */}
+              <div className="space-y-3">
+                <Link
+                  href={`/admin/products/${product.id}`}
+                  className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors text-center block"
+                >
+                  🛠️ Управлять продуктами
+                </Link>
+                
+                <Link
+                  href={`/products/${product.id}`}
+                  target="_blank"
+                  className="w-full px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors text-center block"
+                >
+                  👁️ Посмотреть на сайте
+                </Link>
+              </div>
+
+              {/* Status Badge */}
+              <div className="mt-4 text-center">
+                <span className={`inline-block px-3 py-1 text-xs rounded-full ${
+                  product.published 
+                    ? 'bg-green-100 text-green-700' 
+                    : 'bg-gray-100 text-gray-700'
+                }`}>
+                  {product.published ? 'Опубликован' : 'Скрыт'}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Products Table */}
-        {loadingProducts ? (
-          <div className="text-center py-8">
-            <div className="text-lg text-gray-600 animate-pulse">Загрузка...</div>
-          </div>
-        ) : (
-          <div className="bg-white rounded-lg shadow overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Продукт
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Описание
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Статус
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Дата создания
-                    </th>
-                    <th className="px-3 sm:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider w-24 sm:w-auto">
-                      Действия
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {products.length === 0 ? (
-                    <tr>
-                      <td colSpan={5} className="px-6 py-4 text-center text-gray-500">
-                        Продукты не найдены
-                      </td>
-                    </tr>
-                  ) : (
-                    products.map((product) => (
-                      <tr key={product.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4">
-                          <div className="text-sm font-medium text-gray-900">
-                            {product.name_et || product.name}
-                          </div>
-                          {product.name_ru && (
-                            <div className="text-sm text-gray-500">
-                              {product.name_ru}
-                            </div>
-                          )}
-                        </td>
-                        <td className="px-6 py-4">
-                          <div className="text-sm text-gray-900 max-w-md">
-                            {(product.description_et || product.description || '').substring(0, 100)}
-                            {(product.description_et || product.description || '').length > 100 && '...'}
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span
-                            className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                              product.published
-                                ? 'bg-green-100 text-green-800'
-                                : 'bg-yellow-100 text-yellow-800'
-                            }`}
-                          >
-                            {product.published ? 'Опубликован' : 'Скрыт'}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {product.created_at
-                            ? new Date(product.created_at).toLocaleDateString('ru-RU')
-                            : '-'}
-                        </td>
-                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-right">
-                          <div className="flex justify-end space-x-1 sm:space-x-2">
-                            <button
-                              onClick={() => handleTogglePublished(product.id, product.published)}
-                              className="text-blue-600 hover:text-blue-900 p-1"
-                              title={product.published ? 'Скрыть' : 'Опубликовать'}
-                            >
-                              {product.published ? (
-                                <IconEyeOff className="h-4 w-4" />
-                              ) : (
-                                <IconEye className="h-4 w-4" />
-                              )}
-                            </button>
-                            <button
-                              onClick={() => setEditingProduct(product)}
-                              className="text-indigo-600 hover:text-indigo-900 p-1"
-                              title="Редактировать"
-                            >
-                              <IconEdit className="h-4 w-4" />
-                            </button>
-                            <button
-                              onClick={() => handleDelete(product.id)}
-                              className="text-red-600 hover:text-red-900 p-1"
-                              title="Удалить"
-                            >
-                              <IconTrash className="h-4 w-4" />
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
+        {displayProducts.length === 0 && (
+          <div className="text-center py-8 text-sage-600">
+            Бренды продукции еще не добавлены
           </div>
         )}
       </div>
-
-      {/* Create/Edit Form Modal */}
-      {(showCreateForm || editingProduct) && (
-        <ProductForm
-          product={editingProduct}
-          onClose={() => {
-            setShowCreateForm(false);
-            setEditingProduct(null);
-          }}
-          onSave={async () => {
-            setShowCreateForm(false);
-            setEditingProduct(null);
-            await loadProducts();
-          }}
-        />
-      )}
     </div>
   );
 }

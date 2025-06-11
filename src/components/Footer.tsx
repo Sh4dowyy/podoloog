@@ -3,8 +3,14 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <div className="mt-auto p-4 text-center justify-center text-xs text-neutral-500 border-t border-neutral-100 bg-white">
-      <span className="font-semibold">{new Date().getFullYear()} </span>
-    </div>
+    <footer className="mt-auto border-t border-sage-300/30">
+      <div className="glass-effect p-6 text-center text-sm text-sage-700">
+        <div className="max-w-6xl mx-auto">
+          <p className="font-medium">
+            <span className="text-sage-800">© {new Date().getFullYear()}</span>
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 };
