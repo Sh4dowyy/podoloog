@@ -18,6 +18,20 @@ export default function ServicesPage() {
   const id = useId();
   const { t, currentLanguage } = useLanguage();
 
+  // Manage body scroll when modal is open
+  useEffect(() => {
+    if (active && typeof active === "object") {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [active]);
+
   useEffect(() => {
     loadServices();
   }, []);
@@ -117,7 +131,7 @@ export default function ServicesPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                className="flex absolute top-2 right-2 lg:hidden items-center justify-center bg-white rounded-full h-6 w-6"
+                className="flex absolute top-2 right-2 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg hover:bg-gray-100 transition-colors z-10"
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
@@ -144,36 +158,26 @@ export default function ServicesPage() {
                 )}
 
                 <div className="flex-1 flex flex-col">
-                  <div className="flex justify-between items-start p-6">
-                    <div className="flex-1">
-                      <motion.h3
-                        layoutId={`title-${active.title}-${id}`}
-                        className="font-bold text-neutral-700 dark:text-neutral-900 text-xl mb-2"
-                      >
-                        {getLocalizedTitle(active)}
-                      </motion.h3>
-                      <div className="flex items-center space-x-4 mb-4">
-                        <motion.div
-                          layoutId={`price-${active.id}-${id}`}
-                          className="text-2xl font-bold text-gray-900"
-                        >
-                          {formatPrice(active.price, active.currency)}
-                        </motion.div>
-                        {active.duration && (
-                          <div className="text-gray-500">
-                            {formatDuration(active.duration)}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <motion.button
-                      layoutId={`button-${active.title}-${id}`}
-                      onClick={() => setActive(null)}
-                      className="px-6 py-3 text-sm rounded-full font-bold bg-gray-200 text-gray-900 hover:bg-gray-300 transition-colors ml-4"
+                  <div className="p-6">
+                    <motion.h3
+                      layoutId={`title-${active.title}-${id}`}
+                      className="font-bold text-neutral-700 dark:text-neutral-900 text-xl mb-2"
                     >
-                      {currentLanguage === 'et' ? 'Sulge' : 'Закрыть'}
-                    </motion.button>
+                      {getLocalizedTitle(active)}
+                    </motion.h3>
+                    <div className="flex items-center space-x-4 mb-4">
+                      <motion.div
+                        layoutId={`price-${active.id}-${id}`}
+                        className="text-2xl font-bold text-gray-900"
+                      >
+                        {formatPrice(active.price, active.currency)}
+                      </motion.div>
+                      {active.duration && (
+                        <div className="text-gray-500">
+                          {formatDuration(active.duration)}
+                        </div>
+                      )}
+                    </div>
                   </div>
                   <div className="flex-1 px-6 pb-6">
                     <motion.div

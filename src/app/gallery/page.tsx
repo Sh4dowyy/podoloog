@@ -22,6 +22,20 @@ export default function GalleryPage() {
     fetchGalleryItems();
   }, []);
 
+  // Manage body scroll when modal is open
+  useEffect(() => {
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedImage]);
+
   const fetchGalleryItems = async () => {
     try {
       setLoading(true);
