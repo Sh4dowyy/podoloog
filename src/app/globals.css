@@ -143,6 +143,52 @@
   display: none; /* Safari and Chrome */
 }
 
+/* Исправления для модальных окон в Safari */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* Специальные стили для модальных окон в Safari на iOS */
+  .modal-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100dvh;
+    width: 100vw;
+    z-index: 100;
+  }
+  
+  .modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 10;
+  }
+  
+  .modal-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 20;
+  }
+}
+
 /* Floral animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px) rotate(0deg); }

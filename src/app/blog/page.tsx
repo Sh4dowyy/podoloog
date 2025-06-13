@@ -90,22 +90,22 @@ export default function BlogPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 h-full w-full z-10"
+            className="modal-backdrop"
           />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="fixed inset-0 z-[100]">
-            <div className="fixed inset-y-0 right-0 left-0 lg:left-64 grid place-items-center p-4">
+          <div className="modal-container">
+            <div className="modal-content-wrapper lg:left-64">
               <motion.button
                 key={`button-${active.title}-${id}`}
                 layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                className="flex absolute top-2 right-2 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg hover:bg-gray-100 transition-colors z-10"
+                className="flex absolute top-2 right-2 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg hover:bg-gray-100 transition-colors z-30"
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
