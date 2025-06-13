@@ -11,6 +11,7 @@ import { BiomechanicsItem, BiomechanicsCategory } from "@/types/biomechanics";
 import { motion, AnimatePresence } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import Image from "next/image";
+import { lockScroll, unlockScroll } from "@/utils/scrollLock";
 
 const CATEGORY_INFO = {
   exercise: {
@@ -67,13 +68,16 @@ export default function BiomechanicsPage() {
     }
 
     if (active && typeof active === "object") {
-      document.body.style.overflow = "hidden";
+      lockScroll();
     } else {
-      document.body.style.overflow = "auto";
+      unlockScroll();
     }
 
     window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      unlockScroll();
+    };
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
