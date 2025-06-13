@@ -124,6 +124,50 @@
     transform: translateZ(0);
     will-change: scroll-position;
   }
+  
+  /* Исправления для модальных окон в Safari */
+  .modal-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 9999 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  
+  .modal-content-wrapper {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    z-index: 20 !important;
+    transform: translate3d(0, 0, 0) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .modal-backdrop {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    z-index: 10 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
 }
 
 /* Универсальные исправления для всех браузеров */
@@ -231,8 +275,10 @@
     right: 0 !important;
     bottom: 0 !important;
     height: 100vh !important;
+    height: 100dvh !important;
     width: 100vw !important;
     z-index: 9999 !important;
+    transform: translateZ(0) !important;
   }
   
   .modal-content-wrapper {
@@ -245,6 +291,23 @@
     align-items: center !important;
     justify-content: center !important;
     padding: 1rem !important;
+    transform: translateZ(0) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .modal-backdrop {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    z-index: 10 !important;
+    transform: translateZ(0) !important;
   }
 }
 
@@ -324,6 +387,22 @@
     align-items: center !important;
     justify-content: center !important;
     padding: 1rem !important;
+    transform: translate3d(0, 0, 0) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  .modal-backdrop {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    z-index: 10 !important;
     transform: translate3d(0, 0, 0) !important;
   }
 }
