@@ -256,14 +256,14 @@ export default function AdminGalleryPage() {
 
                   {/* Image */}
                   <div className="mb-4 text-center">
-                    <Image
-                      src={item.image_url}
-                      alt={item.title}
+                            <Image
+                              src={item.image_url}
+                              alt={item.title}
                       width={200}
                       height={150}
                       className="w-full h-32 object-cover rounded mx-auto"
-                    />
-                  </div>
+                            />
+                          </div>
 
                   {/* Titles */}
                   <div className="mb-4 text-center">
@@ -286,19 +286,19 @@ export default function AdminGalleryPage() {
 
                   {/* Actions */}
                   <div className="space-y-3">
-                    <button
-                      onClick={() => openEditModal(item)}
+                            <button
+                              onClick={() => openEditModal(item)}
                       className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
-                    >
+                            >
                       ✏️ Редактировать
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item.id)}
+                            </button>
+                            <button
+                              onClick={() => handleDelete(item.id)}
                       className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                    >
+                            >
                       🗑️ Удалить
-                    </button>
-                  </div>
+                            </button>
+                          </div>
                 </div>
               ))}
             </div>

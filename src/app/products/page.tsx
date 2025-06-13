@@ -144,19 +144,19 @@ export default function ProductsPage() {
               >
                 <Link href={`/products/${product.id}`}>
                   <div className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
-                    {/* Brand Logo/Icon */}
-                    <div className="text-center mb-4">
+                {/* Brand Logo/Icon */}
+                <div className="text-center mb-4">
                       <h3 className="text-xl font-bold text-sage-900 mb-2 group-hover:text-poppy-600 transition-colors">
-                        {getLocalizedName(product)}
-                      </h3>
-                    </div>
+                    {getLocalizedName(product)}
+                  </h3>
+                </div>
 
-                    {/* Description */}
-                    <div className="mb-4">
-                      <Paragraph className="text-sm text-sage-700 leading-relaxed">
-                        {getLocalizedDescription(product)}
-                      </Paragraph>
-                    </div>
+                {/* Description */}
+                <div className="mb-4">
+                  <Paragraph className="text-sm text-sage-700 leading-relaxed">
+                    {getLocalizedDescription(product)}
+                  </Paragraph>
+                </div>
 
                     {/* Click indicator */}
                     <div className="text-center">

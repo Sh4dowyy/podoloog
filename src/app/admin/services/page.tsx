@@ -117,47 +117,47 @@ export default function ServiceManagementPage() {
                   <p className="text-sm text-sage-700 line-clamp-3 text-center">
                     {service.description}
                   </p>
-                </div>
+                          </div>
 
                 {/* Price and Duration */}
                 <div className="mb-4 text-center">
                   <div className="text-lg font-bold text-sage-900">
-                    {formatPrice(service.price, service.currency)}
-                  </div>
-                  {service.duration && (
+                            {formatPrice(service.price, service.currency)}
+                          </div>
+                          {service.duration && (
                     <div className="text-sm text-sage-600">
-                      {service.duration} мин
-                    </div>
-                  )}
+                              {service.duration} мин
+                            </div>
+                          )}
                 </div>
 
                 {/* Status */}
                 <div className="mb-4 text-center">
                   <span className={`inline-block px-3 py-1 text-xs rounded-full ${
-                    service.published 
+                            service.published 
                       ? 'bg-green-100 text-green-700' 
                       : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {service.published ? 'Опубликована' : 'Скрыта'}
-                  </span>
+                          }`}>
+                            {service.published ? 'Опубликована' : 'Скрыта'}
+                          </span>
                 </div>
 
                 {/* Actions */}
                 <div className="space-y-3">
-                  <button
-                    onClick={() => setEditingService(service)}
+                            <button
+                              onClick={() => setEditingService(service)}
                     className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
-                  >
+                            >
                     ✏️ Редактировать
-                  </button>
-                  <button
-                    onClick={() => handleDelete(service.id)}
+                            </button>
+                            <button
+                              onClick={() => handleDelete(service.id)}
                     className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                  >
+                            >
                     🗑️ Удалить
-                  </button>
-                </div>
-              </div>
+                            </button>
+                          </div>
+            </div>
             ))}
           </div>
         )}

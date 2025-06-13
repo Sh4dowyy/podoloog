@@ -10,7 +10,7 @@ import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
 import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser, IconFileText, IconNews, IconPhoto, IconMail } from "@tabler/icons-react";
+import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser, IconFileText, IconNews, IconPhoto, IconMail, IconMenu2 } from "@tabler/icons-react";
 import { useAuth } from "./auth/AuthProvider";
 import { useLanguage } from "./i18n/LanguageProvider";
 import { LanguageSwitcher } from "./i18n/LanguageSwitcher";
@@ -70,16 +70,32 @@ export const Sidebar = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile toggle button */}
+      {/* Mobile toggle buttons */}
       {isMobileDevice && (
-        <button
-          className="fixed bottom-4 right-4 h-12 w-12 glass-effect border border-sage-200 rounded-full shadow-lg flex items-center justify-center z-[110] hover:shadow-xl transition-all"
-          onClick={() => setOpen(!open)}
-        >
-          <IconLayoutSidebarRightCollapse 
-            className={`h-5 w-5 text-sage-600 transition-transform ${open ? 'rotate-180' : ''}`} 
-          />
-        </button>
+        <>
+          {/* Top left menu button */}
+          <button
+            className="fixed top-4 left-4 h-12 w-12 bg-poppy-500 text-white rounded-lg shadow-lg flex items-center justify-center z-[110] hover:bg-poppy-600 transition-all"
+            onClick={() => setOpen(!open)}
+            aria-label="Открыть меню"
+          >
+            {open ? (
+              <IconLayoutSidebarRightCollapse className="h-6 w-6" />
+            ) : (
+              <IconMenu2 className="h-6 w-6" />
+            )}
+          </button>
+          
+          {/* Bottom right menu button (backup) */}
+          <button
+            className="fixed bottom-4 right-4 h-12 w-12 bg-sage-600 text-white rounded-full shadow-lg flex items-center justify-center z-[110] hover:bg-sage-700 transition-all"
+            onClick={() => setOpen(!open)}
+          >
+            <IconLayoutSidebarRightCollapse 
+              className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} 
+            />
+          </button>
+        </>
       )}
     </>
   );
@@ -262,13 +278,13 @@ const SidebarHeader = () => {
     <div className="flex flex-col items-center space-y-4">
       {/* Logo at the top */}
       <div className="w-20 h-20 flex items-center justify-center">
-        <Image
+      <Image
           src="/logo.png"
           alt="Podoloog Logo"
           height="80"
           width="80"
           className="object-contain w-full h-full drop-shadow-lg"
-        />
+      />
       </div>
       
       {/* Name and profession below */}

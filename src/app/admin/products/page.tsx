@@ -194,15 +194,15 @@ export default function AdminProductsPage() {
                 </h3>
                 <div className="w-12 h-12 bg-poppy-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <span className="text-2xl">🏷️</span>
-                </div>
-              </div>
+          </div>
+        </div>
 
               {/* Description */}
               <div className="mb-6">
                 <p className="text-sm text-sage-700 leading-relaxed">
                   {getLocalizedDescription(product)}
                 </p>
-              </div>
+          </div>
 
               {/* Actions */}
               <div className="space-y-3">
@@ -220,18 +220,18 @@ export default function AdminProductsPage() {
                 >
                   👁️ Посмотреть на сайте
                 </Link>
-              </div>
+                          </div>
 
               {/* Status Badge */}
               <div className="mt-4 text-center">
                 <span className={`inline-block px-3 py-1 text-xs rounded-full ${
-                  product.published 
+                              product.published
                     ? 'bg-green-100 text-green-700' 
                     : 'bg-gray-100 text-gray-700'
                 }`}>
-                  {product.published ? 'Опубликован' : 'Скрыт'}
-                </span>
-              </div>
+                            {product.published ? 'Опубликован' : 'Скрыт'}
+                          </span>
+                          </div>
             </div>
           ))}
         </div>

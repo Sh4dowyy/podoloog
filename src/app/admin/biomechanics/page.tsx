@@ -161,11 +161,11 @@ export default function BiomechanicsAdminPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredItems.map((item) => {
-              const categoryInfo = CATEGORY_INFO[item.category]
-              const CategoryIcon = categoryInfo.icon
-              
-              return (
+                  {filteredItems.map((item) => {
+                    const categoryInfo = CATEGORY_INFO[item.category]
+                    const CategoryIcon = categoryInfo.icon
+                    
+                    return (
                 <div
                   key={item.id}
                   className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border"
@@ -181,25 +181,25 @@ export default function BiomechanicsAdminPage() {
                   </div>
 
                   {/* Image */}
-                  {item.image_url && (
+                            {item.image_url && (
                     <div className="mb-4 text-center">
-                      <Image
+                                <Image
                         width={80}
                         height={80}
-                        src={item.image_url}
-                        alt={item.title_et}
+                                  src={item.image_url}
+                                  alt={item.title_et}
                         className="w-20 h-20 object-cover rounded mx-auto"
-                      />
-                    </div>
-                  )}
+                                />
+                              </div>
+                            )}
 
                   {/* Russian title */}
-                  {item.title_ru && (
+                              {item.title_ru && (
                     <div className="mb-3 text-center">
                       <p className="text-sm text-sage-600 italic">
                         {item.title_ru}
                       </p>
-                    </div>
+                          </div>
                   )}
 
                   {/* Category and Status */}
@@ -207,43 +207,43 @@ export default function BiomechanicsAdminPage() {
                     <div className="flex items-center justify-center">
                       <CategoryIcon className="h-4 w-4 mr-2 text-sage-600" />
                       <span className={`px-3 py-1 text-xs rounded-full ${categoryInfo.color}`}>
-                        {categoryInfo.label}
+                            {categoryInfo.label}
                       </span>
-                    </div>
+                          </div>
                     <span className={`inline-block px-3 py-1 text-xs rounded-full ${
-                      item.is_published 
+                            item.is_published 
                         ? 'bg-green-100 text-green-700' 
                         : 'bg-yellow-100 text-yellow-700'
-                    }`}>
-                      {item.is_published ? 'Опубликован' : 'Черновик'}
-                    </span>
+                          }`}>
+                            {item.is_published ? 'Опубликован' : 'Черновик'}
+                          </span>
                   </div>
 
                   {/* Date */}
                   <div className="mb-4 text-center">
                     <div className="text-xs text-sage-600">
-                      {new Date(item.created_at).toLocaleDateString('ru-RU')}
+                          {new Date(item.created_at).toLocaleDateString('ru-RU')}
                     </div>
                   </div>
 
                   {/* Actions */}
                   <div className="space-y-3">
-                    <button
-                      onClick={() => setEditingItem(item)}
+                            <button
+                              onClick={() => setEditingItem(item)}
                       className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
-                    >
+                            >
                       ✏️ Редактировать
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item.id)}
+                            </button>
+                            <button
+                              onClick={() => handleDelete(item.id)}
                       className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                    >
+                            >
                       🗑️ Удалить
-                    </button>
-                  </div>
+                            </button>
+                          </div>
                 </div>
-              )
-            })}
+                    )
+                  })}
           </div>
         )}
       </div>
