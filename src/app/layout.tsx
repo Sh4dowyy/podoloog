@@ -3,7 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { twMerge } from "tailwind-merge";
-import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
 
@@ -181,7 +180,6 @@ export default function RootLayout({
                 <div className="flex-1">
                   {children}
                 </div>
-                <Footer />
               </div>
             </div>
           </AuthProvider>
