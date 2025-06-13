@@ -65,41 +65,45 @@ export default function GalleryPage() {
       {/* Modal for enlarged image */}
       <AnimatePresence>
         {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
+          <div className="modal-container">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-[90vh] bg-white rounded-xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="modal-backdrop"
+              style={{ background: 'rgba(0, 0, 0, 0.8)' }}
+              onClick={() => setSelectedImage(null)}
+            />
+            <div className="modal-content-wrapper">
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                className="relative max-w-4xl max-h-[90vh] bg-white rounded-xl overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
               >
-                <IconX className="h-5 w-5" />
-              </button>
-              
-              <Image
-                src={selectedImage.image_url}
-                alt={getTitle(selectedImage)}
-                width={800}
-                height={600}
-                className="w-full h-auto object-contain"
-              />
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{getTitle(selectedImage)}</h3>
-                <p className="text-gray-600">{getDescription(selectedImage)}</p>
-              </div>
-            </motion.div>
-          </motion.div>
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-4 right-4 z-10 p-2 bg-white/80 rounded-full hover:bg-white transition-colors"
+                >
+                  <IconX className="h-5 w-5" />
+                </button>
+                
+                <Image
+                  src={selectedImage.image_url}
+                  alt={getTitle(selectedImage)}
+                  width={800}
+                  height={600}
+                  className="w-full h-auto object-contain"
+                />
+                
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2">{getTitle(selectedImage)}</h3>
+                  <p className="text-gray-600">{getDescription(selectedImage)}</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
 
