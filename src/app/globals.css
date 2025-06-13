@@ -108,11 +108,15 @@
 /* Исправления для Safari на iOS - предотвращение двойных скроллбаров */
 @supports (-webkit-touch-callout: none) {
   /* Стили только для Safari на iOS */
-  html, body {
+  html {
     height: 100dvh;
     overflow: hidden;
-    position: fixed;
-    width: 100%;
+  }
+  
+  body {
+    height: 100dvh;
+    overflow: hidden;
+    /* Убираем position: fixed чтобы не ломать модальные окна */
   }
   
   /* Основной скроллируемый контейнер */
@@ -123,6 +127,8 @@
     /* Дополнительные исправления для Safari */
     transform: translateZ(0);
     will-change: scroll-position;
+    /* Исправление для модальных окон */
+    position: relative;
   }
 }
 

@@ -9,6 +9,7 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
 import Image from "next/image";
+import { lockScroll, unlockScroll } from "@/utils/scrollLock";
 
 export default function ServicesPage() {
   const [services, setServices] = useState<Service[]>([]);
@@ -18,17 +19,17 @@ export default function ServicesPage() {
   const id = useId();
   const { t, currentLanguage } = useLanguage();
 
-  // Manage body scroll when modal is open
+  // Manage scroll when modal is open
   useEffect(() => {
     if (active && typeof active === "object") {
-      document.body.style.overflow = 'hidden';
+      lockScroll();
     } else {
-      document.body.style.overflow = 'unset';
+      unlockScroll();
     }
     
     // Cleanup on unmount
     return () => {
-      document.body.style.overflow = 'unset';
+      unlockScroll();
     };
   }, [active]);
 
@@ -41,12 +42,6 @@ export default function ServicesPage() {
       if (event.key === "Escape") {
         setActive(false);
       }
-    }
-
-    if (active && typeof active === "object") {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
     }
 
     window.addEventListener("keydown", onKeyDown);

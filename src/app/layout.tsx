@@ -178,7 +178,7 @@ export default function RootLayout({
             <Sidebar />
             <div className="lg:pl-2 lg:pt-2 flex-1 flex flex-col overflow-hidden">
               <div className="flex-1 lg:rounded-tl-xl border border-transparent lg:border-neutral-200 overflow-y-auto main-scroll-container hide-safari-scrollbar" style={{ background: 'transparent' }}>
-                {children}
+                  {children}
               </div>
             </div>
           </AuthProvider>
