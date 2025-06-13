@@ -9,7 +9,6 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
 import Image from "next/image";
-import { lockScroll, unlockScroll } from "@/utils/scrollLock";
 
 export default function CredentialsPage() {
   const [credentials, setCredentials] = useState<Credential[]>([]);
@@ -19,17 +18,17 @@ export default function CredentialsPage() {
   const id = useId();
   const { t, currentLanguage } = useLanguage();
 
-  // Manage scroll when modal is open
+  // Manage body scroll when modal is open
   useEffect(() => {
     if (active && typeof active === "object") {
-      lockScroll();
+      document.body.style.overflow = 'hidden';
     } else {
-      unlockScroll();
+      document.body.style.overflow = 'unset';
     }
     
     // Cleanup on unmount
     return () => {
-      unlockScroll();
+      document.body.style.overflow = 'unset';
     };
   }, [active]);
 
@@ -42,6 +41,12 @@ export default function CredentialsPage() {
       if (event.key === "Escape") {
         setActive(false);
       }
+    }
+
+    if (active && typeof active === "object") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
 
     window.addEventListener("keydown", onKeyDown);

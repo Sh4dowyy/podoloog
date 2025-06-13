@@ -169,16 +169,17 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.className,
-          "flex antialiased overflow-hidden"
+          "flex antialiased h-screen overflow-hidden"
         )}
-        style={{ height: '100dvh' }}
       >
         <LanguageProvider>
           <AuthProvider>
             <Sidebar />
-            <div className="lg:pl-2 lg:pt-2 flex-1 flex flex-col overflow-hidden">
-              <div className="flex-1 lg:rounded-tl-xl border border-transparent lg:border-neutral-200 overflow-y-auto main-scroll-container hide-safari-scrollbar" style={{ background: 'transparent' }}>
+            <div className="lg:pl-2 lg:pt-2 flex-1 overflow-y-auto">
+              <div className="flex-1 min-h-screen lg:rounded-tl-xl border border-transparent lg:border-neutral-200 overflow-y-auto flex flex-col" style={{ background: 'transparent' }}>
+                <div className="flex-1">
                   {children}
+                </div>
               </div>
             </div>
           </AuthProvider>

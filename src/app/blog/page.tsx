@@ -9,7 +9,6 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { Container } from "@/components/Container";
 import { Heading } from "@/components/Heading";
 import Image from "next/image";
-import { lockScroll, unlockScroll } from "@/utils/scrollLock";
 
 export default function BlogPage() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -31,16 +30,13 @@ export default function BlogPage() {
     }
 
     if (active && typeof active === "object") {
-      lockScroll();
+      document.body.style.overflow = "hidden";
     } else {
-      unlockScroll();
+      document.body.style.overflow = "auto";
     }
 
     window.addEventListener("keydown", onKeyDown);
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      unlockScroll();
-    };
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
   useOutsideClick(ref, () => setActive(null));
