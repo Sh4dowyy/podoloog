@@ -137,22 +137,22 @@ export default function BiomechanicsPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="modal-backdrop"
+            className="fixed inset-0 bg-black/20 h-full w-full z-10"
           />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
         {active && typeof active === "object" ? (
-          <div className="modal-container">
-            <div className="modal-content-wrapper lg:left-64">
+          <div className="fixed inset-0 z-[100]">
+            <div className="fixed inset-y-0 right-0 left-0 lg:left-64 grid place-items-center p-4">
               <motion.button
                 key={`button-${active.id}-${id}`}
                 layout
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                className="flex absolute top-2 right-2 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg hover:bg-gray-100 transition-colors z-30"
+                className="flex absolute top-2 right-2 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg hover:bg-gray-100 transition-colors z-10"
                 onClick={() => setActive(null)}
               >
                 <CloseIcon />
@@ -180,12 +180,12 @@ export default function BiomechanicsPage() {
 
                 <div className="flex-1 flex flex-col">
                   <div className="p-6">
-                    <motion.h3
-                      layoutId={`title-${active.id}-${id}`}
-                      className="font-bold text-neutral-700 dark:text-neutral-900 text-xl mb-4"
-                    >
-                      {currentLanguage === 'et' ? active.title_et : active.title_ru || active.title_et}
-                    </motion.h3>
+                      <motion.h3
+                        layoutId={`title-${active.id}-${id}`}
+                        className="font-bold text-neutral-700 dark:text-neutral-900 text-xl mb-4"
+                      >
+                        {currentLanguage === 'et' ? active.title_et : active.title_ru || active.title_et}
+                      </motion.h3>
                   </div>
                   
                   <div className="flex-1 px-6 pb-6">
@@ -342,7 +342,7 @@ export default function BiomechanicsPage() {
       </Container>
     </>
   );
-}
+} 
 
 const CloseIcon = () => {
   return (
