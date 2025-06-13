@@ -10,7 +10,7 @@ import { Heading } from "./Heading";
 import { socials } from "@/constants/socials";
 import { Badge } from "./Badge";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser, IconFileText, IconNews, IconPhoto, IconMail, IconMenu2 } from "@tabler/icons-react";
+import { IconLayoutSidebarRightCollapse, IconSettings, IconLogin, IconDashboard, IconUser, IconFileText, IconNews, IconPhoto, IconMail, IconMenu2, IconX } from "@tabler/icons-react";
 import { useAuth } from "./auth/AuthProvider";
 import { useLanguage } from "./i18n/LanguageProvider";
 import { LanguageSwitcher } from "./i18n/LanguageSwitcher";
@@ -32,6 +32,27 @@ export const Sidebar = () => {
     window.addEventListener('resize', checkDevice);
     return () => window.removeEventListener('resize', checkDevice);
   }, []);
+
+  // Fix scroll issue when sidebar opens/closes on mobile
+  useEffect(() => {
+    if (isMobileDevice) {
+      if (open) {
+        // Disable scroll when sidebar is open
+        document.body.style.overflow = 'hidden';
+      } else {
+        // Re-enable scroll when sidebar is closed
+        document.body.style.overflow = 'unset';
+      }
+    } else {
+      // Always allow scroll on desktop
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function to ensure scroll is always restored
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [open, isMobileDevice]);
 
   return (
     <>
@@ -60,6 +81,19 @@ export const Sidebar = () => {
             className="px-6 z-[100] py-10 glass-effect w-[16rem] fixed lg:relative h-screen left-0 flex flex-col justify-between border-r border-ivory-300"
           >
             <div className="flex-1 overflow-auto">
+              {/* Close button for mobile - top right */}
+              {isMobileDevice && (
+                <div className="flex justify-end mb-4">
+                  <button
+                    onClick={() => setOpen(false)}
+                    className="p-2 text-sage-600 hover:text-sage-900 hover:bg-sage-100 rounded-lg transition-colors"
+                    aria-label="Закрыть меню"
+                  >
+                    <IconX className="h-5 w-5" />
+                  </button>
+                </div>
+              )}
+              
               <SidebarHeader />
               <div className="pt-4 pb-2">
                 <LanguageSwitcher />
@@ -70,32 +104,19 @@ export const Sidebar = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile toggle buttons */}
+      {/* Mobile toggle button */}
       {isMobileDevice && (
-        <>
-          {/* Top left menu button */}
-          <button
-            className="fixed top-4 left-4 h-12 w-12 bg-poppy-500 text-white rounded-lg shadow-lg flex items-center justify-center z-[110] hover:bg-poppy-600 transition-all"
-            onClick={() => setOpen(!open)}
-            aria-label="Открыть меню"
-          >
-            {open ? (
-              <IconLayoutSidebarRightCollapse className="h-6 w-6" />
-            ) : (
-              <IconMenu2 className="h-6 w-6" />
-            )}
-          </button>
-          
-          {/* Bottom right menu button (backup) */}
-          <button
-            className="fixed bottom-4 right-4 h-12 w-12 bg-sage-600 text-white rounded-full shadow-lg flex items-center justify-center z-[110] hover:bg-sage-700 transition-all"
-            onClick={() => setOpen(!open)}
-          >
-            <IconLayoutSidebarRightCollapse 
-              className={`h-5 w-5 transition-transform ${open ? 'rotate-180' : ''}`} 
-            />
-          </button>
-        </>
+        <button
+          className="fixed top-4 left-4 h-12 w-12 bg-poppy-500 text-white rounded-lg shadow-lg flex items-center justify-center z-[110] hover:bg-poppy-600 transition-all"
+          onClick={() => setOpen(!open)}
+          aria-label="Открыть меню"
+        >
+          {open ? (
+            <IconLayoutSidebarRightCollapse className="h-6 w-6" />
+          ) : (
+            <IconMenu2 className="h-6 w-6" />
+          )}
+        </button>
       )}
     </>
   );
