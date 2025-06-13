@@ -119,33 +119,33 @@ export default function BlogManagementPage() {
                 {/* Status and Date */}
                 <div className="mb-4 text-center">
                   <span className={`inline-block px-3 py-1 text-xs rounded-full mb-2 ${
-                    post.published 
+                            post.published 
                       ? 'bg-green-100 text-green-700' 
                       : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {post.published ? 'Опубликовано' : 'Черновик'}
-                  </span>
+                          }`}>
+                            {post.published ? 'Опубликовано' : 'Черновик'}
+                          </span>
                   <div className="text-xs text-sage-600">
-                    {new Date(post.created_at).toLocaleDateString('ru-RU')}
+                          {new Date(post.created_at).toLocaleDateString('ru-RU')}
                   </div>
                 </div>
 
                 {/* Actions */}
                 <div className="space-y-3">
-                  <button
-                    onClick={() => setEditingPost(post)}
+                            <button
+                              onClick={() => setEditingPost(post)}
                     className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
-                  >
+                            >
                     ✏️ Редактировать
-                  </button>
-                  <button
-                    onClick={() => handleDelete(post.id)}
+                            </button>
+                            <button
+                              onClick={() => handleDelete(post.id)}
                     className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                  >
+                            >
                     🗑️ Удалить
-                  </button>
-                </div>
-              </div>
+                            </button>
+                          </div>
+            </div>
             ))}
           </div>
         )}

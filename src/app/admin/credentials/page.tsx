@@ -109,52 +109,52 @@ export default function CredentialsManagementPage() {
                 </div>
 
                 {/* Image */}
-                {credential.image_url && (
+                            {credential.image_url && (
                   <div className="mb-4 text-center">
-                    <img 
-                      src={credential.image_url} 
-                      alt="Diploma" 
+                                <img 
+                                  src={credential.image_url} 
+                                  alt="Diploma" 
                       className="w-20 h-20 object-cover rounded mx-auto"
-                    />
-                  </div>
-                )}
+                                />
+                              </div>
+                            )}
 
                 {/* Description */}
-                {credential.description_et && (
+                              {credential.description_et && (
                   <div className="mb-4">
                     <p className="text-sm text-sage-700 line-clamp-3 text-center">
                       {credential.description_et}
                     </p>
-                  </div>
-                )}
+                                </div>
+                              )}
 
                 {/* Status */}
                 <div className="mb-4 text-center">
                   <span className={`inline-block px-3 py-1 text-xs rounded-full ${
-                    credential.is_published 
+                            credential.is_published 
                       ? 'bg-green-100 text-green-700' 
                       : 'bg-yellow-100 text-yellow-700'
-                  }`}>
-                    {credential.is_published ? 'Опубликован' : 'Черновик'}
-                  </span>
+                          }`}>
+                            {credential.is_published ? 'Опубликован' : 'Черновик'}
+                          </span>
                 </div>
 
                 {/* Actions */}
                 <div className="space-y-3">
-                  <button
-                    onClick={() => setEditingCredential(credential)}
+                            <button
+                              onClick={() => setEditingCredential(credential)}
                     className="w-full px-4 py-2 bg-poppy-500 text-white rounded-lg hover:bg-poppy-600 transition-colors"
-                  >
+                            >
                     ✏️ Редактировать
-                  </button>
-                  <button
-                    onClick={() => handleDelete(credential.id)}
+                            </button>
+                            <button
+                              onClick={() => handleDelete(credential.id)}
                     className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                  >
+                            >
                     🗑️ Удалить
-                  </button>
-                </div>
-              </div>
+                            </button>
+                          </div>
+            </div>
             ))}
           </div>
         )}
