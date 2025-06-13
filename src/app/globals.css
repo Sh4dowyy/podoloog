@@ -153,39 +153,133 @@
   z-index: 100;
 }
 
-@supports (-webkit-touch-callout: none) {
-  /* Специальные стили для модальных окон в Safari на iOS */
+/* Дополнительные стили для мобильных устройств */
+@media (max-width: 1024px) {
   .modal-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100dvh;
-    width: 100vw;
-    z-index: 100;
-  }
-  
-  .modal-backdrop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 10;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    z-index: 9999 !important;
   }
   
   .modal-content-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    z-index: 20;
+    left: 0 !important;
+    right: 0 !important;
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  /* Специальные стили для модальных окон в Safari на iOS */
+  .modal-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    z-index: 9999 !important;
+    transform: translateZ(0);
+  }
+  
+  .modal-backdrop {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(0, 0, 0, 0.2) !important;
+    z-index: 10 !important;
+  }
+  
+  .modal-content-wrapper {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    z-index: 20 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+     /* Дополнительные исправления для iPhone */
+   .modal-content-wrapper.lg\:left-64 {
+     left: 0 !important;
+   }
+   
+   /* Принудительное центрирование модальных окон на iPhone */
+   .modal-content-wrapper {
+     min-height: 100vh !important;
+     min-height: 100dvh !important;
+   }
+ }
+
+/* Дополнительные исправления для всех мобильных Safari */
+@media screen and (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 1) {
+  .modal-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    z-index: 9999 !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+  
+  .modal-content-wrapper {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
+
+/* Исправления специально для iPhone в портретной ориентации */
+@media only screen 
+  and (device-width: 375px) 
+  and (device-height: 667px) 
+  and (-webkit-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .modal-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 375px !important;
+    height: 667px !important;
+    z-index: 9999 !important;
+  }
+}
+
+/* Исправления для iPhone X и новее */
+@media only screen 
+  and (device-width: 375px) 
+  and (device-height: 812px) 
+  and (-webkit-device-pixel-ratio: 3) {
+  .modal-container {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 9999 !important;
   }
 }
 
