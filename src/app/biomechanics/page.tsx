@@ -146,6 +146,17 @@ export default function BiomechanicsPage() {
         {active && typeof active === "object" ? (
           <div className="fixed inset-0 z-[100]">
             <div className="fixed inset-y-0 right-0 left-0 lg:left-64 grid place-items-center p-4">
+              <motion.button
+                key={`button-${active.id}-${id}`}
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0, transition: { duration: 0.05 } }}
+                className="flex absolute top-2 right-2 items-center justify-center bg-white rounded-full h-8 w-8 shadow-lg hover:bg-gray-100 transition-colors z-10"
+                onClick={() => setActive(null)}
+              >
+                <CloseIcon />
+              </motion.button>
               <motion.div
                 layoutId={`card-${active.id}-${id}`}
                 ref={ref}
@@ -168,24 +179,13 @@ export default function BiomechanicsPage() {
                 )}
 
                 <div className="flex-1 flex flex-col">
-                  <div className="flex justify-between items-start p-6">
-                    <div className="flex-1">
-                      <motion.h3
-                        layoutId={`title-${active.id}-${id}`}
-                        className="font-bold text-neutral-700 dark:text-neutral-900 text-xl mb-4"
-                      >
-                        {currentLanguage === 'et' ? active.title_et : active.title_ru || active.title_et}
-                      </motion.h3>
-                      
-
-                    </div>
-
-                    <motion.button
-                      onClick={() => setActive(null)}
-                      className="px-6 py-3 text-sm rounded-full font-bold bg-gray-200 text-gray-900 hover:bg-gray-300 transition-colors ml-4"
+                  <div className="p-6">
+                    <motion.h3
+                      layoutId={`title-${active.id}-${id}`}
+                      className="font-bold text-neutral-700 dark:text-neutral-900 text-xl mb-4"
                     >
-                      {currentLanguage === 'et' ? 'Sulge' : 'Закрыть'}
-                    </motion.button>
+                      {currentLanguage === 'et' ? active.title_et : active.title_ru || active.title_et}
+                    </motion.h3>
                   </div>
                   
                   <div className="flex-1 px-6 pb-6">
@@ -342,4 +342,28 @@ export default function BiomechanicsPage() {
       </Container>
     </>
   );
-} 
+}
+
+const CloseIcon = () => {
+  return (
+    <motion.svg
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0, transition: { duration: 0.05 } }}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="h-4 w-4 text-black"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M18 6l-12 12" />
+      <path d="M6 6l12 12" />
+    </motion.svg>
+  );
+}; 

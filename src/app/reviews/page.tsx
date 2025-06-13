@@ -212,7 +212,7 @@ export default function ReviewsPage() {
             {currentLanguage === 'et' ? 'Jäta arvustus' : 'Оставить отзыв'}
           </button>
         </div>
-
+        
         {/* Review Form */}
         {showForm && (
           <motion.div
@@ -299,20 +299,20 @@ export default function ReviewsPage() {
             {currentLanguage === 'et' ? 'Arvustusi ei leitud' : 'Отзывы не найдены'}
           </div>
         ) : (
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {reviews.map((review, index) => (
-                <motion.div
-                  key={review.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {reviews.map((review, index) => (
+              <motion.div
+                key={review.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-200 min-h-[240px] flex flex-col"
-                >
-                  {/* Content */}
-                  <blockquote className="text-sage-700 leading-relaxed text-center flex-grow flex items-center justify-center">
-                    &ldquo;{getLocalizedContent(review)}&rdquo;
-                  </blockquote>
+              >
+                {/* Content */}
+                <blockquote className="text-sage-700 leading-relaxed text-center flex-grow flex items-center justify-center">
+                  &ldquo;{getLocalizedContent(review)}&rdquo;
+                </blockquote>
                   
                   {/* Author name and date for public reviews */}
                   {review.author_name && (
@@ -329,10 +329,10 @@ export default function ReviewsPage() {
                       )}
                     </div>
                   )}
-                </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
           </div>
+        </div>
         )}
       </div>
     </Container>
