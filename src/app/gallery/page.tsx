@@ -9,7 +9,6 @@ import { useLanguage } from "@/components/i18n/LanguageProvider";
 import { GalleryItem } from "@/types/gallery";
 import Image from "next/image";
 import { IconX } from "@tabler/icons-react";
-import { lockScroll, unlockScroll } from "@/utils/scrollLock";
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
@@ -23,17 +22,17 @@ export default function GalleryPage() {
     fetchGalleryItems();
   }, []);
 
-  // Manage scroll when modal is open
+  // Manage body scroll when modal is open
   useEffect(() => {
     if (selectedImage) {
-      lockScroll();
+      document.body.style.overflow = 'hidden';
     } else {
-      unlockScroll();
+      document.body.style.overflow = 'unset';
     }
     
     // Cleanup on unmount
     return () => {
-      unlockScroll();
+      document.body.style.overflow = 'unset';
     };
   }, [selectedImage]);
 
