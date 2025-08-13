@@ -55,7 +55,7 @@ export default function About() {
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: -50, rotate: 0 }}
-            animate={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? 3 : -3 }}
+            animate={{ opacity: 1, y: 0, rotate: 0 }}
             transition={{ duration: 0.2, delay: index * 0.1 }}
             onClick={() => setActive(item)}
             className="cursor-pointer"
@@ -65,7 +65,7 @@ export default function About() {
               width={400}
               height={300}
               alt={item.title_ru || item.title_et || "certificate"}
-              className="rounded-md object-cover transform rotate-3 shadow-xl block w-full h-40 md:h-48 lg:h-56 hover:rotate-0 transition duration-200"
+              className="rounded-md object-cover transform shadow-xl hover:shadow-2xl hover:-translate-y-1 block w-full h-40 md:h-48 lg:h-56 transition duration-200"
             />
           </motion.div>
         ))}
