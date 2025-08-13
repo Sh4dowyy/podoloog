@@ -142,13 +142,11 @@ export default function BrandProductsPage() {
         </div>
 
         {/* Brand Header */}
-        <div className="glass-effect rounded-xl p-8 mb-8">
-          <Heading as="h1" className="font-black mb-4">
-            {getLocalizedName(brand)}
-          </Heading>
-          <Paragraph className="text-lg text-sage-700 max-w-3xl">
-            {getLocalizedDescription(brand)}
-          </Paragraph>
+        <div className="mb-8">
+          <h1 className="text-center text-base md:text-lg tracking-widest uppercase text-sage-900 mb-2">{getLocalizedName(brand)}</h1>
+          <p className="text-center text-[12px] md:text-[13px] text-sage-700 max-w-3xl mx-auto">{currentLanguage === 'et' ? brand.description_et || brand.description : brand.description_ru || brand.description}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 items-start">
+          </div>
         </div>
 
         
@@ -164,43 +162,34 @@ export default function BrandProductsPage() {
             </Paragraph>
           </div>
                  ) : (
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-             {brandProducts.map((product, index) => (
-                             <motion.div
-                 key={product.id}
-                 initial={{ opacity: 0, y: 20 }}
-                 animate={{ opacity: 1, y: 0 }}
-                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                 className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 h-auto min-h-[300px] flex flex-col"
-               >
-                                 {/* Product Image */}
-                 {product.image_url && (
-                   <div className="mb-4 rounded-lg overflow-hidden flex-shrink-0">
-                     <Image
-                       src={product.image_url}
-                       alt={getLocalizedProductName(product)}
-                       width={300}
-                       height={200}
-                       className="w-full h-48 object-cover"
-                     />
+           <div className="rounded-xl border border-ivory-300 p-8" style={{ backgroundColor: '#FFF2E5' }}>
+             <h3 className="text-center text-sm tracking-widest uppercase text-sage-900 mb-6">{currentLanguage === 'et' ? 'Kasutusel olevad tooted' : 'Используемые продукты'}</h3>
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+               {brandProducts.map((product, index) => (
+                 <motion.div
+                   key={product.id}
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ duration: 0.5, delay: index * 0.1 }}
+                   className="text-center"
+                 >
+                   <div className="mx-auto mb-3 h-20 w-20 rounded-full overflow-hidden">
+                     {product.image_url ? (
+                       <Image
+                         src={product.image_url}
+                         alt={getLocalizedProductName(product)}
+                         width={80}
+                         height={80}
+                         className="h-20 w-20 object-contain"
+                       />
+                     ) : null}
                    </div>
-                 )}
-
-                 {/* Content wrapper */}
-                 <div className="flex-1 flex flex-col">
-                   {/* Product Name */}
-                   <h3 className="text-lg font-bold text-sage-900 mb-2 flex-shrink-0">
-                     {getLocalizedProductName(product)}
-                   </h3>
-
-                   {/* Description */}
-                   <Paragraph className="text-sm text-sage-700 mb-4 line-clamp-3 flex-1">
-                     {getLocalizedProductDescription(product)}
-                   </Paragraph>
-                 </div>                
-              </motion.div>
-            ))}
-          </div>
+                   <h4 className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900 mb-2">{getLocalizedProductName(product)}</h4>
+                   <p className="text-[12px] md:text-[13px] text-sage-700">{getLocalizedProductDescription(product)}</p>
+                 </motion.div>
+               ))}
+             </div>
+           </div>
         )}
       </div>
     </Container>

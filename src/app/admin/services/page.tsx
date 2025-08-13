@@ -124,11 +124,6 @@ export default function ServiceManagementPage() {
                   <div className="text-lg font-bold text-sage-900">
                             {formatPrice(service.price, service.currency)}
                           </div>
-                          {service.duration && (
-                    <div className="text-sm text-sage-600">
-                              {service.duration} мин
-                            </div>
-                          )}
                 </div>
 
                 {/* Status */}
@@ -352,37 +347,8 @@ function ServiceForm({
                     className="w-full px-3 py-2 border border-gray-300 rounded-md"
                   >
                     <option value="EUR">EUR (€)</option>
-                    <option value="USD">USD ($)</option>
-                    <option value="RUB">RUB (₽)</option>
                   </select>
                 </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Продолжительность (мин)
-                  </label>
-                  <input
-                    type="number"
-                    value={formData.duration}
-                    onChange={(e) => setFormData({...formData, duration: parseInt(e.target.value) || 0})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    min="0"
-                  />
-                </div>
-              </div>
-
-              {/* Image Upload */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Изображение услуги
-                </label>
-                <ImageUpload
-                  currentImageUrl={formData.image_url}
-                  onImageChange={handleImageChange}
-                  folder="services"
-                  width={400}
-                  height={300}
-                  placeholder="Загрузите изображение услуги"
-                />
               </div>
 
               {/* Description Fields */}

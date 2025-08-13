@@ -1,10 +1,12 @@
-import { Sidebar } from "@/components/Sidebar";
+import { Header } from "@/components/Header";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { calSans } from "./fonts";
 import { twMerge } from "tailwind-merge";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -169,18 +171,16 @@ export default function RootLayout({
       <body
         className={twMerge(
           inter.className,
-          "flex antialiased h-screen overflow-hidden"
+          calSans.variable,
+          "flex flex-col antialiased min-h-screen overflow-x-hidden"
         )}
       >
         <LanguageProvider>
           <AuthProvider>
-            <Sidebar />
-            <div className="lg:pl-2 lg:pt-2 flex-1 overflow-y-auto">
-              <div className="flex-1 min-h-screen lg:rounded-tl-xl border border-transparent lg:border-neutral-200 overflow-y-auto flex flex-col" style={{ background: 'transparent' }}>
-                <div className="flex-1">
-                  {children}
-                </div>
-              </div>
+            <Header />
+            <div className="flex-1 flex flex-col" style={{ background: 'transparent' }}>
+              <div className="flex-1">{children}</div>
+              <Footer />
             </div>
           </AuthProvider>
         </LanguageProvider>

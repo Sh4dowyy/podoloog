@@ -18,6 +18,7 @@ export default function AdminProductsPage() {
   const [loading, setLoading] = useState(true);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [newBrandName, setNewBrandName] = useState('');
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -176,9 +177,15 @@ export default function AdminProductsPage() {
         <h1 className="text-2xl font-bold text-sage-900 mb-4">
           Управление продукцией
         </h1>
-        <p className="text-sage-600 mb-6">
-          Выберите бренд для управления конкретными продуктами (кремы, инструменты, растворы и т.д.)
-        </p>
+
+        <div className="mb-6 flex items-center gap-3">
+          <button
+            onClick={() => setShowCreateForm(true)}
+            className="px-4 py-3 bg-sage-600 text-white rounded-lg hover:bg-sage-700"
+          >
+            Добавить бренд
+          </button>
+        </div>
 
         {/* Brands Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,11 +205,11 @@ export default function AdminProductsPage() {
         </div>
 
               {/* Description */}
-              <div className="mb-6">
+              <div className="mb-4">
                 <p className="text-sm text-sage-700 leading-relaxed">
-                  {getLocalizedDescription(product)}
+                  {product.description}
                 </p>
-          </div>
+              </div>
 
               {/* Actions */}
               <div className="space-y-3">
@@ -213,13 +220,25 @@ export default function AdminProductsPage() {
                   🛠️ Управлять продуктами
                 </Link>
                 
-                <Link
-                  href={`/products/${product.id}`}
-                  target="_blank"
-                  className="w-full px-4 py-2 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors text-center block"
+                
+                <button
+                  onClick={() => { setEditingProduct(product); setShowCreateForm(true); }}
+                  className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                 >
-                  👁️ Посмотреть на сайте
-                </Link>
+                  ✏️ Редактировать бренд
+                </button>
+                <button
+                  onClick={() => handleTogglePublished(product.id, product.published)}
+                  className="w-full px-4 py-2 bg-amber-500 text-white rounded-lg hover:bg-amber-600 transition-colors"
+                >
+                  {product.published ? 'Скрыть' : 'Опубликовать'}
+                </button>
+                <button
+                  onClick={() => handleDelete(product.id)}
+                  className="w-full px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                >
+                  🗑️ Удалить бренд
+                </button>
                           </div>
 
               {/* Status Badge */}
@@ -242,6 +261,17 @@ export default function AdminProductsPage() {
           </div>
         )}
       </div>
+      {showCreateForm && (
+        <ProductForm
+          product={editingProduct}
+          onClose={() => { setShowCreateForm(false); setEditingProduct(null); }}
+          onSave={async () => {
+            setShowCreateForm(false);
+            setEditingProduct(null);
+            await loadProducts();
+          }}
+        />
+      )}
     </div>
   );
 }
@@ -305,28 +335,46 @@ function ProductForm({
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <h2 className="text-xl font-bold mb-4">
-          {product ? 'Редактировать продукт' : 'Добавить новый продукт'}
+          {product ? 'Редактировать бренд' : 'Добавить новый бренд'}
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Name Fields */}
+          {/* Short name (visible title) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Название фирмы (латиницей) *</label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              required
+            />
+          </div>
+
+          {/* Short description (общая) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Короткое описание (общая)</label>
+            <input
+              type="text"
+              value={formData.description}
+              onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          {/* Локализованные названия (опционально) */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Название (эстонский) *
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Название (эстонский)</label>
               <input
                 type="text"
                 value={formData.name_et}
                 onChange={(e) => setFormData({ ...formData, name_et: e.target.value })}
                 className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Название (русский)
-              </label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Название (русский)</label>
               <input
                 type="text"
                 value={formData.name_ru}
@@ -336,30 +384,26 @@ function ProductForm({
             </div>
           </div>
 
-          {/* Description Fields */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Описание (эстонский) *
-            </label>
-            <textarea
-              value={formData.description_et}
-              onChange={(e) => setFormData({ ...formData, description_et: e.target.value })}
-              rows={4}
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Описание (русский)
-            </label>
-            <textarea
-              value={formData.description_ru}
-              onChange={(e) => setFormData({ ...formData, description_ru: e.target.value })}
-              rows={4}
-              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+          {/* Full descriptions (локализованные) */}
+          <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Подробное описание (эстонский)</label>
+              <textarea
+                rows={5}
+                value={formData.description_et}
+                onChange={(e) => setFormData({ ...formData, description_et: e.target.value })}
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Подробное описание (русский)</label>
+              <textarea
+                rows={5}
+                value={formData.description_ru}
+                onChange={(e) => setFormData({ ...formData, description_ru: e.target.value })}
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
           </div>
 
           {/* Published */}

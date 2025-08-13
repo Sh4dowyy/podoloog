@@ -15,6 +15,7 @@ export default function ProductsPage() {
   const { currentLanguage } = useLanguage();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expandedId, setExpandedId] = useState<string | null>(null); // mobile expand instead of immediate navigation
 
   useEffect(() => {
     loadProducts();
@@ -97,6 +98,12 @@ export default function ProductsPage() {
     return product.description;
   };
 
+  const getShortDescription = (product: Product) => {
+    // Prefer short generic description if provided, else fall back to localized text
+    if (product.description) return product.description;
+    return currentLanguage === 'et' ? (product.description_et || '') : (product.description_ru || '');
+  };
+
 
 
   if (loading) {
@@ -117,24 +124,23 @@ export default function ProductsPage() {
   const displayProducts = products.length > 0 ? products : fallbackBrands;
 
   return (
-    <Container>
+    <Container className="pt-6 md:pt-8 pb-20">
       <div className="py-0">
         {/* Header */}
-        <div className="mb-8">
-          <Heading as="h1" className="font-black mb-4">
-            {currentLanguage === 'et' ? 'Kasutatud Produktid' : 'Используемая Продукция'}
-          </Heading>
-          <Paragraph className="max-w-2xl text-lg">
+        <div className="text-center mb-6">
+          <h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-2">
+            {currentLanguage === 'et' ? 'Meie töös kasutusel olevad brändid' : 'Бренды, с которыми работаем'}
+          </h2>
+          <p className="text-[12px] md:text-[13px] text-sage-700">
             {currentLanguage === 'et' 
-              ? 'Kasutan ainult kvaliteetseid ja sertifitseeritud tooteid jalgade tervise tagamiseks. Kõik bränded on valitud nende usaldusväärsuse ja tõhususe põhjal.'
-              : 'Использую только качественные и сертифицированные продукты для обеспечения здоровья стоп. Все бренды выбраны на основе их надежности и эффективности.'
-            }
-          </Paragraph>
+              ? 'Kasutan ainult kvaliteetseid ja sertifitseeritud tooteid jalgade tervise tagamiseks. Kõik brändid on valitud nende usaldusväärsuse ja tõhususe põhjal.'
+              : 'Используем только качественные и сертифицированные продукты. Все бренды выбраны за надежность и эффективность.'}
+          </p>
         </div>
 
         {/* Products Grid */}
         <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {displayProducts.map((product, index) => (
               <motion.div
                 key={product.id}
@@ -142,30 +148,55 @@ export default function ProductsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <Link href={`/products/${product.id}`}>
-                  <div className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group">
-                {/* Brand Logo/Icon */}
-                <div className="text-center mb-4">
-                      <h3 className="text-xl font-bold text-sage-900 mb-2 group-hover:text-poppy-600 transition-colors">
-                    {getLocalizedName(product)}
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <div className="mb-4">
-                  <Paragraph className="text-sm text-sage-700 leading-relaxed">
-                    {getLocalizedDescription(product)}
-                  </Paragraph>
-                </div>
-
-                    {/* Click indicator */}
-                    <div className="text-center">
-                      <span className="text-xs text-poppy-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                        {currentLanguage === 'et' ? 'Kliki toodete vaatamiseks' : 'Нажмите для просмотра продукции'}
-                      </span>
+                {/* Mobile card: expand instead of navigate */}
+                <div className="md:hidden">
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setExpandedId(expandedId === product.id ? null : product.id)}
+                    onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedId(expandedId === product.id ? null : product.id); } }}
+                    className="relative rounded-xl border border-sage-300 px-4 py-4 text-center overflow-hidden transition duration-200"
+                  >
+                    <div className="relative z-10">
+                      <div className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900">{getLocalizedName(product)}</div>
+                      <motion.div
+                        initial={false}
+                        animate={{ height: expandedId === product.id ? 'auto' : 0, opacity: expandedId === product.id ? 1 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="mt-2 text-[12px] md:text-[13px] text-sage-700">
+                          {getShortDescription(product)}
+                        </p>
+                        <div className="mt-2">
+                          <Link href={`/products/${product.id}`} className="inline-block text-[10px] text-sage-700 underline">
+                            {currentLanguage === 'et' ? 'Ava bränd' : 'Открыть бренд'}
+                          </Link>
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
-                </Link>
+                </div>
+
+                {/* Desktop card: navigate on click with hover reveal */}
+                <div className="hidden md:block">
+                  <Link href={`/products/${product.id}`} className="block group">
+                    <div className="relative rounded-xl border border-sage-300 px-4 py-4 text-center overflow-hidden hover:border-sage-600 transition duration-200 group-hover:scale-[1.03] group-hover:shadow-md">
+                      {/* Hover background like Teenused: poppy field + white veil */}
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-30 bg-cover bg-center transition-opacity" style={{ backgroundImage: 'url(/images/poppy-field.jpg)' }} />
+                      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 bg-white/70 transition-opacity" />
+                      <div className="relative z-10">
+                        <div className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900">{getLocalizedName(product)}</div>
+                        <div className="max-h-0 overflow-hidden opacity-0 transition-all duration-200 group-hover:max-h-24 group-hover:opacity-100">
+                          <p className="mt-2 text-[12px] md:text-[13px] text-sage-700 line-clamp-3">
+                            {getShortDescription(product)}
+                          </p>
+                          <span className="mt-2 inline-block text-[10px] text-sage-600 underline">{currentLanguage === 'et' ? 'Loe rohkem' : 'Подробнее'}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                </div>
               </motion.div>
             ))}
           </div>

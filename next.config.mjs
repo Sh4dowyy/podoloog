@@ -10,6 +10,7 @@ const nextConfig = {
       "res.cloudinary.com",
       "lh3.googleusercontent.com", // Google OAuth avatars
       "avatars.githubusercontent.com", // GitHub avatars
+      "picsum.photos", // Demo/seed images
     ],
     remotePatterns: [
       {
