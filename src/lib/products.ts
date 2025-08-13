@@ -77,6 +77,32 @@ export const productService = {
     return data;
   },
 
+  // Create minimal brand (firm) by name only
+  async createBrand(name: string): Promise<Product> {
+    if (!supabase) {
+      throw new Error('Supabase client not initialized');
+    }
+
+    const payload = {
+      name,
+      description: '',
+      published: true,
+    } as Omit<Product, 'id' | 'created_at' | 'updated_at'>;
+
+    const { data, error } = await supabase
+      .from('products')
+      .insert([payload])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error creating brand:', error);
+      throw error;
+    }
+
+    return data as Product;
+  },
+
   async updateProduct(id: string, updates: Partial<Omit<Product, 'id' | 'created_at' | 'updated_at'>>): Promise<Product> {
     if (!supabase) {
       throw new Error('Supabase client not initialized');

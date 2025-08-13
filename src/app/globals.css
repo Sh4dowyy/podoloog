@@ -4,57 +4,15 @@
 
 /* Применение новой цветовой схемы */
 @layer base {
-  html {
-    background: linear-gradient(45deg, 
-      rgba(255, 140, 0, 0.3) 0%,      /* яркий оранжевый */
-      rgba(255, 165, 50, 0.25) 30%,   /* оранжево-персиковый */
-      rgba(144, 238, 144, 0.25) 70%,  /* светло-зеленый */ 
-      rgba(107, 154, 107, 0.3) 100%   /* sage зеленый */
-    );
-    background-attachment: fixed;
+  html, body {
+    @apply bg-ivory-50 text-sage-900;
     min-height: 100vh;
   }
   
-  body {
-    @apply text-sage-900;
-    background: transparent;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    position: relative;
-  }
-  
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(ellipse at top left, 
-      rgba(255, 140, 0, 0.15) 0%,     /* яркий оранжевый */
-      transparent 60%),
-    radial-gradient(ellipse at bottom right, 
-      rgba(107, 154, 107, 0.15) 0%,  /* зеленый */
-      transparent 60%);
-    z-index: -1;
-    pointer-events: none;
-  }
-  
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(-45deg, 
-      rgba(255, 140, 0, 0.08) 0%,     /* оранжевый */
-      rgba(144, 238, 144, 0.08) 100%  /* светло-зеленый */
-    );
-    backdrop-filter: blur(15px);  /* уменьшили с 40px */
-    -webkit-backdrop-filter: blur(15px);
-    z-index: -2;
-    pointer-events: none;
+  /* Базовая типографика: заголовки на кастомном шрифте */
+  h1, h2, h3, .font-heading {
+    font-family: var(--font-heading), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    letter-spacing: -0.02em;
   }
   
   /* Переопределение стандартных цветов */
@@ -135,12 +93,12 @@
   
   /* Glassmorphism utility */
   .glass-effect {
-    background: rgba(248, 246, 242, 0.85) !important;  /* простой бежевый без градиента */
-    backdrop-filter: blur(8px) !important;  /* уменьшили blur */
-    -webkit-backdrop-filter: blur(8px) !important;
-    border: 1px solid rgba(222, 207, 192, 0.4) !important;  
-    box-shadow: 0 8px 20px rgba(125, 121, 104, 0.15) !important;  /* простая тень */
-    will-change: transform, opacity;  /* оптимизация для анимаций */
+    background: rgba(248, 246, 242, 0.9) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
+    border: 1px solid rgba(222, 207, 192, 0.35) !important;
+    box-shadow: 0 8px 20px rgba(125, 121, 104, 0.12) !important;
+    will-change: transform, opacity;
   }
   
   /* Дополнительный класс для проверки */

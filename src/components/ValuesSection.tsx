@@ -33,7 +33,7 @@ export function ValuesSection() {
 
   if (loading) {
     return (
-      <div className="max-w-6xl mt-12 relative">
+      <div className="max-w-6xl mt-0 py-12 bg-poppy-50/20 relative">
         <WatercolorBorder />
         <Heading as="h2" className="font-black text-lg md:text-xl lg:text-2xl mb-8 text-left relative z-10">
           {currentLanguage === 'et' ? 'Meie Väärtused' : 'Наши Ценности'}
@@ -57,7 +57,7 @@ export function ValuesSection() {
 
   if (values.length === 0) {
     return (
-      <div className="max-w-6xl mt-12 relative">
+      <div className="max-w-6xl mt-0 py-12 bg-poppy-50/20 relative">
         <WatercolorBorder />
         <Heading as="h2" className="font-black text-lg md:text-xl lg:text-2xl mb-8 text-left relative z-10">
           {currentLanguage === 'et' ? 'Meie Väärtused' : 'Наши Ценности'}
@@ -76,7 +76,7 @@ export function ValuesSection() {
   }
 
   return (
-    <div className="max-w-6xl mt-12 relative">
+    <div className="max-w-6xl mt-0 py-12 bg-poppy-50/20 relative">
       <WatercolorBorder />
       <Heading as="h2" className="font-black text-lg md:text-xl lg:text-2xl mb-8 text-left relative z-10">
         {currentLanguage === 'et' ? 'Meie Väärtused' : 'Наши Ценности'}

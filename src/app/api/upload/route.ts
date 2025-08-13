@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase, createSupabaseBrowserClient } from '@/lib/supabase';
+import { createSupabaseRouteHandlerClient } from '@/lib/supabase-server';
 
 export async function POST(request: NextRequest) {
   try {
@@ -32,17 +32,16 @@ export async function POST(request: NextRequest) {
     const arrayBuffer = await file.arrayBuffer();
     const uint8Array = new Uint8Array(arrayBuffer);
 
-    // Используем браузерный клиент или серверный клиент
-    const client = createSupabaseBrowserClient() || supabase;
-    
+    // Серверный клиент с cookie для авторизованного доступа (соответствует RLS-политикам)
+    const client = createSupabaseRouteHandlerClient();
     if (!client) {
-      return NextResponse.json({ error: 'Storage service not available' }, { status: 500 });
+      return NextResponse.json({ error: 'Supabase client not available' }, { status: 500 });
     }
 
     // Загружаем файл в Supabase Storage
     const { data, error } = await client.storage
       .from('product-images')
-      .upload(fileName, uint8Array, {
+      .upload(fileName, file, {
         contentType: file.type,
         cacheControl: '3600',
         upsert: false
