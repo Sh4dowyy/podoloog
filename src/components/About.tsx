@@ -23,14 +23,17 @@ export default function About() {
   return (
 		<div>
 			{/* Page title */}
-			<h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-4 text-center">Meist</h2>
+			<h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-4 text-center font-bold">
+        {currentLanguage === 'et' ? 'Meist' : 'О нас'}
+      </h2>
       {/* Hero row: intro text + clinic photos collage */}
 			<section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-8">
 				<div>
 					<p className="text-base text-sage-800">
-            Olen sertifitseeritud podoloog 5. taseme kvalifikatsiooniga. Minu eriala hõlmab probleemsete jalgade hooldust,
-            sissekasvanud küünte korrigeerimist, klamber süsteemide paigaldust, proteseerimist, kannalõhede hooldust ja
-            professionaalset pediküüri.
+            {currentLanguage === 'et' 
+              ? 'Olen sertifitseeritud podoloog 5. taseme kvalifikatsiooniga. Minu eriala hõlmab probleemsete jalgade hooldust, sissekasvanud küünte korrigeerimist, klamber süsteemide paigaldust, proteseerimist, kannalõhede hooldust ja professionaalset pediküüri.'
+              : 'Я сертифицированный подолог с квалификацией 5-го уровня. Моя специальность включает в себя уход за проблемными стопами, коррекцию вросших ногтей, установку скобочных систем, протезирование, уход за трещинами пяток и профессиональный педикюр.'
+            }
           </p>
         </div>
         <div className="grid grid-cols-2 gap-3">

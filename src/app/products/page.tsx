@@ -138,7 +138,7 @@ export default function ProductsPage() {
       <div className="py-0">
         {/* Header */}
         <div className="text-center mb-6">
-          <h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-2">
+          <h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-2 font-bold">
             {currentLanguage === 'et' ? 'Meie töös kasutusel olevad brändid' : 'Бренды, с которыми работаем'}
           </h2>
           <p className="text-[12px] md:text-[13px] text-sage-700">

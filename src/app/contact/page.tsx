@@ -14,7 +14,9 @@ export default function ContactPage() {
     <Container className="pt-6 md:pt-8 pb-20">
       <div className="py-0">
         <div className="text-center mb-16">
-          <h1 className="text-base md:text-lg tracking-widest uppercase text-sage-900 mb-8">KONTAKT</h1>
+          <h1 className="text-base md:text-lg tracking-widest uppercase text-sage-900 mb-8 font-bold">
+            {currentLanguage === 'et' ? 'KONTAKT' : 'КОНТАКТЫ'}
+          </h1>
           <p className="text-xs md:text-sm text-sage-700 max-w-md mx-auto leading-relaxed">
             {currentLanguage === 'et' 
               ? 'Teenuse broneerimiseks või küsimuste esitamisel võtke meiega julgelt ühendust.'
@@ -26,21 +28,25 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto items-start">
           {/* Left: Contact Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-xs md:text-sm tracking-widest uppercase text-sage-900 mb-6">KONTAKT INFO</h2>
+            <h2 className="text-xs md:text-sm tracking-widest uppercase text-sage-900 mb-6">
+              {currentLanguage === 'et' ? 'KONTAKT INFO' : 'КОНТАКТНАЯ ИНФОРМАЦИЯ'}
+            </h2>
             <ul className="text-xs md:text-sm text-sage-800 space-y-6">
-              <li>Telefon: +372 5895 5153</li>
-              <li>Aadress: Anne 44, Tartu</li>
-              <li>Email: podologystudio15@gmail.com</li>
+              <li>{currentLanguage === 'et' ? 'Telefon' : 'Телефон'}: +372 5895 5153</li>
+              <li>{currentLanguage === 'et' ? 'Aadress' : 'Адрес'}: Anne 44, Tartu</li>
+              <li>{currentLanguage === 'et' ? 'Email' : 'Эл. почта'}: podologystudio15@gmail.com</li>
             </ul>
           </div>
 
           {/* Middle: Company Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-xs md:text-sm tracking-widest uppercase text-sage-900 mb-6">ETTEVÕTTE ANDMED</h2>
+            <h2 className="text-xs md:text-sm tracking-widest uppercase text-sage-900 mb-6">
+              {currentLanguage === 'et' ? 'ETTEVÕTTE ANDMED' : 'ДАННЫЕ КОМПАНИИ'}
+            </h2>
             <ul className="text-xs md:text-sm text-sage-800 space-y-6">
-              <li>Ettevõte: OÜ Girsi</li>
-              <li>Registrikood: 11350594</li>
-              <li>Pangakonto: EE112200221035550935</li>
+              <li>{currentLanguage === 'et' ? 'Ettevõte' : 'Компания'}: OÜ Girsi</li>
+              <li>{currentLanguage === 'et' ? 'Registrikood' : 'Рег. код'}: 11350594</li>
+              <li>{currentLanguage === 'et' ? 'Pangakonto' : 'Банк. счет'}: EE112200221035550935</li>
             </ul>
           </div>
 
