@@ -6,6 +6,7 @@ import { credentialService } from "@/lib/credentials";
 import { Credential } from "@/types/credential";
 import { motion } from "framer-motion";
 import { useLanguage } from "./i18n/LanguageProvider";
+import { CredentialsCarousel } from "./CredentialsCarousel";
 
 export default function About() {
   const [credentials, setCredentials] = useState<Credential[]>([]);
@@ -48,27 +49,12 @@ export default function About() {
         </p>
       </section>
 
-      {/* Diplomas slider-like grid */}
-			<h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-4 text-center">Diplomid</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 my-10">
-        {credentials.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: -50, rotate: 0 }}
-            animate={{ opacity: 1, y: 0, rotate: 0 }}
-            transition={{ duration: 0.2, delay: index * 0.1 }}
-            onClick={() => setActive(item)}
-            className="cursor-pointer"
-          >
-            <Image
-              src={item.image_url || "/images/sidefolio-aceternity.png"}
-              width={400}
-              height={300}
-              alt={item.title_ru || item.title_et || "certificate"}
-              className="rounded-md object-cover transform shadow-xl hover:shadow-2xl hover:-translate-y-1 block w-full h-40 md:h-48 lg:h-56 transition duration-200"
-            />
-          </motion.div>
-        ))}
+      {/* Diplomas Carousel */}
+      <div className="my-16">
+        <CredentialsCarousel 
+          credentials={credentials}
+          onCredentialClick={setActive}
+        />
       </div>
 
       <div className="max-w-4xl"></div>

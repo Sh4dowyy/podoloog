@@ -13,26 +13,31 @@ export default function ContactPage() {
   return (
     <Container className="pt-6 md:pt-8 pb-20">
       <div className="py-0">
-        <div className="text-center mb-6">
-          <h1 className="text-base md:text-lg tracking-widest uppercase text-sage-900 mb-2">{currentLanguage === 'et' ? 'Kontakt' : 'Контакт'}</h1>
-          <p className="text-[12px] md:text-[14px] text-sage-700">{currentLanguage === 'et' ? 'Teenuse broneerimiseks või küsimuste esitamisel võtke meiega julgelt ühendust' : 'Для записи или вопросов свяжитесь с нами'}</p>
+        <div className="text-center mb-16">
+          <h1 className="text-base md:text-lg tracking-widest uppercase text-sage-900 mb-8">KONTAKT</h1>
+          <p className="text-xs md:text-sm text-sage-700 max-w-md mx-auto leading-relaxed">
+            {currentLanguage === 'et' 
+              ? 'Teenuse broneerimiseks või küsimuste esitamisel võtke meiega julgelt ühendust.'
+              : 'Для записи на услуги или по вопросам свяжитесь с нами.'
+            }
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 max-w-6xl mx-auto items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 max-w-6xl mx-auto items-start">
           {/* Left: Contact Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900 mb-4">{currentLanguage === 'et' ? 'Kontakt info' : 'Контакт'}</h2>
-            <ul className="text-[12px] md:text-[13px] text-sage-800 space-y-3">
+            <h2 className="text-xs md:text-sm tracking-widest uppercase text-sage-900 mb-6">KONTAKT INFO</h2>
+            <ul className="text-xs md:text-sm text-sage-800 space-y-6">
               <li>Telefon: +372 5895 5153</li>
               <li>Aadress: Anne 44, Tartu</li>
-              <li>Email: a.huvenen@gmail.com</li>
+              <li>Email: podologystudio15@gmail.com</li>
             </ul>
           </div>
 
           {/* Middle: Company Info */}
           <div className="lg:col-span-1">
-            <h2 className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900 mb-4">{currentLanguage === 'et' ? 'Ettevõtte andmed' : 'Данные компании'}</h2>
-            <ul className="text-[12px] md:text-[13px] text-sage-800 space-y-3">
+            <h2 className="text-xs md:text-sm tracking-widest uppercase text-sage-900 mb-6">ETTEVÕTTE ANDMED</h2>
+            <ul className="text-xs md:text-sm text-sage-800 space-y-6">
               <li>Ettevõte: OÜ Girsi</li>
               <li>Registrikood: 11350594</li>
               <li>Pangakonto: EE112200221035550935</li>
@@ -41,18 +46,26 @@ export default function ContactPage() {
 
           {/* Right: Socials */}
           <div className="lg:col-span-3">
-            <h2 className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900">{currentLanguage === 'et' ? 'Sotsiaalmeedia' : 'Соцсети'}</h2>
-            <p className="text-[12px] md:text-[13px] text-sage-700 mb-2">{currentLanguage === 'et' ? 'Jälgi meie tegevusi ka sotsiaalmeedias:' : 'Следите за нами в соцсетях:'}</p>
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+            <p className="text-xs md:text-sm text-sage-700 mb-8 leading-relaxed">
+              {currentLanguage === 'et' 
+                ? 'Jälgi meie tegevusi ka sotsiaalmeedias:'
+                : 'Следите за нашей деятельностью в социальных сетях:'
+              }
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Facebook preview clickable (static image). Replace /images/fb-preview.jpg with your uploaded file */}
-              <div className="relative rounded-xl overflow-hidden border hover:border-sage-600 transition-colors cursor-pointer h-[150px] md:col-span-3">
+              <div className="relative rounded-xl overflow-hidden border hover:border-sage-600 transition-colors cursor-pointer h-[150px] group">
                 <Image
                   src="/images/fb-preview.jpg"
                   alt="Facebook preview"
                   fill
-                  className="object-cover"
-                  sizes="(max-width: 1000px) 100vw, 33vw"
+                  className="object-cover transition-all duration-300 group-hover:brightness-50"
+                  sizes="(max-width: 1000px) 100vw, 50vw"
                 />
+                {/* Overlay with text */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white font-semibold text-lg tracking-wider">FACEBOOK</span>
+                </div>
                 <a
                   href="https://www.facebook.com/profile.php?id=100063781140588"
                   target="_blank"
@@ -61,16 +74,27 @@ export default function ContactPage() {
                   aria-label="Facebook"
                 />
               </div>
-              {/* Instagram button */}
-              <a
-                href="https://www.instagram.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-xl overflow-hidden border hover:border-sage-600 transition-colors flex items-center justify-center text-[12px] md:text-[13px] text-sage-700 h-[150px] md:col-span-3"
-                aria-label="Instagram"
-              >
-                INSTAGRAM
-              </a>
+              {/* Instagram preview clickable */}
+              <div className="relative rounded-xl overflow-hidden border hover:border-sage-600 transition-colors cursor-pointer h-[150px] group">
+                <Image
+                  src="/images/instagram-preview.jpg"
+                  alt="Instagram preview"
+                  fill
+                  className="object-cover transition-all duration-300 group-hover:brightness-50"
+                  sizes="(max-width: 1000px) 100vw, 50vw"
+                />
+                {/* Overlay with text */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="text-white font-semibold text-lg tracking-wider">INSTAGRAM</span>
+                </div>
+                <a
+                  href="https://www.instagram.com/explore/locations/538189129570924/anne-salong"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0"
+                  aria-label="Instagram"
+                />
+              </div>
             </div>
           </div>
         </div>

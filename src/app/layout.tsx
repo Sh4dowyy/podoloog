@@ -1,17 +1,11 @@
 import { Header } from "@/components/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { calSans } from "./fonts";
+import { montserrat, calSans } from "./fonts";
 import { twMerge } from "tailwind-merge";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { LanguageProvider } from "@/components/i18n/LanguageProvider";
 import { Footer } from "@/components/Footer";
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://podoloog.ee'),
@@ -170,7 +164,8 @@ export default function RootLayout({
       </head>
       <body
         className={twMerge(
-          inter.className,
+          montserrat.className,
+          montserrat.variable,
           calSans.variable,
           "flex flex-col antialiased min-h-screen overflow-x-hidden"
         )}

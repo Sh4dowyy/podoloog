@@ -14,13 +14,18 @@ export default function Home() {
   const { currentLanguage } = useLanguage();
 
   return (
-    <Container className="pt-4 md:pt-6 pb-20">
+    <Container className="pt-6 md:pt-8 pb-24">
       <Hero />
 
+      <div className="my-12" />
+      
       <ValuesStrip />
+      
+      <div className="my-10" />
+      
       <QualificationBanner />
 
-      <div className="my-8" />
+      <div className="my-16" />
 
       <Testimonials />
     </Container>

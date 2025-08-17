@@ -66,6 +66,10 @@ const config: Config = {
         '1000': '1000px',
         '3000': '3000px',
       },
+      fontFamily: {
+        sans: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-heading)', 'var(--font-montserrat)', 'system-ui', 'sans-serif'],
+      },
     },
   },
   plugins: [
