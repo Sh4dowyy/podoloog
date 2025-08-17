@@ -58,9 +58,8 @@ export default function ReviewManagementPage() {
       await reviewService.updateReview({
         id: review.id,
         content: review.content,
-        content_et: review.content_et,
-        content_ru: review.content_ru,
-        rating: review.rating,
+        author_name: review.author_name,
+        rating: review.rating || 5,
         published: !review.published,
       })
       await loadReviews()
@@ -115,7 +114,7 @@ export default function ReviewManagementPage() {
                 </span>
               )}
             </div>
-            <p className="text-sage-600 mt-2">Создавайте и редактируйте отзывы клиентов. Публичные отзывы публикуются автоматически.</p>
+            <p className="text-sage-600 mt-2">Создавайте и редактируйте отзывы клиентов.</p>
           </div>
           <button
             onClick={() => setShowCreateForm(true)}
@@ -245,9 +244,7 @@ function ReviewForm({
 }) {
   const [formData, setFormData] = useState({
     content: review?.content_et || review?.content || '',
-    content_et: review?.content_et || '',
-    content_ru: review?.content_ru || '',
-    rating: review?.rating || 5,
+    author_name: review?.author_name || '',
     published: review?.published || false,
   })
   const [saving, setSaving] = useState(false)
@@ -261,19 +258,17 @@ function ReviewForm({
         // Update existing review
         await reviewService.updateReview({
           id: review.id,
-          content: formData.content_et || formData.content,
-          content_et: formData.content_et,
-          content_ru: formData.content_ru,
-          rating: formData.rating,
+          content: formData.content,
+          author_name: formData.author_name,
+          rating: 5, // Default rating
           published: formData.published,
         })
       } else {
         // Create new review
         await reviewService.createReview({
-          content: formData.content_et || formData.content,
-          content_et: formData.content_et,
-          content_ru: formData.content_ru,
-          rating: formData.rating,
+          content: formData.content,
+          author_name: formData.author_name,
+          rating: 5, // Default rating
           published: formData.published,
         })
       }
@@ -305,52 +300,34 @@ function ReviewForm({
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Rating */}
+              {/* Author Name */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Рейтинг
+                  Имя автора
                 </label>
-                <select
-                  value={formData.rating}
-                  onChange={(e) => setFormData({...formData, rating: parseInt(e.target.value)})}
+                <input
+                  type="text"
+                  value={formData.author_name}
+                  onChange={(e) => setFormData({...formData, author_name: e.target.value})}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                >
-                  <option value={1}>1 звезда</option>
-                  <option value={2}>2 звезды</option>
-                  <option value={3}>3 звезды</option>
-                  <option value={4}>4 звезды</option>
-                  <option value={5}>5 звезд</option>
-                </select>
+                  placeholder="Введите имя автора отзыва"
+                  required
+                />
               </div>
 
-              {/* Content Fields */}
-              <div className="space-y-4">
-                <h3 className="text-lg font-medium">Содержание отзыва</h3>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Отзыв (ET)
-                  </label>
-                  <textarea
-                    value={formData.content_et}
-                    onChange={(e) => setFormData({...formData, content_et: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    rows={4}
-                    required
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Отзыв (RU)
-                  </label>
-                  <textarea
-                    value={formData.content_ru}
-                    onChange={(e) => setFormData({...formData, content_ru: e.target.value})}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md"
-                    rows={4}
-                  />
-                </div>
+              {/* Content Field */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Текст отзыва
+                </label>
+                <textarea
+                  value={formData.content}
+                  onChange={(e) => setFormData({...formData, content: e.target.value})}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md"
+                  rows={4}
+                  placeholder="Введите текст отзыва"
+                  required
+                />
               </div>
 
               {/* Published Checkbox */}

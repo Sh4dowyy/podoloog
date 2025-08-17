@@ -13,6 +13,7 @@ import { BrandProductsService } from "@/lib/brand-products";
 import { BrandProduct, PRODUCT_CATEGORIES } from "@/types/brand-product";
 import { productService } from "@/lib/products";
 import { Product } from "@/types/product";
+import { ProductsCarousel } from "@/components/ProductsCarousel";
 
 export default function BrandProductsPage() {
   const { currentLanguage } = useLanguage();
@@ -134,62 +135,26 @@ export default function BrandProductsPage() {
         <div className="mb-6">
           <nav className="text-sm">
             <Link href="/products" className="text-poppy-500 hover:text-poppy-600">
-              {currentLanguage === 'et' ? 'Produktid' : 'Продукция'}
+              {currentLanguage === 'et' ? 'Tooted' : 'Продукция'}
             </Link>
             <span className="mx-2 text-sage-400">›</span>
             <span className="text-sage-700">{getLocalizedName(brand)}</span>
           </nav>
         </div>
 
-        {/* Brand Header */}
-        <div className="mb-8">
-          <h1 className="text-center text-base md:text-lg tracking-widest uppercase text-sage-900 mb-2">{getLocalizedName(brand)}</h1>
-          <p className="text-center text-[12px] md:text-[13px] text-sage-700 max-w-3xl mx-auto">{currentLanguage === 'et' ? brand.description_et || brand.description : brand.description_ru || brand.description}</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 items-start">
-          </div>
-        </div>
 
-        
-
-                 {/* Products Grid */}
-         {brandProducts.length === 0 ? (
+        {/* Products Carousel */}
+        {brandProducts.length === 0 ? (
           <div className="glass-effect rounded-xl p-8 text-center">
-            <Paragraph className="text-sage-600 text-lg">
+            <Paragraph className="text-sage-600 text-[8px]">
               {currentLanguage === 'et' 
                 ? 'Selle brändi tooteid ei ole veel lisatud.'
                 : 'Продукты этого бренда еще не добавлены.'
               }
             </Paragraph>
           </div>
-                 ) : (
-           <div className="rounded-xl border border-ivory-300 p-8" style={{ backgroundColor: '#FFF2E5' }}>
-             <h3 className="text-center text-sm tracking-widest uppercase text-sage-900 mb-6">{currentLanguage === 'et' ? 'Kasutusel olevad tooted' : 'Используемые продукты'}</h3>
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
-               {brandProducts.map((product, index) => (
-                 <motion.div
-                   key={product.id}
-                   initial={{ opacity: 0, y: 20 }}
-                   animate={{ opacity: 1, y: 0 }}
-                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                   className="text-center"
-                 >
-                   <div className="mx-auto mb-3 h-20 w-20 rounded-full overflow-hidden">
-                     {product.image_url ? (
-                       <Image
-                         src={product.image_url}
-                         alt={getLocalizedProductName(product)}
-                         width={80}
-                         height={80}
-                         className="h-20 w-20 object-contain"
-                       />
-                     ) : null}
-                   </div>
-                   <h4 className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900 mb-2">{getLocalizedProductName(product)}</h4>
-                   <p className="text-[12px] md:text-[13px] text-sage-700">{getLocalizedProductDescription(product)}</p>
-                 </motion.div>
-               ))}
-             </div>
-           </div>
+        ) : (
+          <ProductsCarousel products={brandProducts} brand={brand} />
         )}
       </div>
     </Container>

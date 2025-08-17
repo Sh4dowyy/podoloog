@@ -310,16 +310,16 @@ export default function ReviewsPage() {
                   className="glass-effect rounded-xl p-6 hover:shadow-xl transition-all duration-200 min-h-[240px] flex flex-col"
               >
                 {/* Content */}
-                <blockquote className="text-sage-700 leading-relaxed text-center flex-grow flex items-center justify-center">
+                <blockquote className="text-sage-700 leading-relaxed text-center flex-grow flex items-center justify-center text-sm sm:text-base">
                   &ldquo;{getLocalizedContent(review)}&rdquo;
                 </blockquote>
                   
                   {/* Author name and date for public reviews */}
                   {review.author_name && (
-                    <div className="mt-4 text-center text-sm text-sage-600 border-t border-sage-200 pt-3">
+                    <div className="mt-4 text-center text-sm sm:text-base text-sage-600 border-t border-sage-200 pt-3">
                       <div>— {review.author_name}</div>
                       {review.created_at && (
-                        <div className="text-xs text-sage-500 mt-1">
+                        <div className="text-xs sm:text-sm text-sage-500 mt-1">
                           {new Date(review.created_at).toLocaleDateString(currentLanguage === 'et' ? 'et-EE' : 'ru-RU', {
                             day: 'numeric',
                             month: 'long',

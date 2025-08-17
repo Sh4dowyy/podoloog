@@ -19,6 +19,18 @@ export function ValuesStrip() {
 
   const total = values.length;
 
+  // Auto-advance carousel every 6 seconds
+  useEffect(() => {
+    if (total <= 1) return;
+
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % total);
+      setDirection(1);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, [total]);
+
   const prevIdx = useMemo(() => (total ? (active - 1 + total) % total : 0), [active, total]);
   const nextIdx = useMemo(() => (total ? (active + 1) % total : 0), [active, total]);
 

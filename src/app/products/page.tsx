@@ -100,8 +100,18 @@ export default function ProductsPage() {
 
   const getShortDescription = (product: Product) => {
     // Prefer short generic description if provided, else fall back to localized text
-    if (product.description) return product.description;
-    return currentLanguage === 'et' ? (product.description_et || '') : (product.description_ru || '');
+    let description = '';
+    if (product.description) {
+      description = product.description;
+    } else {
+      description = currentLanguage === 'et' ? (product.description_et || '') : (product.description_ru || '');
+    }
+    
+    // Limit to 100 characters
+    if (description.length > 100) {
+      return description.substring(0, 100).trim() + '...';
+    }
+    return description;
   };
 
 
@@ -157,6 +167,9 @@ export default function ProductsPage() {
                     onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setExpandedId(expandedId === product.id ? null : product.id); } }}
                     className="relative rounded-xl border border-sage-300 px-4 py-4 text-center overflow-hidden transition duration-200"
                   >
+                    {/* Background poppy field image */}
+                    <div className="absolute inset-0 pointer-events-none opacity-30 bg-cover bg-center" style={{ backgroundImage: 'url(/images/poppy-field.jpg)' }} />
+                    <div className="absolute inset-0 pointer-events-none bg-white/70" />
                     <div className="relative z-10">
                       <div className="text-[12px] md:text-[13px] tracking-widest uppercase text-sage-900">{getLocalizedName(product)}</div>
                       <motion.div

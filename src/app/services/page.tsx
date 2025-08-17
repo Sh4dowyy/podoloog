@@ -127,9 +127,13 @@ export default function ServicesPage() {
         </div>
 
         <div className="flex justify-center mt-4">
-          <button className="px-6 py-3 rounded-lg text-sage-900" style={{ backgroundColor: '#CFECD6' }}>
-            {currentLanguage === 'et' ? 'Võta meiega ühendust' : 'Связаться с нами'}
-          </button>
+          <a 
+            href="tel:+37258955153" 
+            className="px-6 py-3 rounded-lg text-sage-900 hover:shadow-md transition-shadow duration-200 inline-block text-center" 
+            style={{ backgroundColor: '#CFECD6' }}
+          >
+            {currentLanguage === 'et' ? 'Helista meile' : 'Позвонить нам'}
+          </a>
         </div>
       </div>
     </Container>
