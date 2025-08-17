@@ -52,15 +52,12 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
     if (totalItems === 0) return [];
     
     const items = [];
-    // Show previous, current, and next items
-    for (let i = -1; i <= 1; i++) {
-      const index = (currentIndex + i + totalItems) % totalItems;
-      items.push({
-        credential: credentials[index],
-        position: i, // -1 = left, 0 = center, 1 = right
-        index
-      });
-    }
+    // Show only the current item
+    items.push({
+      credential: credentials[currentIndex],
+      position: 0, // center
+      index: currentIndex
+    });
     return items;
   };
 
@@ -79,19 +76,19 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
 
       {/* Carousel Content */}
       <div className="relative flex items-center justify-center min-h-[400px]">
-        {/* Navigation Arrows - Show on mobile only */}
+        {/* Navigation Arrows */}
         {totalItems > 1 && (
           <>
             <button
               onClick={prevSlide}
-              className="absolute left-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-200 md:hidden"
+              className="absolute left-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-200"
               aria-label="Previous credential"
             >
               <ChevronLeftIcon className="w-5 h-5 text-sage-700" />
             </button>
             <button
               onClick={nextSlide}
-              className="absolute right-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-200 md:hidden"
+              className="absolute right-2 z-20 p-2 rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-200"
               aria-label="Next credential"
             >
               <ChevronRightIcon className="w-5 h-5 text-sage-700" />
@@ -110,19 +107,15 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
                 key={item.index}
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ 
-                  opacity: isCenter ? 1 : 0.6,
-                  scale: isCenter ? 1 : 0.75,
-                  zIndex: isCenter ? 10 : 5
+                  opacity: 1,
+                  scale: 1,
+                  zIndex: 10
                 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 onClick={() => onCredentialClick(item.credential)}
-                className={`cursor-pointer group relative ${
-                  isCenter ? 'w-72 h-54 md:w-80 md:h-60' : 'w-64 h-48 hidden md:block'
-                }`}
+                className="cursor-pointer group relative w-80 h-60"
               >
-                <div className={`relative w-full h-full overflow-hidden rounded-lg bg-ivory-100 shadow-lg group-hover:shadow-xl transition-all duration-300 ${
-                  isCenter ? 'shadow-2xl' : ''
-                }`}>
+                <div className="relative w-full h-full overflow-hidden rounded-lg bg-ivory-100 shadow-2xl group-hover:shadow-xl transition-all duration-300">
                   <Image
                     src={item.credential.image_url || "/images/sidefolio-aceternity.png"}
                     fill
@@ -131,18 +124,16 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   
-                  {/* Overlay with title - only on center item */}
-                  {isCenter && (
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="absolute bottom-4 left-4 right-4">
-                        <h3 className="text-white font-medium text-sm line-clamp-2">
-                          {currentLanguage === 'et' 
-                            ? item.credential.title_et || item.credential.title_ru 
-                            : item.credential.title_ru || item.credential.title_et}
-                        </h3>
-                      </div>
+                  {/* Overlay with title */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-white font-medium text-sm line-clamp-2">
+                        {currentLanguage === 'et' 
+                          ? item.credential.title_et || item.credential.title_ru 
+                          : item.credential.title_ru || item.credential.title_et}
+                      </h3>
                     </div>
-                  )}
+                  </div>
                 </div>
               </motion.div>
             );
