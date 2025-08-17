@@ -11,9 +11,9 @@ export function Hero() {
 
   return (
     <section className="w-full mt-6 md:mt-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-        {/* Left: copy + CTAs */}
-        <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
+        {/* Left: copy + CTAs with padding */}
+        <div className="md:col-span-2 space-y-6 md:pl-16">
           <Heading as="h1" className="text-3xl md:text-4xl lg:text-5xl font-bold text-sage-900">
             {currentLanguage === "et"
               ? "Teie jalgade heaolu – meie kätes. Samm sammult tervete jalataldadeni"
