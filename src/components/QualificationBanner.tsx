@@ -9,7 +9,7 @@ export function QualificationBanner() {
   return (
     <section className="py-8 md:py-12 bg-poppy-50/30">
       <div className="rounded-xl border border-poppy-200/40 bg-ivory-50 p-6 text-center">
-        <Heading as="h2" className="text-base md:text-lg tracking-widest">
+        <Heading as="h2" className="text-[30px] tracking-widest">
           {currentLanguage === 'et' ? 'PROFESSIONAALNE KVALIFIKATSIOON' : 'ПРОФЕССИОНАЛЬНАЯ КВАЛИФИКАЦИЯ'}
         </Heading>
         <Paragraph className="mt-4 text-sage-700 text-xs tracking-widest uppercase">

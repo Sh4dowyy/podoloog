@@ -132,7 +132,7 @@ export default function BrandProductsPage() {
     <Container>
       <div className="py-0">
         {/* Breadcrumbs */}
-        <div className="mb-6">
+        <div className="-mb-6 max-w-6xl mx-auto px-6">
           <nav className="text-sm">
             <Link href="/products" className="text-poppy-500 hover:text-poppy-600">
               {currentLanguage === 'et' ? 'Tooted' : 'Продукция'}

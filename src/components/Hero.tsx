@@ -5,15 +5,46 @@ import Link from "next/link";
 import { Heading } from "./Heading";
 import { Paragraph } from "./Paragraph";
 import { useLanguage } from "./i18n/LanguageProvider";
+import { useState, useRef } from "react";
 
 export function Hero() {
   const { currentLanguage } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartXRef = useRef<number | null>(null);
+  
+  const services = currentLanguage === 'et' 
+    ? ['Pediküür', 'Sissekasvanud küünte ravi', 'Küünte seenhaiguse ravi']
+    : ['Педикюр', 'Лечение вросшего ногтя', 'Лечение грибка ногтей'];
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const startX = touchStartXRef.current;
+    touchStartXRef.current = null;
+    if (startX == null) return;
+    
+    const endX = e.changedTouches[0]?.clientX ?? startX;
+    const deltaX = endX - startX;
+    const swipeThreshold = 50;
+    
+    if (Math.abs(deltaX) < swipeThreshold) return;
+    
+    if (deltaX > 0) {
+      // Swipe right - previous
+      setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
+    } else {
+      // Swipe left - next
+      setCurrentIndex((prev) => (prev + 1) % services.length);
+    }
+  };
 
   return (
     <section className="w-full mt-6 md:mt-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
         {/* Left: copy + CTAs with padding */}
-        <div className="md:col-span-2 space-y-6 md:pl-16">
+        <div className="md:col-span-2 space-y-6 text-center md:text-left md:pl-16">
           <Heading as="h1" className="text-3xl md:text-4xl lg:text-5xl font-bold text-sage-900">
             {currentLanguage === "et"
               ? "Teie jalgade heaolu – meie kätes. Samm sammult tervete jalataldadeni"
@@ -26,10 +57,30 @@ export function Hero() {
           </Paragraph>
 
           {/* Quick services row (plain text, not links) */}
-          <div className="flex flex-wrap gap-6 text-[11px] tracking-wide uppercase text-sage-700">
-            <span>{currentLanguage === 'et' ? 'Pediküür' : 'Педикюр'}</span>
-            <span>{currentLanguage === 'et' ? 'Sissekasvanud küünte ravi' : 'Лечение вросшего ногтя'}</span>
-            <span>{currentLanguage === 'et' ? 'Küünte seenhaiguse ravi' : 'Лечение грибка ногтей'}</span>
+          <div className="md:flex md:flex-wrap md:gap-6 md:text-[11px] md:tracking-wide md:uppercase md:text-sage-700 md:justify-start hidden">
+            {services.map((service, index) => (
+              <span key={index}>{service}</span>
+            ))}
+          </div>
+          
+          {/* Mobile swipeable services */}
+          <div className="md:hidden -mx-6">
+            <div 
+              className="overflow-x-auto scrollbar-hide touch-pan-x"
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div className="flex gap-6 px-6 py-2 w-max">
+                {services.map((service, index) => (
+                  <span 
+                    key={index}
+                    className="text-[11px] tracking-wide uppercase text-sage-700 whitespace-nowrap"
+                  >
+                    {service}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Booking button */}
@@ -44,17 +95,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right: image */}
-        <div className="relative h-56 sm:h-64 md:h-80 lg:h-96 rounded-xl overflow-hidden shadow-sm">
-          <Image
-            src="/images/"
-            alt={currentLanguage === "et" ? "Kliiniku foto" : "Фото клиники"}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-            className="object-cover"
-          />
-        </div>
       </div>
     </section>
   );

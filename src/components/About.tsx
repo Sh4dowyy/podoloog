@@ -23,12 +23,12 @@ export default function About() {
   return (
 		<div>
 			{/* Page title */}
-			<h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-4 text-center font-bold">
+			<h2 className="text-[30px] tracking-widest text-sage-900 uppercase mb-8 md:mb-12 text-center font-bold">
         {currentLanguage === 'et' ? 'Meist' : 'О нас'}
       </h2>
       {/* Hero row: intro text + clinic photos collage */}
 			<section className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-8">
-				<div>
+				<div className="text-center lg:text-left">
 					<p className="text-base text-sage-800">
             {currentLanguage === 'et' 
               ? 'Olen sertifitseeritud podoloog 5. taseme kvalifikatsiooniga. Minu eriala hõlmab probleemsete jalgade hooldust, sissekasvanud küünte korrigeerimist, klamber süsteemide paigaldust, proteseerimist, kannalõhede hooldust ja professionaalset pediküüri.'
@@ -43,7 +43,7 @@ export default function About() {
       </section>
 
       {/* Two text columns under hero */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[13px] md:text-[14px] text-sage-800 leading-relaxed">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[13px] md:text-[14px] text-sage-800 leading-relaxed text-center md:text-left">
         <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </p>
@@ -54,7 +54,7 @@ export default function About() {
       </section>
 
       {/* Diplomas Carousel */}
-      <div className="my-16">
+      <div className="mt-20 md:mt-24 mb-16">
         <CredentialsCarousel 
           credentials={credentials}
           onCredentialClick={setActive}

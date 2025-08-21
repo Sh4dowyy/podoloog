@@ -14,7 +14,7 @@ export default function Home() {
   const { currentLanguage } = useLanguage();
 
   return (
-    <Container className="pt-6 md:pt-8 pb-24">
+    <Container className="pt-10 md:pt-24 pb-24">
       <Hero />
 
       <div className="my-12" />

@@ -134,11 +134,11 @@ export default function ProductsPage() {
   const displayProducts = products.length > 0 ? products : fallbackBrands;
 
   return (
-    <Container className="pt-6 md:pt-8 pb-20">
+    <Container className="pt-10 md:pt-24 pb-20">
       <div className="py-0">
         {/* Header */}
-        <div className="text-center mb-6">
-          <h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase mb-2 font-bold">
+        <div className="text-center mb-8 md:mb-12">
+          <h2 className="text-[30px] tracking-wide text-sage-900 uppercase mb-4 md:mb-6">
             {currentLanguage === 'et' ? 'Meie töös kasutusel olevad brändid' : 'Бренды, с которыми работаем'}
           </h2>
           <p className="text-[12px] md:text-[13px] text-sage-700">

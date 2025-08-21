@@ -68,8 +68,8 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
   return (
     <div className="relative">
       {/* Carousel Header */}
-      <div className="flex items-center justify-center mb-8">
-        <h2 className="text-base md:text-lg tracking-widest text-sage-900 uppercase">
+      <div className="flex items-center justify-center -mb-2">
+        <h2 className="text-[30px] tracking-widest text-sage-900 uppercase">
           {currentLanguage === 'et' ? 'Diplomid' : 'Дипломы'}
         </h2>
       </div>
@@ -143,13 +143,13 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
 
       {/* Dots indicator */}
       {totalItems > 1 && (
-        <div className="flex justify-center mt-6 gap-2">
+        <div className="flex justify-center -mt-2 gap-2">
           {Array.from({ length: totalItems }).map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
               className={
-                "h-1.5 w-1.5 rounded-full transition-colors " +
+                "h-3 w-3 md:h-1.5 md:w-1.5 rounded-full transition-colors " +
                 (index === currentIndex ? "bg-sage-700" : "bg-sage-400/50 hover:bg-sage-500")
               }
               aria-label={`Go to certificate ${index + 1}`}

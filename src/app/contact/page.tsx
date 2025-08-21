@@ -11,10 +11,10 @@ export default function ContactPage() {
   const { currentLanguage } = useLanguage();
   
   return (
-    <Container className="pt-6 md:pt-8 pb-20">
+    <Container className="pt-10 md:pt-24 pb-20">
       <div className="py-0">
         <div className="text-center mb-16">
-          <h1 className="text-base md:text-lg tracking-widest uppercase text-sage-900 mb-8 font-bold">
+          <h1 className="text-[30px] tracking-widest uppercase text-sage-900 mb-8 font-bold">
             {currentLanguage === 'et' ? 'KONTAKT' : 'КОНТАКТЫ'}
           </h1>
           <p className="text-xs md:text-sm text-sage-700 max-w-md mx-auto leading-relaxed">
@@ -94,7 +94,7 @@ export default function ContactPage() {
                   <span className="text-white font-semibold text-lg tracking-wider">INSTAGRAM</span>
                 </div>
                 <a
-                  href="https://www.instagram.com/explore/locations/538189129570924/anne-salong"
+                  href="https://www.instagram.com/anne_salong"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="absolute inset-0"

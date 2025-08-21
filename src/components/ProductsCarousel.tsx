@@ -74,10 +74,6 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
       }
     }
     
-    // Limit to 100 characters
-    if (description.length > 100) {
-      return description.substring(0, 100).trim() + '...';
-    }
     return description;
   };
 
@@ -136,8 +132,8 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
   return (
     <section className="py-8 md:py-12">
       {/* Top section with text and image */}
-      <div className="max-w-6xl mx-auto px-6 mb-8">
-        <h2 className="text-base md:text-lg tracking-widest text-center mb-8 text-sage-900 uppercase">
+      <div className="max-w-6xl mx-auto px-6 mb-12">
+        <h2 className="text-[30px] tracking-widest text-center mb-8 text-sage-900 uppercase">
           {getLocalizedBrandName()}
         </h2>
         
@@ -150,7 +146,7 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
           </div>
           
           {/* Right: Image */}
-          <div className="relative h-64 lg:h-80 rounded-lg overflow-hidden">
+          <div className="relative h-32 lg:h-80 rounded-lg overflow-hidden">
             <Image
               src="/images/feet-care.jpg"
               alt="Feet care"
@@ -171,7 +167,7 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <h2 className="text-sm tracking-widest text-center mb-8 text-sage-900 uppercase">
+          <h2 className="text-[30px] tracking-widest text-center -mb-4 text-sage-900 uppercase">
             {currentLanguage === "et" ? "KASUTUSEL OLEVAD TOOTED" : "ИСПОЛЬЗУЕМЫЕ ПРОДУКТЫ"}
           </h2>
 
@@ -181,14 +177,14 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
           }`}>
             {/* left */}
             <div className="hidden md:block text-center px-0 opacity-20">
-              <div className="mx-auto mb-1 h-14 w-14">
+              <div className="mx-auto mb-1 h-20 w-20">
                 {prev.image && (
                   <Image
                     src={prev.image}
                     alt={prev.name}
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 object-contain"
+                    width={80}
+                    height={80}
+                    className="h-20 w-20 object-contain"
                   />
                 )}
               </div>
@@ -208,14 +204,14 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
                   exit="exit"
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                 >
-                  <div className="mx-auto mb-3 h-28 w-28">
+                  <div className="mx-auto mb-3 h-40 w-40">
                     {current.image && (
                       <Image
                         src={current.image}
                         alt={current.name}
-                        width={112}
-                        height={112}
-                        className="h-28 w-28 object-contain"
+                        width={160}
+                        height={160}
+                        className="h-40 w-40 object-contain"
                       />
                     )}
                   </div>
@@ -246,14 +242,14 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
 
             {/* right */}
             <div className="hidden md:block text-center px-0 opacity-20">
-              <div className="mx-auto mb-1 h-14 w-14">
+              <div className="mx-auto mb-1 h-20 w-20">
                 {next.image && (
                   <Image
                     src={next.image}
                     alt={next.name}
-                    width={56}
-                    height={56}
-                    className="h-14 w-14 object-contain"
+                    width={80}
+                    height={80}
+                    className="h-20 w-20 object-contain"
                   />
                 )}
               </div>
@@ -264,13 +260,13 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
 
           {/* dots */}
           {total > 1 && (
-            <div className="mt-6 flex items-center justify-center gap-2">
+            <div className="mt-14 flex items-center justify-center gap-2">
               {products.map((_, i) => (
                 <button
                   key={i}
                   aria-label={`Go to product ${i + 1}`}
                   className={
-                    "h-1.5 w-1.5 rounded-full transition-colors " +
+                    "h-3 w-3 md:h-1.5 md:w-1.5 rounded-full transition-colors " +
                     (i === active ? "bg-sage-700" : "bg-sage-400/50 hover:bg-sage-500")
                   }
                   onClick={() => {

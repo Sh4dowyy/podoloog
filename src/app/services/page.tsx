@@ -73,9 +73,9 @@ export default function ServicesPage() {
   }
 
   return (
-    <Container className="pt-6 md:pt-8 pb-20">
+    <Container className="pt-10 md:pt-24 pb-20">
       <div className="py-0 max-w-4xl mx-auto">
-        <Heading as="h1" className="text-center font-black mb-2 text-sm md:text-base lg:text-lg tracking-widest uppercase">
+        <Heading as="h1" className="text-center font-black mb-8 md:mb-12 text-[30px] tracking-wide uppercase font-bold">
           {currentLanguage === 'et' ? 'PAKUTAVAD TEENUSED, HINNAKIRI' : 'УСЛУГИ И ЦЕНЫ'}
         </Heading>
 
@@ -126,7 +126,7 @@ export default function ServicesPage() {
             : 'Не нашли нужную услугу или не уверены? Свяжитесь с нами — подберем процедуру и время!'}
         </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="flex justify-center mt-8">
           <a 
             href="tel:+37258955153" 
             className="px-6 py-3 rounded-lg text-sage-900 hover:shadow-md transition-shadow duration-200 inline-block text-center" 
