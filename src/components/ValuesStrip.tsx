@@ -85,7 +85,7 @@ export function ValuesStrip() {
     <section className="py-8 md:py-12 bg-ivory-50">
       <div className="rounded-xl border border-ivory-300 py-10" style={{ backgroundColor: '#FFF2E5' }}>
         <div className="max-w-6xl mx-auto px-6" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-          <h2 className="text-center text-sage-900 text-sm tracking-widest mb-6 md:mb-8">
+          <h2 className="text-center text-sage-900 text-[30px] tracking-wider mb-6 md:mb-8">
             {currentLanguage === "et" ? "MEIE VÄÄRTUSED" : "НАШИ ЦЕННОСТИ"}
           </h2>
 
@@ -93,7 +93,7 @@ export function ValuesStrip() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
             {/* Left (prev) */}
             <div className="hidden md:block text-center px-2 opacity-50">
-              <div className="text-[11px] tracking-widest text-sage-700 mb-2 uppercase">
+              <div className="text-[11px] tracking-wide text-sage-700 mb-2 uppercase">
                 {prev.title}
               </div>
               <p className="text-sage-700/80 text-xs leading-relaxed line-clamp-3">
@@ -113,7 +113,7 @@ export function ValuesStrip() {
                   exit="exit"
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                 >
-                  <div className="text-[11px] tracking-widest text-sage-900 font-medium mb-2 uppercase">
+                  <div className="text-[11px] tracking-wide text-sage-900 font-medium mb-2 uppercase">
                     {current.title}
                   </div>
                   <p className="text-sage-800 text-sm leading-relaxed max-w-[46ch] mx-auto">
@@ -125,7 +125,7 @@ export function ValuesStrip() {
 
             {/* Right (next) */}
             <div className="hidden md:block text-center px-2 opacity-50">
-              <div className="text-[11px] tracking-widest text-sage-700 mb-2 uppercase">
+              <div className="text-[11px] tracking-wide text-sage-700 mb-2 uppercase">
                 {next.title}
               </div>
               <p className="text-sage-700/80 text-xs leading-relaxed line-clamp-3">
@@ -142,7 +142,7 @@ export function ValuesStrip() {
                   key={i}
                   aria-label={`Go to slide ${i + 1}`}
                   className={
-                    "h-1.5 w-1.5 rounded-full transition-colors " +
+                    "h-3 w-3 md:h-1.5 md:w-1.5 rounded-full transition-colors " +
                     (i === active ? "bg-sage-700" : "bg-sage-400/50 hover:bg-sage-500")
                   }
                   onClick={() => {

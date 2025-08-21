@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <Container className="pt-6 md:pt-8 pb-20">
+    <Container className="pt-14 md:pt-24 pb-20">
       <About />
     </Container>
   );

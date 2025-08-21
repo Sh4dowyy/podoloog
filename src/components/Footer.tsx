@@ -38,7 +38,7 @@ export const Footer = () => {
                 
                 {/* Social icons right */}
                 <div className="flex items-center gap-3 text-sage-700">
-                  <Link href="https://www.instagram.com/explore/locations/538189129570924/anne-salong" target="_blank" className="hover:text-sage-900" aria-label="Instagram">
+                  <Link href="https://www.instagram.com/anne_salong" target="_blank" className="hover:text-sage-900" aria-label="Instagram">
                     <IconBrandInstagram size={18} />
                   </Link>
                   <Link href="https://www.facebook.com/profile.php?id=100063781140588" target="_blank" className="hover:text-sage-900" aria-label="Facebook">
@@ -86,7 +86,7 @@ export const Footer = () => {
                   <div className="text-[10px] tracking-widest text-sage-700 uppercase">PODOLOGY STUDIO</div>
                 </div>
                 <div className="mt-4 flex items-center gap-3 text-sage-700">
-                  <Link href="https://www.instagram.com/explore/locations/538189129570924/anne-salong" target="_blank" className="hover:text-sage-900" aria-label="Instagram">
+                  <Link href="https://www.instagram.com/anne_salong" target="_blank" className="hover:text-sage-900" aria-label="Instagram">
                     <IconBrandInstagram size={18} />
                   </Link>
                   <Link href="https://www.facebook.com/profile.php?id=100063781140588" target="_blank" className="hover:text-sage-900" aria-label="Facebook">

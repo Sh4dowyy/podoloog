@@ -105,7 +105,7 @@ export function Testimonials() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <Heading as="h2" className="text-sm tracking-widest text-center mb-8">
+          <Heading as="h2" className="text-[30px] tracking-widest text-center mb-8">
             {currentLanguage === "et" ? "TAGASISIDE" : "ОТЗЫВЫ"}
           </Heading>
 
@@ -179,7 +179,7 @@ export function Testimonials() {
                 key={i}
                 aria-label={`Go to testimonial ${i + 1}`}
                 className={
-                  "h-1.5 w-1.5 rounded-full transition-colors " +
+                  "h-3 w-3 md:h-1.5 md:w-1.5 rounded-full transition-colors " +
                   (i === active ? "bg-sage-700" : "bg-sage-400/50 hover:bg-sage-500")
                 }
                 onClick={() => {
