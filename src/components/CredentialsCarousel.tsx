@@ -69,8 +69,8 @@ export function CredentialsCarousel({ credentials, onCredentialClick }: Credenti
     <div className="relative">
       {/* Carousel Header */}
       <div className="flex items-center justify-center -mb-2">
-        <h2 className="text-[30px] tracking-widest text-sage-900 uppercase">
-          {currentLanguage === 'et' ? 'Diplomid' : 'Дипломы'}
+        <h2 className="text-base font-semibold leading-none text-center uppercase md:text-[30px] md:tracking-widest text-sage-900 md:font-bold" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '16px' }}>
+          {currentLanguage === 'et' ? 'DIPLOMID' : 'ДИПЛОМЫ'}
         </h2>
       </div>
 

@@ -85,7 +85,7 @@ export function ValuesStrip() {
     <section className="py-8 md:py-12 bg-ivory-50">
       <div className="rounded-xl border border-ivory-300 py-10" style={{ backgroundColor: '#FFF2E5' }}>
         <div className="max-w-6xl mx-auto px-6" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
-          <h2 className="text-center text-sage-900 text-[30px] tracking-wider mb-6 md:mb-8">
+          <h2 className="text-center text-sage-900 text-sm font-semibold leading-none uppercase md:text-[30px] md:tracking-wider md:font-bold mb-6 md:mb-8" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
             {currentLanguage === "et" ? "MEIE VÄÄRTUSED" : "НАШИ ЦЕННОСТИ"}
           </h2>
 
@@ -113,10 +113,10 @@ export function ValuesStrip() {
                   exit="exit"
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                 >
-                  <div className="text-[11px] tracking-wide text-sage-900 font-medium mb-2 uppercase">
+                  <div className="text-sm font-normal leading-none uppercase text-sage-900 mb-2 md:text-[11px] md:tracking-wide md:font-medium" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, fontSize: '14px' }}>
                     {current.title}
                   </div>
-                  <p className="text-sage-800 text-sm leading-relaxed max-w-[46ch] mx-auto">
+                  <p className="text-sage-800 text-sm font-normal leading-none text-center max-w-[46ch] mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, fontSize: '14px' }}>
                     {current.desc}
                   </p>
                 </motion.div>
@@ -136,7 +136,7 @@ export function ValuesStrip() {
 
           {/* Dots */}
           {total > 1 && (
-            <div className="mt-6 flex items-center justify-center gap-2">
+            <div className="mt-6 flex items-center justify-center gap-4 md:gap-2">
               {values.map((_, i) => (
                 <button
                   key={i}

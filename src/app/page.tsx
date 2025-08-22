@@ -17,15 +17,15 @@ export default function Home() {
     <Container className="pt-10 md:pt-24 pb-24">
       <Hero />
 
-      <div className="my-12" />
+      <div className="my-6 md:my-12" />
       
       <ValuesStrip />
       
-      <div className="my-10" />
+      <div className="my-6 md:my-12" />
       
       <QualificationBanner />
 
-      <div className="my-16" />
+      <div className="my-6 md:my-12" />
 
       <Testimonials />
     </Container>

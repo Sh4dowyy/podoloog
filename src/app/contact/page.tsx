@@ -14,10 +14,10 @@ export default function ContactPage() {
     <Container className="pt-10 md:pt-24 pb-20">
       <div className="py-0">
         <div className="text-center mb-16">
-          <h1 className="text-[30px] tracking-widest uppercase text-sage-900 mb-8 font-bold">
+          <h1 className="text-base font-semibold leading-none uppercase text-center md:text-[30px] md:tracking-widest text-sage-900 mt-12 mb-1 md:mb-12 md:font-bold" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '16px' }}>
             {currentLanguage === 'et' ? 'KONTAKT' : 'КОНТАКТЫ'}
           </h1>
-          <p className="text-xs md:text-sm text-sage-700 max-w-md mx-auto leading-relaxed">
+                      <p className="text-sm font-normal leading-none text-center text-sage-700 max-w-md mx-auto" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, fontSize: '16px' }}>
             {currentLanguage === 'et' 
               ? 'Teenuse broneerimiseks või küsimuste esitamisel võtke meiega julgelt ühendust.'
               : 'Для записи на услуги или по вопросам свяжитесь с нами.'
