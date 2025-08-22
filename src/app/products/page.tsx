@@ -138,10 +138,10 @@ export default function ProductsPage() {
       <div className="py-0">
         {/* Header */}
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-[30px] tracking-wide text-sage-900 uppercase mb-4 md:mb-6">
-            {currentLanguage === 'et' ? 'Meie töös kasutusel olevad brändid' : 'Бренды, с которыми работаем'}
+          <h2 className="text-base font-semibold leading-none uppercase text-center md:text-[30px] md:tracking-wide text-sage-900 mt-12 mb-1 md:mb-12 md:font-bold" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '16px' }}>
+            {currentLanguage === 'et' ? 'MEIE TÖÖS KASUTUSEL OLEVAD BRÄNDID' : 'БРЕНДЫ, С КОТОРЫМИ РАБОТАЕМ'}
           </h2>
-          <p className="text-[12px] md:text-[13px] text-sage-700">
+                      <p className="text-sm font-normal leading-none text-center text-sage-700 mt-6 md:mt-2" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, fontSize: '16px' }}>
             {currentLanguage === 'et' 
               ? 'Kasutan ainult kvaliteetseid ja sertifitseeritud tooteid jalgade tervise tagamiseks. Kõik brändid on valitud nende usaldusväärsuse ja tõhususe põhjal.'
               : 'Используем только качественные и сертифицированные продукты. Все бренды выбраны за надежность и эффективность.'}

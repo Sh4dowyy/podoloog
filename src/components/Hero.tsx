@@ -45,16 +45,16 @@ export function Hero() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
         {/* Left: copy + CTAs with padding */}
         <div className="md:col-span-2 space-y-6 text-center md:text-left md:pl-16">
-          <Heading as="h1" className="text-3xl md:text-4xl lg:text-5xl font-bold text-sage-900">
+          <h1 className="text-xl font-semibold leading-none text-center md:text-left md:text-5xl lg:text-6xl md:font-bold text-sage-900" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '20px' }}>
             {currentLanguage === "et"
               ? "Teie jalgade heaolu – meie kätes. Samm sammult tervete jalataldadeni"
               : "Ваше здоровье стоп – в наших руках. Шаг за шагом к здоровым стопам"}
-          </Heading>
-          <Paragraph className="text-sage-700">
-            {currentLanguage === "et"
-              ? "Kaasaegsed meetodid ja professionaalsed vahendid teie jalgade tervise tagamiseks."
-              : "Современные методы и профессиональные инструменты для здоровья ваших ног."}
-          </Paragraph>
+          </h1>
+                      <p className="text-sm font-normal leading-none text-center md:text-left text-sage-700" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, fontSize: '14px' }}>
+              {currentLanguage === "et"
+                ? "Kaasaegsed meetodid ja professionaalsed vahendid teie jalgade tervise tagamiseks."
+                : "Современные методы и профессиональные инструменты для здоровья ваших ног."}
+            </p>
 
           {/* Quick services row (plain text, not links) */}
           <div className="md:flex md:flex-wrap md:gap-6 md:text-[11px] md:tracking-wide md:uppercase md:text-sage-700 md:justify-start hidden">

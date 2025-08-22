@@ -75,9 +75,9 @@ export default function ServicesPage() {
   return (
     <Container className="pt-10 md:pt-24 pb-20">
       <div className="py-0 max-w-4xl mx-auto">
-        <Heading as="h1" className="text-center font-black mb-8 md:mb-12 text-[30px] tracking-wide uppercase font-bold">
+        <h1 className="text-base font-semibold leading-none uppercase text-center md:text-[30px] md:tracking-wide text-sage-900 mt-12 mb-8 md:mb-12 md:font-bold" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '16px' }}>
           {currentLanguage === 'et' ? 'PAKUTAVAD TEENUSED, HINNAKIRI' : 'УСЛУГИ И ЦЕНЫ'}
-        </Heading>
+        </h1>
 
         <div className="space-y-3">
           {services.map((s) => {

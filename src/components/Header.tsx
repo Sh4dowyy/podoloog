@@ -37,8 +37,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full md:pt-6 md:pt-8">
-      {/* Mobile header - full width */}
-      <div className="md:hidden w-full h-16 flex items-center justify-between px-4 border-b border-sage-200/30" style={{ backgroundColor: '#FFF2E5' }}>
+      {/* Mobile header - full width edge to edge */}
+      <div className="md:hidden w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] h-16 flex items-center justify-between px-4 border-b border-sage-200/30" style={{ backgroundColor: '#FFF2E5' }}>
         {/* Brand */}
         <Link href="/" className="flex flex-col leading-none">
           <span className="text-sm tracking-wider text-sage-900 font-semibold uppercase">ALLA HÜVENEN</span>

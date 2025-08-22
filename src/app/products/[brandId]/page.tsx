@@ -138,15 +138,30 @@ export default function BrandProductsPage() {
               {currentLanguage === 'et' ? 'Tooted' : 'Продукция'}
             </Link>
             <span className="mx-2 text-sage-400">›</span>
-            <span className="text-sage-700">{getLocalizedName(brand)}</span>
+            <span 
+              className="
+                text-sage-700 
+                text-sm
+                max-md:text-[14px] 
+                max-md:mt-2
+              "
+            >
+              {getLocalizedName(brand)}
+            </span>
           </nav>
         </div>
-
 
         {/* Products Carousel */}
         {brandProducts.length === 0 ? (
           <div className="glass-effect rounded-xl p-8 text-center">
-            <Paragraph className="text-sage-600 text-[8px]">
+            <Paragraph 
+              className="
+                text-sage-600 
+                text-[8px] 
+                max-md:text-[14px] 
+                max-md:text-center
+              "
+            >
               {currentLanguage === 'et' 
                 ? 'Selle brändi tooteid ei ole veel lisatud.'
                 : 'Продукты этого бренда еще не добавлены.'
@@ -154,9 +169,12 @@ export default function BrandProductsPage() {
             </Paragraph>
           </div>
         ) : (
-          <ProductsCarousel products={brandProducts} brand={brand} />
+          <ProductsCarousel 
+            products={brandProducts} 
+            brand={brand} 
+          />
         )}
       </div>
     </Container>
   );
-} 
+}

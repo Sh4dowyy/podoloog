@@ -96,8 +96,8 @@ export function Testimonials() {
   if (total === 0) return null;
 
   return (
-    <section className="py-8 md:py-12 bg-ivory-50">
-      <div className="rounded-xl border border-poppy-200/40 py-10" style={{ backgroundColor: '#FFF2E5' }}>
+    <section className="pt-8 pb-2 md:py-12 bg-ivory-50">
+      <div className="rounded-xl border border-poppy-200/40 py-4 md:py-10" style={{ backgroundColor: '#FFF2E5' }}>
         <div 
           className="max-w-5xl mx-auto px-6" 
           onTouchStart={handleTouchStart} 
@@ -105,13 +105,13 @@ export function Testimonials() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <Heading as="h2" className="text-[30px] tracking-widest text-center mb-8">
+          <h2 className="text-center text-sage-900 text-base font-semibold leading-none uppercase md:text-[30px] md:tracking-wider md:font-bold mt-2 mb-8 md:mb-10" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
             {currentLanguage === "et" ? "TAGASISIDE" : "ОТЗЫВЫ"}
-          </Heading>
+          </h2>
 
           {/* Три колонки на десктопе; на мобильном показываем только активный */}
           <div className={`grid grid-cols-1 md:grid-cols-7 gap-2 transition-all duration-300 ${
-            isExpanded ? 'items-start min-h-[280px]' : 'items-center h-[280px]'
+            isExpanded ? 'items-start min-h-[300px]' : 'items-center min-h-[250px]'
           }`}>
             {/* left */}
             <div className="hidden md:block text-center px-0 opacity-20">
@@ -119,7 +119,7 @@ export function Testimonials() {
                 <UserIcon className="h-2 w-2 text-sage-600" />
               </div>
               <div className="text-[8px] font-medium text-sage-700 mb-0.5 truncate">{prev.name}</div>
-              <Paragraph className="text-[7px] text-sage-700/80 line-clamp-2 leading-tight">{prev.text}</Paragraph>
+              <p className="text-[7px] text-sage-700/80 line-clamp-2 leading-tight">{prev.text}</p>
             </div>
 
             {/* center */}
@@ -134,22 +134,22 @@ export function Testimonials() {
                   exit="exit"
                   transition={{ duration: 0.25, ease: "easeInOut" }}
                 >
-                  <div className="mx-auto mb-1 h-6 w-6 rounded-full bg-sage-200 flex items-center justify-center">
-                    <UserIcon className="h-3 w-3 text-sage-700" />
+                  <div className="mx-auto mb-1 h-8 w-8 rounded-full bg-sage-200 flex items-center justify-center">
+                    <UserIcon className="h-4 w-4 text-sage-700" />
                   </div>
-                  <div className="text-xs sm:text-sm font-semibold text-sage-800 mb-1">{current.name}</div>
+                  <div className="text-sm font-semibold text-sage-800 mb-1">{current.name}</div>
                   <div className="max-w-lg mx-auto">
-                    <Paragraph className={`text-sage-800 text-sm sm:text-base leading-relaxed ${
+                    <p className={`text-sage-800 text-sm font-normal leading-tight text-center ${
                       isExpanded 
                         ? '' 
-                        : 'line-clamp-25 max-h-40 overflow-hidden'
-                    }`}>
+                        : 'line-clamp-6 max-h-32 overflow-hidden'
+                    }`} style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 400, fontSize: '14px', lineHeight: '1.3' }}>
                       {current.text}
-                    </Paragraph>
+                    </p>
                     {current.text && current.text.length > 400 && (
                       <button
                         onClick={() => setIsExpanded(!isExpanded)}
-                        className="mt-2 text-xs sm:text-sm text-sage-600 hover:text-sage-800 underline hover:no-underline px-2 py-1 rounded-md hover:bg-sage-50 transition-all duration-200 font-medium"
+                        className="mt-2 text-sm text-sage-600 hover:text-sage-800 underline hover:no-underline px-2 py-1 rounded-md hover:bg-sage-50 transition-all duration-200 font-medium"
                       >
                         {isExpanded 
                           ? (currentLanguage === "et" ? "Näita vähem" : "Скрыть")
@@ -168,12 +168,12 @@ export function Testimonials() {
                 <UserIcon className="h-2 w-2 text-sage-600" />
               </div>
               <div className="text-[8px] font-medium text-sage-700 mb-0.5 truncate">{next.name}</div>
-              <Paragraph className="text-[7px] text-sage-700/80 line-clamp-2 leading-tight">{next.text}</Paragraph>
+              <p className="text-[7px] text-sage-700/80 line-clamp-2 leading-tight">{next.text}</p>
             </div>
           </div>
 
           {/* dots */}
-          <div className="mt-6 flex items-center justify-center gap-2">
+          <div className="mt-4 flex items-center justify-center gap-2">
             {reviews.map((_, i) => (
               <button
                 key={i}

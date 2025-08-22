@@ -130,17 +130,17 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
   if (total === 0) return null;
 
   return (
-    <section className="py-8 md:py-12">
-      {/* Top section with text and image */}
-      <div className="max-w-6xl mx-auto px-6 mb-12">
-        <h2 className="text-[30px] tracking-widest text-center mb-8 text-sage-900 uppercase">
+          <section className="py-8 md:py-12">
+        {/* Top section with text and image */}
+        <div className="max-w-6xl mx-auto px-6 mb-12 mt-8 md:mt-0">
+        <h2 className="text-[18px] md:text-[30px] tracking-widest text-center mb-8 text-sage-900 uppercase">
           {getLocalizedBrandName()}
         </h2>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start mb-8">
           {/* Left: Text content */}
           <div className="space-y-6">
-            <p className="text-xs md:text-sm text-sage-700 leading-relaxed">
+            <p className="text-xs md:text-sm text-sage-700 leading-relaxed text-center md:text-left">
               {getLocalizedBrandDescription()}
             </p>
           </div>
@@ -167,7 +167,7 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <h2 className="text-[30px] tracking-widest text-center -mb-4 text-sage-900 uppercase">
+          <h2 className="text-[16px] md:text-[30px] tracking-widest text-center -mb-4 text-sage-900 uppercase">
             {currentLanguage === "et" ? "KASUTUSEL OLEVAD TOOTED" : "ИСПОЛЬЗУЕМЫЕ ПРОДУКТЫ"}
           </h2>
 
@@ -188,7 +188,7 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
                   />
                 )}
               </div>
-              <div className="text-[10px] font-medium text-sage-700 mb-1 truncate">{prev.name}</div>
+              <div className="text-[10px] md:text-[10px] font-medium text-sage-700 mb-1 truncate" style={{ fontSize: '14px' }}>{prev.name}</div>
               <p className="text-[9px] text-sage-700/80 line-clamp-2 leading-tight">{prev.description}</p>
             </div>
 
@@ -215,7 +215,7 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
                       />
                     )}
                   </div>
-                  <div className="text-sm font-semibold text-sage-800 mb-2">{current.name}</div>
+                  <div className="text-sm md:text-sm font-semibold text-sage-800 mb-2" style={{ fontSize: '14px' }}>{current.name}</div>
                   <div className="max-w-lg mx-auto">
                     <p className={`text-sage-800 text-xs leading-relaxed ${
                       isExpanded 
@@ -253,7 +253,7 @@ export function ProductsCarousel({ products, brand }: ProductsCarouselProps) {
                   />
                 )}
               </div>
-              <div className="text-[10px] font-medium text-sage-700 mb-1 truncate">{next.name}</div>
+              <div className="text-[10px] md:text-[10px] font-medium text-sage-700 mb-1 truncate" style={{ fontSize: '14px' }}>{next.name}</div>
               <p className="text-[9px] text-sage-700/80 line-clamp-2 leading-tight">{next.description}</p>
             </div>
           </div>
