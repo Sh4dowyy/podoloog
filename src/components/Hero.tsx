@@ -45,7 +45,7 @@ export function Hero() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center">
         {/* Left: copy + CTAs with padding */}
         <div className="md:col-span-2 space-y-6 text-center md:text-left md:pl-16">
-          <h1 className="text-xl font-semibold leading-none text-center md:text-left md:text-4xl lg:text-5xl md:font-bold text-sage-900" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '20px' }}>
+          <h1 className="text-xl font-semibold leading-none text-center md:text-left md:text-5xl lg:text-6xl md:font-bold text-sage-900" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600, fontSize: '20px' }}>
             {currentLanguage === "et"
               ? "Teie jalgade heaolu – meie kätes. Samm sammult tervete jalataldadeni"
               : "Ваше здоровье стоп – в наших руках. Шаг за шагом к здоровым стопам"}
